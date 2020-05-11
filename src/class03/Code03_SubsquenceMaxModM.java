@@ -1,13 +1,12 @@
 package class03;
 
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class Code03_SubsquenceMaxModM {
 
 	/*
 	 * 给定一个非负数组arr，和一个正数m。 返回arr的所有子序列中累加和%m之后的最大值。
-	 * 
-	 * 说明：m在一般状况下，比arr整体的累加和小
 	 * 
 	 */
 
@@ -87,6 +86,33 @@ public class Code03_SubsquenceMaxModM {
 		return ans;
 	}
 
+	// 如果arr的累加和很大，m也很大
+	// 但是arr的长度相对不大
+	public static int max4(int[] arr, int m) {
+		if (arr.length == 1) {
+			return arr[0] % m;
+		}
+		int mid = (arr.length - 1) / 2;
+		TreeSet<Integer> sortSet1 = new TreeSet<>();
+		process4(arr, 0, 0, mid, m, sortSet1);
+		TreeSet<Integer> sortSet2 = new TreeSet<>();
+		process4(arr, mid + 1, 0, arr.length - 1, m, sortSet2);
+		int ans = 0;
+		for (Integer left : sortSet1) {
+			ans = Math.max(ans, left + sortSet2.floor(m - 1 - left));
+		}
+		return ans;
+	}
+
+	public static void process4(int[] arr, int index, int sum, int end, int m, TreeSet<Integer> sortSet) {
+		if (index == end + 1) {
+			sortSet.add(sum % m);
+		} else {
+			process4(arr, index + 1, sum, end, m, sortSet);
+			process4(arr, index + 1, sum + arr[index], end, m, sortSet);
+		}
+	}
+
 	public static int[] generateRandomArray(int len, int value) {
 		int[] ans = new int[(int) (Math.random() * len) + 1];
 		for (int i = 0; i < ans.length; i++) {
@@ -106,7 +132,8 @@ public class Code03_SubsquenceMaxModM {
 			int ans1 = max1(arr, m);
 			int ans2 = max2(arr, m);
 			int ans3 = max3(arr, m);
-			if (ans1 != ans2 || ans2 != ans3) {
+			int ans4 = max4(arr, m);
+			if (ans1 != ans2 || ans2 != ans3 || ans3 != ans4) {
 				System.out.print("Oops!");
 			}
 		}
