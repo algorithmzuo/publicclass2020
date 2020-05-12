@@ -10,21 +10,21 @@ public class Code02_RestoreWays {
 	 * 
 	 */
 
-	public static int ways1(int[] arr) {
-		return process1(arr, 0);
+	public static int ways0(int[] arr) {
+		return process0(arr, 0);
 	}
 
-	public static int process1(int[] arr, int index) {
+	public static int process0(int[] arr, int index) {
 		if (index == arr.length) {
 			return isValid(arr) ? 1 : 0;
 		} else {
 			if (arr[index] != 0) {
-				return process1(arr, index + 1);
+				return process0(arr, index + 1);
 			} else {
 				int ways = 0;
 				for (int v = 1; v < 201; v++) {
 					arr[index] = v;
-					ways += process1(arr, index + 1);
+					ways += process0(arr, index + 1);
 				}
 				arr[index] = 0;
 				return ways;
@@ -47,85 +47,136 @@ public class Code02_RestoreWays {
 		return true;
 	}
 
-	public static int ways2(int[] array) {
-		int N = array.length + 3;
-		int[] arr = new int[N];
-		arr[0] = 1;
-		arr[1] = 1;
-		arr[N - 1] = 1;
-		for (int i = 2; i < N - 1; i++) {
-			arr[i] = array[i - 2];
+	public static int ways1(int[] arr) {
+		int N = arr.length;
+		if (arr[N - 1] != 0) {
+			return process1(arr, N - 1, arr[N - 1], 2);
+		} else {
+			int ways = 0;
+			for (int v = 1; v < 201; v++) {
+				ways += process1(arr, N - 1, v, 2);
+			}
+			return ways;
 		}
-		// dp[i][j][0] 表示arr[i] == j 且一定小于arr[i-1]的情况下，合法的数量
-		// dp[i][j][1] 表示arr[i] == j 且一定等于arr[i-1]的情况下，合法的数量
-		// dp[i][j][2] 表示arr[i] == j 且一定大于arr[i-1]的情况下，合法的数量
+	}
+
+	// 如果index位置的数字变成了v,
+	// 并且arr[index]和arr[index+1]的关系为s，
+	// s==0，代表arr[index] < arr[index+1]
+	// s==1，代表arr[index] = arr[index+1]
+	// s==2，代表arr[index] > arr[index+1]
+	// 返回有多少种转化方式？
+	public static int process1(int[] arr, int i, int v, int s) {
+		if (i == 0) {
+			return ((s == 0 || s == 1) && (arr[i] == 0 || v == arr[i])) ? 1 : 0;
+		}
+		if (arr[i] != 0 && v != arr[i]) {
+			return 0;
+		}
+		int ways = 0;
+		if (s == 0 || s == 1) {
+			for (int pre = 1; pre < 201; pre++) {
+				ways += process1(arr, i - 1, pre, pre < v ? 0 : (pre == v ? 1 : 2));
+			}
+		} else {
+			for (int pre = v; pre < 201; pre++) {
+				ways += process1(arr, i - 1, pre, pre < v ? 0 : (pre == v ? 1 : 2));
+			}
+		}
+		return ways;
+	}
+
+	public static int ways2(int[] arr) {
+		int N = arr.length;
 		int[][][] dp = new int[N][201][3];
-		dp[1][1][1] = 1;
-		for (int i = 2; i < N; i++) {
-			if (arr[i] != 0) {
-				for (int pre = arr[i] + 1; pre < 201; pre++) {
-					dp[i][arr[i]][0] += dp[i - 1][pre][0] + dp[i - 1][pre][1];
-				}
-				dp[i][arr[i]][1] = dp[i - 1][arr[i]][0] + dp[i - 1][arr[i]][1] + dp[i - 1][arr[i]][2];
-				for (int pre = 1; pre < arr[i]; pre++) {
-					dp[i][arr[i]][2] += dp[i - 1][pre][0] + dp[i - 1][pre][1] + dp[i - 1][pre][2];
-				}
-			} else {
-				for (int v = 1; v < 201; v++) {
-					for (int pre = v + 1; pre < 201; pre++) {
-						dp[i][v][0] += dp[i - 1][pre][0] + dp[i - 1][pre][1];
-					}
-					dp[i][v][1] = dp[i - 1][v][0] + dp[i - 1][v][1] + dp[i - 1][v][2];
-					for (int pre = 1; pre < v; pre++) {
-						dp[i][v][2] += dp[i - 1][pre][0] + dp[i - 1][pre][1] + dp[i - 1][pre][2];
+		if (arr[0] != 0) {
+			dp[0][arr[0]][0] = 1;
+			dp[0][arr[0]][1] = 1;
+		} else {
+			for (int v = 1; v < 201; v++) {
+				dp[0][v][0] = 1;
+				dp[0][v][1] = 1;
+			}
+		}
+		for (int i = 1; i < N; i++) {
+			for (int v = 1; v < 201; v++) {
+				for (int s = 0; s < 3; s++) {
+					if (arr[i] == 0 || v == arr[i]) {
+						if (s == 0 || s == 1) {
+							for (int pre = 1; pre < 201; pre++) {
+								dp[i][v][s] += dp[i - 1][pre][pre < v ? 0 : (pre == v ? 1 : 2)];
+							}
+						} else {
+							for (int pre = v; pre < 201; pre++) {
+								dp[i][v][s] += dp[i - 1][pre][pre < v ? 0 : (pre == v ? 1 : 2)];
+							}
+						}
 					}
 				}
 			}
 		}
-		return dp[N - 1][1][0] + dp[N - 1][1][1];
+		if (arr[N - 1] != 0) {
+			return dp[N - 1][arr[N - 1]][2];
+		} else {
+			int ways = 0;
+			for (int v = 1; v < 201; v++) {
+				ways += dp[N - 1][v][2];
+			}
+			return ways;
+		}
 	}
 
-	public static int ways3(int[] array) {
-		int N = array.length + 3;
-		int[] arr = new int[N];
-		arr[0] = 1;
-		arr[1] = 1;
-		arr[N - 1] = 1;
-		for (int i = 2; i < N - 1; i++) {
-			arr[i] = array[i - 2];
-		}
+	public static int ways3(int[] arr) {
+		int N = arr.length;
 		int[][][] dp = new int[N][201][3];
-		dp[1][1][1] = 1;
-		int[][] sum = new int[201][3];
-		for (int v = 1; v < 201; v++) {
-			sum[v][1] = 1;
+		if (arr[0] != 0) {
+			dp[0][arr[0]][0] = 1;
+			dp[0][arr[0]][1] = 1;
+		} else {
+			for (int v = 1; v < 201; v++) {
+				dp[0][v][0] = 1;
+				dp[0][v][1] = 1;
+			}
 		}
-		for (int i = 2; i < N; i++) {
-			if (arr[i] != 0) {
-				int v = arr[i];
-				dp[i][v][0] += sum(v + 1, 200, 0, sum) + sum(v + 1, 200, 1, sum);
-				dp[i][v][1] = dp[i - 1][v][0] + dp[i - 1][v][1] + dp[i - 1][v][2];
-				dp[i][v][2] += sum(1, v - 1, 0, sum) + sum(1, v - 1, 1, sum) + sum(1, v - 1, 2, sum);
-			} else {
-				for (int v = 1; v < 201; v++) {
-					dp[i][v][0] += sum(v + 1, 200, 0, sum) + sum(v + 1, 200, 1, sum);
-					dp[i][v][1] = dp[i - 1][v][0] + dp[i - 1][v][1] + dp[i - 1][v][2];
-					dp[i][v][2] += sum(1, v - 1, 0, sum) + sum(1, v - 1, 1, sum) + sum(1, v - 1, 2, sum);
+		int[][] presum = new int[201][3];
+		for (int v = 1; v < 201; v++) {
+			for (int s = 0; s < 3; s++) {
+				presum[v][s] = presum[v - 1][s] + dp[0][v][s];
+			}
+		}
+		for (int i = 1; i < N; i++) {
+			for (int v = 1; v < 201; v++) {
+				for (int s = 0; s < 3; s++) {
+					if (arr[i] == 0 || v == arr[i]) {
+						if (s == 0 || s == 1) {
+							dp[i][v][s] += sum(1, v - 1, 0, presum);
+							dp[i][v][s] += dp[i - 1][v][1];
+							dp[i][v][s] += sum(v + 1, 200, 2, presum);
+						} else {
+							dp[i][v][s] += dp[i - 1][v][1];
+							dp[i][v][s] += sum(v + 1, 200, 2, presum);
+						}
+					}
 				}
 			}
 			for (int v = 1; v < 201; v++) {
-				sum[v][0] = sum[v - 1][0] + dp[i][v][0];
-				sum[v][1] = sum[v - 1][1] + dp[i][v][1];
-				sum[v][2] = sum[v - 1][2] + dp[i][v][2];
+				for (int s = 0; s < 3; s++) {
+					presum[v][s] = presum[v - 1][s] + dp[i][v][s];
+				}
 			}
 		}
-		return dp[N - 1][1][0] + dp[N - 1][1][1];
+		if (arr[N - 1] != 0) {
+			return dp[N - 1][arr[N - 1]][2];
+		} else {
+			return sum(1, 200, 2, presum);
+		}
 	}
 
 	public static int sum(int begin, int end, int relation, int[][] presum) {
 		return presum[end][relation] - presum[begin - 1][relation];
 	}
 
+	// for test
 	public static int[] generateRandomArray(int len) {
 		int[] ans = new int[(int) (Math.random() * len) + 2];
 		for (int i = 0; i < ans.length; i++) {
@@ -148,32 +199,26 @@ public class Code02_RestoreWays {
 	}
 
 	public static void main(String[] args) {
-		int len = 20;
-		int testTime = 10000;
+		int len = 3;
+		int testTime = 10;
 		System.out.println("test begin");
 		for (int i = 0; i < testTime; i++) {
 			int[] arr = generateRandomArray(len);
-			// int ans1 = ways1(arr);
+			int ans0 = ways0(arr);
+			int ans1 = ways1(arr);
 			int ans2 = ways2(arr);
 			int ans3 = ways3(arr);
-			// if (ans1 != ans2) {
-			// System.out.println("Oops!");
-			// }
-			if (ans2 != ans3) {
+			if (ans0 != ans1 || ans2 != ans3 || ans0 != ans2) {
 				System.out.println("Oops!");
 			}
 		}
 		System.out.println("test finish");
-
 		int[] arr = generateRandomArray(100000);
 		System.out.println(arr.length);
 		long begin = System.currentTimeMillis();
 		ways3(arr);
 		long end = System.currentTimeMillis();
 		System.out.println("run time : " + (end - begin) + " ms");
-
-		int[] test = { 6, 0, 0, 9 };
-		System.out.println(ways3(test));
 
 	}
 

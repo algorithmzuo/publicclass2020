@@ -75,7 +75,7 @@ public class Code01_RotateString {
 	public static void main(String[] args) {
 		int possibilities = 5;
 		int strMaxSize = 10;
-		int testTimes = 500000;
+		int testTimes = 5000000;
 		System.out.println("test begin, test time : " + testTimes);
 		for (int i = 0; i < testTimes; i++) {
 			String str = getRandomString(possibilities, strMaxSize);
