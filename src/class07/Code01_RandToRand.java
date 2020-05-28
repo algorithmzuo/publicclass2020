@@ -26,6 +26,19 @@ public class Code01_RandToRand {
 		}
 	}
 
+	public static int rand01(RandomBox randomBox) {
+		int min = randomBox.min();
+		int max = randomBox.max();
+		int size = max - min + 1;
+		boolean odd = (size & 1) != 0;
+		int mid = size / 2;
+		int ans = 0;
+		do {
+			ans = randomBox.random() - min;
+		} while (odd && ans == mid);
+		return ans < mid ? 0 : 1;
+	}
+
 	// 给你一个RandomBox，这是唯一能借助的随机机制
 	// 等概率返回from~to范围上任何一个数
 	// 要求from<=to
@@ -48,19 +61,6 @@ public class Code01_RandToRand {
 			}
 		} while (ans > range);
 		return ans + from;
-	}
-
-	public static int rand01(RandomBox randomBox) {
-		int min = randomBox.min();
-		int max = randomBox.max();
-		int size = max - min + 1;
-		boolean odd = (size & 1) != 0;
-		int mid = size / 2;
-		int ans = 0;
-		do {
-			ans = randomBox.random() - min;
-		} while (odd && ans == mid);
-		return ans < mid ? 0 : 1;
 	}
 
 	public static void main(String[] args) {
