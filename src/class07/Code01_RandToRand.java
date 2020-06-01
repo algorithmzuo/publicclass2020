@@ -8,11 +8,14 @@ public class Code01_RandToRand {
 		private final int min;
 		private final int max;
 
+		// 初始化时请一定不要让mi==ma
 		public RandomBox(int mi, int ma) {
 			min = mi;
 			max = ma;
 		}
 
+		// 13 ~  17
+		// 13 + [0,4]
 		public int random() {
 			return min + (int) (Math.random() * (max - min + 1));
 		}
@@ -26,10 +29,13 @@ public class Code01_RandToRand {
 		}
 	}
 
+	// 利用条件RandomBox，如何等概率返回0和1
 	public static int rand01(RandomBox randomBox) {
 		int min = randomBox.min();
 		int max = randomBox.max();
+		// min ~ max
 		int size = max - min + 1;
+		// size是不是奇数，odd 奇数
 		boolean odd = (size & 1) != 0;
 		int mid = size / 2;
 		int ans = 0;
@@ -46,18 +52,23 @@ public class Code01_RandToRand {
 		if (from == to) {
 			return from;
 		}
+		// 3 ~ 9
+		// 0 ~ 6
+		// 0 ~ range
 		int range = to - from;
 		int num = 1;
 		// 求0～range需要几个2进制位
 		while ((1 << num) - 1 < range) {
 			num++;
 		}
+		
+		// 我们一共需要num位
 		// 最终的累加和，首先+0位上是1还是0，1位上是1还是0，2位上是1还是0...
 		int ans = 0;
 		do {
 			ans = 0;
 			for (int i = 0; i < num; i++) {
-				ans += (rand01(randomBox) << i);
+				ans |= (rand01(randomBox) << i);
 			}
 		} while (ans > range);
 		return ans + from;
@@ -75,6 +86,7 @@ public class Code01_RandToRand {
 		for (int i = 0; i < ans.length; i++) {
 			System.out.println(ans[i]);
 		}
+		System.out.println("==========");
 
 	}
 

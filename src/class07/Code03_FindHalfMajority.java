@@ -7,29 +7,31 @@ public class Code03_FindHalfMajority {
 
 	public static int halfMajor(int[] arr) {
 		int cand = 0;
-		int times = 0;
+		int HP = 0;
+		// 遍历一遍数组arr，一次删掉两个不同的数，谁会剩下来，谁就是cand
 		for (int i = 0; i != arr.length; i++) {
-			if (times == 0) {
+			if (HP == 0) { // 如果没有候选
 				cand = arr[i];
-				times = 1;
+				HP = 1;
 			} else if (arr[i] == cand) {
-				times++;
+				HP++;
 			} else {
-				times--;
+				HP--;
 			}
 		}
-		if (times == 0) {
+		if (HP == 0) {
 			return -1;
 		}
-		times = 0;
+		HP = 0;
 		for (int i = 0; i != arr.length; i++) {
 			if (arr[i] == cand) {
-				times++;
+				HP++;
 			}
 		}
-		return times > arr.length / 2 ? cand : -1;
+		return HP > arr.length / 2 ? cand : -1;
 	}
 
+	// for test
 	public static int right(int[] arr) {
 		HashMap<Integer, Integer> map = new HashMap<>();
 		for (int cur : arr) {
@@ -46,6 +48,7 @@ public class Code03_FindHalfMajority {
 		return -1;
 	}
 
+	// for test
 	public static int[] genareteRandomArray(int len, int max) {
 		int[] ans = new int[(int) (Math.random() * len) + 1];
 		for (int i = 0; i < ans.length; i++) {

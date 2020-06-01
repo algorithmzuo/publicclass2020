@@ -14,6 +14,7 @@ public class Code04_FindKMajor {
 		if (K < 2) {
 			return ans;
 		}
+		// 候选表，记录数一定是O(K) > N/K    k-1
 		HashMap<Integer, Integer> cands = new HashMap<Integer, Integer>();
 		for (int i = 0; i != arr.length; i++) {
 			if (cands.containsKey(arr[i])) {

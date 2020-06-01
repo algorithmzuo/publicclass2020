@@ -7,6 +7,7 @@ public class Code02_EqualProbabilityRandom {
 	public static class RandomBox {
 		private final double p;
 
+		// 初始化时请一定满足：0 < zeroP < 1
 		public RandomBox(double zeroP) {
 			p = zeroP;
 		}
