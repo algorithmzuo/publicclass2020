@@ -2,7 +2,7 @@ package class08;
 
 import java.util.HashMap;
 
-public class Code03_LongestConsecutiveSequence {
+public class Code02_LongestConsecutiveSequence {
 
 	public static int longestConsecutive(int[] nums) {
 		HashMap<Integer, Integer> map = new HashMap<>();

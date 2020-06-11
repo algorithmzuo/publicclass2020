@@ -1,6 +1,6 @@
 package class08;
 
-public class Code02_JumpGameII {
+public class Code01_JumpGameII {
 
 	/*
 	 * 评测代码可以直接去leetcode搜索：Jump Game II
