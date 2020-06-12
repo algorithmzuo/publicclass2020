@@ -10,8 +10,8 @@ public class Code03_LongestOnes {
 		int M = matrix[0].length;
 		List<Integer> ans = new ArrayList<>();
 		int maxLen = 0;
-		for (int i = 0; i < N; i++) {
-			int j = M;
+		for (int i = 0; i < N; i++) { // 每一行的答案，i
+			int j = M; // 最左发现的1的位置
 			while (j > 0 && matrix[i][j - 1] == 1) {
 				j--;
 			}
@@ -36,6 +36,7 @@ public class Code03_LongestOnes {
 			while (col > 0 && matrix[i][col - 1] == 1) {
 				col--;
 			}
+			// col来到当前i行最左侧的1的位置
 			if (maxLen < M - col) {
 				maxLen = M - col;
 				ans.clear();
@@ -84,8 +85,9 @@ public class Code03_LongestOnes {
 		return ans;
 	}
 
+	// arr[L..R]上，一定有一个前期：要么都是0，要么都是1，如果0和1都有，0在左侧，1在右侧
 	public static int mostLeftOne(int[] arr, int L, int R) {
-		int ans = R + 1;
+		int ans = R + 1; // R + 1 ->  [L..R] 没有1的
 		int M = 0;
 		while (L <= R) {
 			M = (L + R) / 2;
