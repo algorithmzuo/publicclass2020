@@ -6,7 +6,6 @@ public class Code01_SetMatrixZeroes {
 	 * 评测代码可以直接去leetcode搜索：Set Matrix Zeroes
 	 * 
 	 */
-
 	public static void setZeroes1(int[][] matrix) {
 		boolean row0Zero = false;
 		boolean col0Zero = false;
