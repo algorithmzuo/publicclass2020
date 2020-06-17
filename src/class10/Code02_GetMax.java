@@ -1,6 +1,6 @@
 package class10;
 
-public class Code03_GetMax {
+public class Code02_GetMax {
 
 	public static int flip(int n) {
 		return n ^ 1;
