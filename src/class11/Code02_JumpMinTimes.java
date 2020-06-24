@@ -101,9 +101,9 @@ public class Code02_JumpMinTimes {
 	}
 
 	public static void main(String[] args) {
-		int maxN = 10;
+		int maxN = 20;
 		int maxV = 10;
-		int testTimes = 20000;
+		int testTimes = 200000;
 		System.out.println("test begin");
 		for (int i = 0; i < testTimes; i++) {
 			int[] arr = gerRandomArray(maxN, maxV);
