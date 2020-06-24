@@ -88,7 +88,7 @@ public class Code02_JumpMinTimes {
 	public static int[] gerRandomArray(int N, int R) {
 		int[] arr = new int[N];
 		for (int i = 0; i < N; i++) {
-			arr[i] = (int) (Math.random() * N);
+			arr[i] = (int) (Math.random() * R);
 		}
 		return arr;
 	}
