@@ -42,7 +42,9 @@ public class Code01_CopyListWithRandom {
 		// 1 -> 2
 		// 1 -> 1' -> 2
 		while (cur != null) {
-			// cur 老   next 老的下一个
+			//  1 -> 2 -> 3
+			//  cur  next
+			// 1 -> 1' -> 2 -> 2' 
 			next = cur.next;
 			cur.next = new Node(cur.value);
 			cur.next.next = next;
@@ -53,8 +55,9 @@ public class Code01_CopyListWithRandom {
 		// set copy node rand
 		// 1 -> 1' -> 2 -> 2'
 		while (cur != null) {
-			// cur 老
-			// cur.next  新 copy
+			// 1 -> 1' -> 2 -> 2'
+			// cur       next
+			// cur 老  cur.next 新
 			next = cur.next.next;
 			curCopy = cur.next;
 			curCopy.rand = cur.rand != null ? cur.rand.next : null;
