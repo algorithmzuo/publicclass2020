@@ -1,6 +1,12 @@
 package class12;
 
+import java.util.HashMap;
+
 public class Code01_MoneyProblem {
+
+	public static long func1(int[] d, int[] p) {
+		return process(d, p, 0, 0);
+	}
 
 	// int[] d d[i]：i号怪兽的武力
 	// int[] p p[i]：i号怪兽要求的钱
@@ -10,18 +16,50 @@ public class Code01_MoneyProblem {
 	// 目前，你的能力是hp，你来到了index号怪兽的面前，如果要通过后续所有的怪兽，
 	// 请返回需要花的最少钱数
 	public static long process(int[] d, int[] p, int hp, int index) {
-		if (index == d.length) {
+		if (index == d.length) { // base case
 			return 0;
 		}
+		// index < d.length 还有怪兽要面对
 		if (hp < d[index]) {
 			return p[index] + process(d, p, hp + d[index], index + 1);
-		} else { // 可以贿赂，也可以不贿赂
-			return Math.min(p[index] + process(d, p, hp + d[index], index + 1), process(d, p, hp, index + 1));
+		} else { // hp >= d[index] 可以贿赂，也可以不贿赂
+			return Math.min(p[index] + process(d, p, hp + d[index], index + 1),
+
+					process(d, p, hp, index + 1));
 		}
 	}
 
-	public static long func1(int[] d, int[] p) {
-		return process(d, p, 0, 0);
+	// 正数数组 d p
+	public static int dp1(int[] d, int[] p) {
+		if (d == null || d.length == 0) {
+			return 0;
+		}
+
+		int sum = 0;
+		for (int ability : d) {
+			sum += ability;
+		}
+		int N = d.length;
+
+		int[][] dp = new int[N + 1][sum + 1];
+
+		// dp[N][...] = 0;
+		for (int i = N - 1; i >= 0; i--) {
+			for (int j = 0; j <= sum; j++) {
+				// j 能力 i 怪兽号
+				if (j + d[i] > sum) {
+					continue;
+				}
+				if (j < d[i]) {
+					dp[i][j] = p[i] + dp[i + 1][j + d[i]];
+				} else {
+					dp[i][j] = Math.min(p[i] + dp[i + 1][j + d[i]], dp[i + 1][j]);
+				}
+			}
+		}
+
+		return dp[0][0];
+
 	}
 
 	public static long func2(int[] d, int[] p) {
@@ -49,6 +87,41 @@ public class Code01_MoneyProblem {
 		}
 		return dp[0][0];
 	}
+	
+	
+	
+	public static long func1dp(int[] d, int[] p) {
+		HashMap<String,Long> dp = new HashMap<>();
+		return processdp(d, p, 0, 0, dp);
+	}
+
+	// int[] d d[i]：i号怪兽的武力
+	// int[] p p[i]：i号怪兽要求的钱
+	// hp 当前你所具有的能力
+	// index 来到了第index个怪兽的面前
+
+	// 目前，你的能力是hp，你来到了index号怪兽的面前，如果要通过后续所有的怪兽，
+	// 请返回需要花的最少钱数
+	public static long processdp(int[] d, int[] p, int hp, int index,HashMap<String,Long> dp) {
+		String key = String.valueOf(hp) + "_" + String.valueOf(index);
+		if(dp.containsKey(key)) {
+			return dp.get(key);
+		}
+		long ans = 0;
+		if(index < d.length) {
+			if (hp < d[index]) {
+				ans = p[index] + process(d, p, hp + d[index], index + 1);
+			} else { // hp >= d[index] 可以贿赂，也可以不贿赂
+				ans = Math.min(p[index] + process(d, p, hp + d[index], index + 1),
+
+						process(d, p, hp, index + 1));
+			}
+		}
+		dp.put(key, ans);
+		return ans;
+
+	}
+	
 
 	public static long func3(int[] d, int[] p) {
 		int sum = 0;
