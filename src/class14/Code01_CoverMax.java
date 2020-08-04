@@ -32,13 +32,16 @@ public class Code01_CoverMax {
 			lines[i] = new Line(m[i][0], m[i][1]);
 		}
 		Arrays.sort(lines, new StartComparator());
-		PriorityQueue<Line> heap = new PriorityQueue<>(new EndComparator());
+		// lines   
+		// 
+		PriorityQueue<Integer> heap = new PriorityQueue<>();
 		int max = 0;
 		for (int i = 0; i < lines.length; i++) {
-			while (!heap.isEmpty() && heap.peek().end <= lines[i].start) {
+			// lines[i] -> cur  在黑盒中，把<=cur.start 东西都弹出
+			while (!heap.isEmpty() && heap.peek() <= lines[i].start) {
 				heap.poll();
 			}
-			heap.add(lines[i]);
+			heap.add(lines[i].end);
 			max = Math.max(max, heap.size());
 		}
 		return max;
@@ -52,15 +55,6 @@ public class Code01_CoverMax {
 			start = s;
 			end = e;
 		}
-	}
-
-	public static class StartComparator implements Comparator<Line> {
-
-		@Override
-		public int compare(Line o1, Line o2) {
-			return o1.start - o2.start;
-		}
-
 	}
 
 	public static class EndComparator implements Comparator<Line> {
@@ -88,7 +82,38 @@ public class Code01_CoverMax {
 		return ans;
 	}
 
+	public static class StartComparator implements Comparator<Line> {
+
+		@Override
+		public int compare(Line o1, Line o2) {
+			return o1.start - o2.start;
+		}
+
+	}
+
 	public static void main(String[] args) {
+
+		Line l1 = new Line(4, 9);
+		Line l2 = new Line(1, 4);
+		Line l3 = new Line(7, 15);
+		Line l4 = new Line(2, 4);
+		Line l5 = new Line(4, 6);
+		Line l6 = new Line(3, 7);
+
+		// 底层堆结构，heap
+		PriorityQueue<Line> heap = new PriorityQueue<>(new StartComparator());
+		heap.add(l1);
+		heap.add(l2);
+		heap.add(l3);
+		heap.add(l4);
+		heap.add(l5);
+		heap.add(l6);
+
+		while (!heap.isEmpty()) {
+			Line cur = heap.poll();
+			System.out.println(cur.start + "," + cur.end);
+		}
+
 		System.out.println("test begin");
 		int N = 100;
 		int L = 0;

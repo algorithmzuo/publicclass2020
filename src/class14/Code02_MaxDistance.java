@@ -16,6 +16,35 @@ public class Code02_MaxDistance {
 		}
 	}
 
+	public static int maxDistance2(Node head) {
+		return f(head).allTreeMaxDis;
+	}
+
+	// 左:最大距离、高
+	// 右:最大距离、高
+	public static class Info {
+		public int allTreeMaxDis;
+		public int height;
+
+		public Info(int all, int h) {
+			allTreeMaxDis = all;
+			height = h;
+		}
+	}
+
+	// 以x为头情况下，两个结果
+	public static Info f(Node x) {
+		if (x == null) {
+			return new Info(0, 0);
+		}
+		Info leftInfo = f(x.left);
+		Info rightInfo = f(x.right);
+		int allTreeMaxDis = Math.max(Math.max(leftInfo.allTreeMaxDis, rightInfo.allTreeMaxDis),
+				leftInfo.height + rightInfo.height + 1);
+		int height = Math.max(leftInfo.height, rightInfo.height) + 1;
+		return new Info(allTreeMaxDis, height);
+	}
+
 	public static int maxDistance1(Node head) {
 		if (head == null) {
 			return 0;
@@ -92,33 +121,6 @@ public class Code02_MaxDistance {
 		return distance1 + distance2 - 1;
 	}
 
-	public static int maxDistance2(Node head) {
-		return process(head).maxDistance;
-	}
-
-	public static class Info {
-		public int maxDistance;
-		public int height;
-
-		public Info(int dis, int h) {
-			maxDistance = dis;
-			height = h;
-		}
-	}
-
-	public static Info process(Node X) {
-		if (X == null) {
-			return new Info(0, 0);
-		}
-		Info leftInfo = process(X.left);
-		Info rightInfo = process(X.right);
-		int height = Math.max(leftInfo.height, rightInfo.height) + 1;
-		int maxDistance = Math.max(
-				Math.max(leftInfo.maxDistance, rightInfo.maxDistance),
-				leftInfo.height + rightInfo.height + 1);
-		return new Info(maxDistance, height);
-	}
-
 	// for test
 	public static Node generateRandomBST(int maxLevel, int maxValue) {
 		return generate(1, maxLevel, maxValue);
@@ -139,13 +141,14 @@ public class Code02_MaxDistance {
 		int maxLevel = 4;
 		int maxValue = 100;
 		int testTimes = 1000000;
+		System.out.println("test begin");
 		for (int i = 0; i < testTimes; i++) {
 			Node head = generateRandomBST(maxLevel, maxValue);
 			if (maxDistance1(head) != maxDistance2(head)) {
 				System.out.println("Oops!");
 			}
 		}
-		System.out.println("finish!");
+		System.out.println("test finish");
 	}
 
 }
