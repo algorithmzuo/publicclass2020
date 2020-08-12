@@ -55,9 +55,18 @@ public class Code03_MaxABSBetweenLeftAndRight {
 	}
 
 	public static void main(String[] args) {
-		int[] arr = generateRandomArray(200);
-		System.out.println(maxABS1(arr));
-		System.out.println(maxABS2(arr));
-		System.out.println(maxABS3(arr));
+		int len = 100;
+		int testTime = 100000;
+		System.out.println("测试开始");
+		for (int i = 0; i < testTime; i++) {
+			int[] arr = generateRandomArray(len);
+			int ans1 = maxABS1(arr);
+			int ans2 = maxABS2(arr);
+			int ans3 = maxABS3(arr);
+			if (ans1 != ans2 || ans1 != ans3) {
+				System.out.println("Oops!");
+			}
+		}
+		System.out.println("测试结束");
 	}
 }

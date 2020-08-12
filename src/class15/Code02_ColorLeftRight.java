@@ -25,9 +25,48 @@ public class Code02_ColorLeftRight {
 		return ans;
 	}
 
+	// RGRGR -> RRRGG
+	public static int test(String s) {
+		if (s == null || s.length() < 2) {
+			return 0;
+		}
+		char[] str = s.toCharArray();
+		int ans = Integer.MAX_VALUE;
+		for (int leftEnd = -1; leftEnd < str.length; leftEnd++) {
+			int left = 0;
+			for (int i = 0; i <= leftEnd; i++) {
+				left += str[i] == 'G' ? 1 : 0;
+			}
+			int right = 0;
+			for (int i = leftEnd + 1; i < str.length; i++) {
+				right += str[i] == 'R' ? 1 : 0;
+			}
+			ans = Math.min(ans, left + right);
+		}
+		return ans;
+	}
+
+	public static String generateString(int len) {
+		char[] str = new char[(int) (Math.random() * len) + 1];
+		for (int i = 0; i < str.length; i++) {
+			str[i] = Math.random() < 0.5 ? 'R' : 'G';
+		}
+		return String.valueOf(str);
+	}
+
 	public static void main(String[] args) {
-		String test = "GGGGGR";
-		System.out.println(minPaint(test));
+		int len = 100;
+		int testTime = 100000;
+		System.out.println("测试开始");
+		for (int i = 0; i < testTime; i++) {
+			String str = generateString(len);
+			int ans1 = minPaint(str);
+			int ans2 = test(str);
+			if (ans1 != ans2) {
+				System.out.println("Oops!");
+			}
+		}
+		System.out.println("测试结束");
 	}
 
 }

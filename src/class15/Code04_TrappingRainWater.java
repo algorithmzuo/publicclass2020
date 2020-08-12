@@ -104,7 +104,7 @@ public class Code04_TrappingRainWater {
 		int len = 100;
 		int value = 200;
 		int testTimes = 100000;
-		System.out.println("test begin");
+		System.out.println("测试开始");
 		for (int i = 0; i < testTimes; i++) {
 			int[] arr = generateRandomArray(len, value);
 			int ans1 = water1(arr);
@@ -115,7 +115,7 @@ public class Code04_TrappingRainWater {
 				System.out.println("Oops!");
 			}
 		}
-		System.out.println("test finish");
+		System.out.println("测试结束");
 	}
 
 }

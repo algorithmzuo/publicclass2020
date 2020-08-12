@@ -81,6 +81,7 @@ public class Code01_CordCoverMaxPoint {
 				break;
 			}
 		}
+		System.out.println("测试结束");
 
 	}
 
