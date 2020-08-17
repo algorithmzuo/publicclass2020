@@ -14,8 +14,6 @@ public class Code01_RandToRand {
 			max = ma;
 		}
 
-		// 13 ~  17
-		// 13 + [0,4]
 		public int random() {
 			return min + (int) (Math.random() * (max - min + 1));
 		}
@@ -61,7 +59,7 @@ public class Code01_RandToRand {
 		while ((1 << num) - 1 < range) {
 			num++;
 		}
-		
+
 		// 我们一共需要num位
 		// 最终的累加和，首先+0位上是1还是0，1位上是1还是0，2位上是1还是0...
 		int ans = 0;
