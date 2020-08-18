@@ -10,7 +10,7 @@ public class Code03_FindHalfMajority {
 		int HP = 0;
 		// 遍历一遍数组arr，一次删掉两个不同的数，谁会剩下来，谁就是cand
 		for (int i = 0; i != arr.length; i++) {
-			if (HP == 0) { // 如果没有候选
+			if (HP == 0) {
 				cand = arr[i];
 				HP = 1;
 			} else if (arr[i] == cand) {

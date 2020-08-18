@@ -2,6 +2,49 @@ package class16;
 
 public class Code01_RandToRand {
 
+	// 条件，且代码不可修改，1~5
+	public static int f() {
+		return (int) (Math.random() * 5) + 1;
+	}
+
+	// 等概率返回 0~4
+	public static int a() {
+		return f() - 1;
+	}
+
+	// 等概率返回 0 ~ 24
+	public static int b() {
+		return a() * 5 + a();
+	}
+
+	// 等概率返回 1~7
+	public static int g1() {
+		int t = 0;
+		do {
+			t = b();
+		} while (t > 20);
+		// t 0 ~ 20
+		return (t % 7) + 1;
+	}
+
+	// 利用f函数，请等概率生成0和1
+	public static int c() {
+		int t = 0;
+		do {
+			t = f();
+		} while (t == 3);
+		return t < 3 ? 0 : 1;
+	}
+
+	// 等概率返回 1~7
+	public static int g2() {
+		int t = 0;
+		do {
+			t = (c() << 2) + (c() << 1) + c();
+		} while (t == 7);
+		return t + 1;
+	}
+
 	// 这个结构是唯一的随机机制
 	// 你只能初始化并使用，不可修改
 	public static class RandomBox {
@@ -73,16 +116,20 @@ public class Code01_RandToRand {
 	}
 
 	public static void main(String[] args) {
-		RandomBox randomBox = new RandomBox(3, 9);
-		int from = 17;
+		int hasFrom = 1;
+		int hasTo = 19;
+		
+		int from = 7;
 		int to = 29;
+
+		RandomBox randomBox = new RandomBox(hasFrom, hasTo);
 		int[] ans = new int[to + 1];
 		int testTime1 = 1000000;
 		for (int i = 0; i < testTime1; i++) {
 			ans[random(randomBox, from, to)]++;
 		}
 		for (int i = 0; i < ans.length; i++) {
-			System.out.println(ans[i]);
+			System.out.println(i + " 出现了 ： " + ans[i]);
 		}
 		System.out.println("==========");
 
