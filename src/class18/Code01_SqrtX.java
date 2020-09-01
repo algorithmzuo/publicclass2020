@@ -7,9 +7,11 @@ public class Code01_SqrtX {
 		if (x == 0) {
 			return 0;
 		}
+		// x != 0   1 2
 		if (x < 3) {
 			return 1;
 		}
+		// x >= 3
 		long ans = 1;
 		long L = 1;
 		long R = x;

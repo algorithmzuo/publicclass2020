@@ -5,8 +5,8 @@ public class Code03_ContainerWithMostWater {
 	public static int maxArea1(int[] h) {
 		int max = 0;
 		int N = h.length;
-		for (int i = 0; i < N; i++) {
-			for (int j = i + 1; j < N; j++) {
+		for (int i = 0; i < N; i++) { // h[i]
+			for (int j = i + 1; j < N; j++) { // h[j]
 				max = Math.max(max, Math.min(h[i], h[j]) * (j - i));
 			}
 		}
