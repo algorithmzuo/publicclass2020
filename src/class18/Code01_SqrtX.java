@@ -1,6 +1,6 @@
 package class18;
 
-public class Code03_SqrtX {
+public class Code01_SqrtX {
 
 	// x一定非负，输入可以保证
 	public static int mySqrt(int x) {
