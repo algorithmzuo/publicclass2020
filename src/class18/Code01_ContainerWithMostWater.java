@@ -1,6 +1,6 @@
-package class17;
+package class18;
 
-public class Code03_ContainerWithMostWater {
+public class Code01_ContainerWithMostWater {
 
 	public static int maxArea(int[] h) {
 		int max = 0;
