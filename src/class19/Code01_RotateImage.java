@@ -3,24 +3,24 @@ package class19;
 public class Code01_RotateImage {
 
 	public static void rotate(int[][] matrix) {
-		int tR = 0;
-		int tC = 0;
-		int dR = matrix.length - 1;
-		int dC = matrix[0].length - 1;
-		while (tR < dR) {
-			rotateEdge(matrix, tR++, tC++, dR--, dC--);
+		// matrix.length == matrix[0].length
+		int a = 0;
+		int b = 0;
+		int c = matrix.length - 1;
+		int d = matrix[0].length - 1;
+		while (a < c) {
+			rotateEdge(matrix, a++, b++, c--, d--);
 		}
 	}
 
-	public static void rotateEdge(int[][] m, int tR, int tC, int dR, int dC) {
-		int times = dC - tC;
+	public static void rotateEdge(int[][] m, int a, int b, int c, int d) {
 		int tmp = 0;
-		for (int i = 0; i != times; i++) { 
-			tmp = m[tR][tC + i];
-			m[tR][tC + i] = m[dR - i][tC];
-			m[dR - i][tC] = m[dR][dC - i];
-			m[dR][dC - i] = m[tR + i][dC];
-			m[tR + i][dC] = tmp;
+		for (int i = 0; i < d - b; i++) {
+			tmp = m[a][b + i];
+			m[a][b + i] = m[c - i][b];
+			m[c - i][b] = m[c][d - i];
+			m[c][d - i] = m[a + i][d];
+			m[a + i][d] = tmp;
 		}
 	}
 
