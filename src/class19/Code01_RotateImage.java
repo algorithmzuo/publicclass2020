@@ -3,7 +3,6 @@ package class19;
 public class Code01_RotateImage {
 
 	public static void rotate(int[][] matrix) {
-		// matrix.len == matrix[0].len
 		int tR = 0;
 		int tC = 0;
 		int dR = matrix.length - 1;
