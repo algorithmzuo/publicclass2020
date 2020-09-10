@@ -1,6 +1,6 @@
 package class19;
 
-public class Code02_PrintStar {
+public class Code03_PrintStar {
 
 	public static void printStar(int N) {
 		int leftUp = 0;
