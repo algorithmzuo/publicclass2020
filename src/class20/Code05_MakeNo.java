@@ -1,6 +1,6 @@
 package class20;
 
-public class Code04_MakeNo {
+public class Code05_MakeNo {
 	
 	// 生成长度为size的达标数组
 	// 达标：对于任意的 i<k<j，满足   [i] + [j]  != [k] * 2
