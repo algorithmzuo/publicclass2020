@@ -35,7 +35,7 @@ public class Code02_HowManyTypes {
 		for (String str : arr) {
 			char[] chs = str.toCharArray();
 			int key = 0;
-			for(int i = 0 ; i < chs.length;i++) {
+			for (int i = 0; i < chs.length; i++) {
 				key |= (1 << (chs[i] - 'a'));
 			}
 			types.add(key);
@@ -61,7 +61,36 @@ public class Code02_HowManyTypes {
 		return String.valueOf(ans);
 	}
 
+	public static void printIntegerBinary(int num) {
+		StringBuilder builder = new StringBuilder();
+		for (int i = 31; i >= 0; i--) {
+			// 依次提取出num从0位~31位的状态来
+			int status = ((num >> i) & 1);
+			builder.append(status);
+
+		}
+		System.out.println(builder.toString());
+	}
+
 	public static void main(String[] args) {
+		int num = 3;
+		printIntegerBinary(num);
+
+		char[] str = { 'b', 'b', 'z', 'k', 'o' };
+
+		int key = 0;
+		// 如何生成str的摘要？
+		// 00000000000000000000000000000000
+
+		for (int i = 0; i < str.length; i++) {
+			char cha = str[i];
+			// cha = a
+			// cha - 'a' ? 0
+			// 1 << (cha - 'a') -> 1 << 0
+			key = key | (1 << (cha - 'a'));
+		}
+		printIntegerBinary(key);
+
 		int possibilities = 5;
 		int strMaxSize = 10;
 		int arrMaxSize = 100;
