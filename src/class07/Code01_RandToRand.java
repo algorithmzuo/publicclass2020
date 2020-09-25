@@ -1,4 +1,4 @@
-package class21;
+package class07;
 
 public class Code01_RandToRand {
 
