@@ -13,7 +13,48 @@ public class Code03_Cola {
 	 * 所以是总共需要操作8次金额投递操作 样例输入 2 1 4 3 250 样例输出 8
 	 */
 
-	// 搞定不了返回-1
+	// 暴力尝试，为了验证正式方法而已
+	public static int right(int m, int a, int b, int c, int x) {
+		int[] qian = { 100, 50, 10 };
+		int[] zhang = { c, b, a };
+		int puts = 0;
+		while (m != 0) {
+			int cur = buy(qian, zhang, x);
+			if (cur == -1) {
+				return -1;
+			}
+			puts += cur;
+			m--;
+		}
+		return puts;
+	}
+
+	public static int buy(int[] qian, int[] zhang, int rest) {
+		int first = -1;
+		for (int i = 0; i < 3; i++) {
+			if (zhang[i] != 0) {
+				first = i;
+				break;
+			}
+		}
+		if (first == -1) {
+			return -1;
+		}
+		if (qian[first] >= rest) {
+			zhang[first]--;
+			giveRest(qian, zhang, first + 1, qian[first] - rest, 1);
+			return 1;
+		} else {
+			zhang[first]--;
+			int next = buy(qian, zhang, rest - qian[first]);
+			if (next == -1) {
+				return -1;
+			}
+			return 1 + next;
+		}
+	}
+
+	// 正式的方法
 	public static int putTimes(int m, int a, int b, int c, int x) {
 		// 0 1 2
 		int[] qian = { 100, 50, 10 };
@@ -76,12 +117,30 @@ public class Code03_Cola {
 	}
 
 	public static void main(String[] args) {
-		int m = 3;
-		int a = 3;
-		int b = 7;
-		int c = 4;
-		int x = 260;
-		System.out.println(putTimes(m, a, b, c, x));
+		int testTime = 1000;
+		int zhangMax = 10;
+		int colaMax = 10;
+		int priceMax = 20;
+		System.out.println("如果错误会打印错误数据，否则就是正确");
+		System.out.println("test begin");
+		for (int i = 0; i < testTime; i++) {
+			int m = (int) (Math.random() * colaMax);
+			int a = (int) (Math.random() * zhangMax);
+			int b = (int) (Math.random() * zhangMax);
+			int c = (int) (Math.random() * zhangMax);
+			int x = ((int) (Math.random() * priceMax) + 1) * 10;
+			int ans1 = putTimes(m, a, b, c, x);
+			int ans2 = right(m, a, b, c, x);
+			if (ans1 != ans2) {
+				System.out.println("int m = " + m + ";");
+				System.out.println("int a = " + a + ";");
+				System.out.println("int b = " + b + ";");
+				System.out.println("int c = " + c + ";");
+				System.out.println("int x = " + x + ";");
+				break;
+			}
+		}
+		System.out.println("test end");
 	}
 
 }
