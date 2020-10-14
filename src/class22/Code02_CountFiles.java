@@ -7,6 +7,7 @@ public class Code02_CountFiles {
 
 	// 注意这个函数也会统计隐藏文件
 	public static int getFileNumber(String folderPath) {
+		// File   (文件夹、文件)
 		File root = new File(folderPath);
 		if (!root.isDirectory() && !root.isFile()) {
 			return 0;
@@ -14,6 +15,7 @@ public class Code02_CountFiles {
 		if (root.isFile()) {
 			return 1;
 		}
+		// File  文件夹  文件   stack只放文件夹
 		Stack<File> stack = new Stack<>();
 		stack.add(root);
 		int files = 0;

@@ -24,6 +24,20 @@ public class Code04_SubArrayMaxSum {
 		return max;
 	}
 
+	public static int maxSum(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int cur = 0;
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < arr.length; i++) {
+			cur += arr[0];
+			max = Math.max(max, cur);
+			cur = cur < 0 ? 0 : cur;
+		}
+		return max;
+	}
+
 	public static int maxSum1(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return 0;
