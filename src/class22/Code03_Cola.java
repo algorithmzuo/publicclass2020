@@ -76,11 +76,11 @@ public class Code03_Cola {
 	}
 
 	public static void main(String[] args) {
-		int m = 2;
-		int a = 50;
-		int b = 2;
-		int c = 1;
-		int x = 250;
+		int m = 3;
+		int a = 3;
+		int b = 7;
+		int c = 4;
+		int x = 260;
 		System.out.println(putTimes(m, a, b, c, x));
 	}
 
