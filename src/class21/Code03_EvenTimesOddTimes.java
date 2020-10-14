@@ -24,9 +24,9 @@ public class Code03_EvenTimesOddTimes {
 		// 0000010000
 		int rightOne = eor & (~eor + 1); // 提取出最右的1
 		int onlyOne = 0; // e'
-		for (int i = 0 ; i < arr.length;i++) {
-			//  arr[1] =  111100011110000
-			// rightOne=  000000000010000
+		for (int i = 0; i < arr.length; i++) {
+			// arr[1] = 111100011110000
+			// rightOne= 000000000010000
 			if ((arr[i] & rightOne) != 0) {
 				onlyOne ^= arr[i];
 			}
@@ -34,51 +34,33 @@ public class Code03_EvenTimesOddTimes {
 		System.out.println(onlyOne + " " + (eor ^ onlyOne));
 	}
 
-	
 	public static int bit1counts(int N) {
 		int count = 0;
-		while(N != 0) {
+		while (N != 0) {
 			int rightOne = N & ((~N) + 1);
 			count++;
 			N -= rightOne;
 		}
 		return count;
 	}
-	
-	
+
 	public static int add(int a, int b) {
 		int t = 0;
-		while( b != 0) {
+		while (b != 0) {
 			t = a;
 			a = a ^ b;
 			b = ((t & b) << 1);
 		}
 		return a;
 	}
-	
+
 	public static int minus(int a, int b) {
-		 // -b   ~b + 1
-		 return add(a,   add(~b , 1));
+		// -b ~b + 1
+		return add(a, add(~b, 1));
 	}
-	
-	
-	
-	
+
 	public static void main(String[] args) {
-		int a = 5;
-		int b = 7;
-		
-		
-		System.out.println(minus(a,b));
-
-		a = a ^ b;
-		b = a ^ b;
-		a = a ^ b;
-
-		System.out.println(a);
-		System.out.println(b);
-
-		int[] arr1 = { 3, 3, 2, 3, 1, 1, 1, 3, 1, 1, 1 };
+		int[] arr1 = { 3, 3, 4, 2, 3, 1, 1, 2, 1, 3, 4, 1, 1, 1, 4, 2, 2 };
 		printOddTimesNum1(arr1);
 
 		int[] arr2 = { 4, 3, 4, 2, 2, 2, 4, 1, 1, 1, 3, 3, 1, 1, 1, 4, 2, 2 };
