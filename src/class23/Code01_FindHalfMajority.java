@@ -3,7 +3,7 @@ package class23;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-public class Code03_FindHalfMajority {
+public class Code01_FindHalfMajority {
 
 	public static int halfMajor(int[] arr) {
 		int cand = 0;

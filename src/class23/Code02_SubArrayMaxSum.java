@@ -3,7 +3,7 @@ package class23;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Code01_SubArrayMaxSum {
+public class Code02_SubArrayMaxSum {
 
 	public static int test(int[] arr) {
 		if (arr == null || arr.length == 0) {
