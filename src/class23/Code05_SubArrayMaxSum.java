@@ -1,9 +1,9 @@
-package class22;
+package class23;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Code04_SubArrayMaxSum {
+public class Code05_SubArrayMaxSum {
 
 	public static int test(int[] arr) {
 		if (arr == null || arr.length == 0) {
