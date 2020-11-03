@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Code02_SubArrayMaxSum {
 
+	// 没分！
 	public static int test(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return 0;
@@ -20,6 +21,24 @@ public class Code02_SubArrayMaxSum {
 				}
 				max = Math.max(max, sum);
 			}
+		}
+		return max;
+	}
+
+	public static int dp(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int[] dp = new int[arr.length];
+		dp[0] = arr[0];
+		for (int i = 1; i < arr.length; i++) {
+			int p1 = arr[i];
+			int p2 = dp[i - 1] + arr[i];
+			dp[i] = Math.max(p1, p2);
+		}
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < dp.length; i++) {
+			max = Math.max(max, dp[i]);
 		}
 		return max;
 	}
@@ -98,19 +117,19 @@ public class Code02_SubArrayMaxSum {
 	}
 
 	public static void main(String[] args) {
-//		int N = 100;
-//		int V = 100;
-//		int testTime = 1000000;
-//		System.out.println("test begin");
-//		for (int i = 0; i < testTime; i++) {
-//			int[] arr = generateArray(N, V);
-//			int ans1 = maxSum1(arr);
-//			int ans2 = maxSum2(arr);
-//			if (ans1 != ans2) {
-//				System.out.println("Oops!");
-//			}
-//		}
-//		System.out.println("test finish");
+		int N = 100;
+		int V = 100;
+		int testTime = 1000000;
+		System.out.println("test begin");
+		for (int i = 0; i < testTime; i++) {
+			int[] arr = generateArray(N, V);
+			int ans1 = test(arr);
+			int ans2 = dp(arr);
+			if (ans1 != ans2) {
+				System.out.println("Oops!");
+			}
+		}
+		System.out.println("test finish");
 
 		int[] test = { 2, 2, 1, -9, 2, 3, -9, 6, -9, 2, 2, 2, -9, 2, 2, 2, -9, 1, 4, 1 };
 
