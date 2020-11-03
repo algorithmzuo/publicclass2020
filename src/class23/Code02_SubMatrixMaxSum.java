@@ -1,6 +1,6 @@
 package class23;
 
-public class Code06_SubMatrixMaxSum {
+public class Code02_SubMatrixMaxSum {
 
 	public static int maxSum1(int[][] matrix) {
 		int n = matrix.length;
