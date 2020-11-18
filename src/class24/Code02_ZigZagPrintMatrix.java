@@ -3,22 +3,26 @@ package class24;
 public class Code02_ZigZagPrintMatrix {
 
 	public static void printMatrixZigZag(int[][] matrix) {
-		int aRow = 0;
-		int aCol = 0;
-		int bRow = 0;
-		int bCol = 0;
-		// A和B一定会共同走到右下角的位置
+		// x -> (a,b) 先往右，再往下
+		int a = 0;
+		int b = 0;
+		
+		// y -> (c,d) 先往下，再往右
+		int c = 0;
+		int d = 0;
+		// (endR, endC) 是最右下角的位置
 		int endR = matrix.length - 1;
 		int endC = matrix[0].length - 1;
 		// fromUp = true  斜线打印方向应该从右上走到左下
 		// fromUp = false  斜线打印方向应该从左下走到右上
 		boolean fromUp = false;
-		while (aRow != endR + 1) {
-			printLevel(matrix, aRow, aCol, bRow, bCol, fromUp);
-			aRow = aCol == endC ? aRow + 1 : aRow;
-			aCol = aCol == endC ? aCol : aCol + 1;
-			bCol = bRow == endR ? bCol + 1 : bCol;
-			bRow = bRow == endR ? bRow : bRow + 1;
+		while (a != endR + 1) {
+			// (a,b)  (c,d)  方向
+			printLevel(matrix, a, b, c, d, fromUp);
+			a = b == endC ? a + 1 : a;
+			b = b == endC ? b : b + 1;
+			d = c == endR ? d + 1 : d;
+			c = c == endR ? c : c + 1;
 			fromUp = !fromUp;
 		}
 		System.out.println();
