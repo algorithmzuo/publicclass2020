@@ -4,8 +4,7 @@ public class Code01_Water {
 
 	/*
 	 * 给定一个正整数数组arr，把arr想象成一个直方图。返回这个直方图如果装水，能装下几格水？
-	 * 
-	 */
+	 * */
 
 	public static int water1(int[] arr) {
 		if (arr == null || arr.length < 2) {
