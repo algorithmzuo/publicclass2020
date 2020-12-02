@@ -1,6 +1,6 @@
-package class23;
+package class26;
 
-public class Code03_SubArrayMaxSumFollowUp {
+public class Code02_SubArrayMaxSumFollowUp {
 
 	// 给定一个数组arr，在不能取相邻数的情况下，返回所有组合中的最大累加和
 	// 思路：

@@ -1,9 +1,9 @@
-package class23;
+package class26;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Code02_SubArrayMaxSum {
+public class Code01_SubArrayMaxSum {
 
 	// 没分！
 	public static int test(int[] arr) {
