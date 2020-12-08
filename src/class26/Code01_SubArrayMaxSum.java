@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Code01_SubArrayMaxSum {
 
-	// 没分！
 	public static int test(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return 0;
@@ -25,11 +24,12 @@ public class Code01_SubArrayMaxSum {
 		return max;
 	}
 
-	public static int dp(int[] arr) {
+	public static int dp1(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return 0;
 		}
 		int[] dp = new int[arr.length];
+		// dp[i]  子数组必须以i位置结尾的情况下，能得到的最大累加和
 		dp[0] = arr[0];
 		for (int i = 1; i < arr.length; i++) {
 			int p1 = arr[i];
@@ -42,6 +42,22 @@ public class Code01_SubArrayMaxSum {
 		}
 		return max;
 	}
+	
+	public static int dp2(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int preDp = arr[0];
+		int max = preDp;
+		for (int i = 1; i < arr.length; i++) {
+			int p1 = arr[i];
+			int p2 = preDp + arr[i];
+			int dp = Math.max(p1, p2);
+			max = Math.max(max, dp);
+			preDp = dp;
+		}
+		return max;
+	}
 
 	public static int maxSum(int[] arr) {
 		if (arr == null || arr.length == 0) {
@@ -50,7 +66,7 @@ public class Code01_SubArrayMaxSum {
 		int cur = 0;
 		int max = Integer.MIN_VALUE;
 		for (int i = 0; i < arr.length; i++) {
-			cur += arr[0];
+			cur += arr[i];
 			max = Math.max(max, cur);
 			cur = cur < 0 ? 0 : cur;
 		}
@@ -119,13 +135,14 @@ public class Code01_SubArrayMaxSum {
 	public static void main(String[] args) {
 		int N = 100;
 		int V = 100;
-		int testTime = 1000000;
+		int testTime = 10000;
 		System.out.println("test begin");
 		for (int i = 0; i < testTime; i++) {
 			int[] arr = generateArray(N, V);
 			int ans1 = test(arr);
-			int ans2 = dp(arr);
-			if (ans1 != ans2) {
+			int ans2 = dp1(arr);
+			int ans3 = dp2(arr);
+			if (ans1 != ans2 || ans1 != ans3) {
 				System.out.println("Oops!");
 			}
 		}

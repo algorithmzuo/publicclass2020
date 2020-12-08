@@ -2,6 +2,25 @@ package class26;
 
 public class Code02_SubArrayMaxSumFollowUp {
 
+	public static int subSqeMaxSumNoNext(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		if (arr.length == 1) {
+			return arr[0];
+		}
+		int[] dp = new int[arr.length];
+		// dp[i] : arr[0..i]挑选，满足不相邻设定的情况下，随意挑选，最大的累加和
+		dp[0] = arr[0];
+		dp[1] = Math.max(arr[0], arr[1]);
+		for (int i = 2; i < arr.length; i++) {
+			int p1 = dp[i - 1];
+			int p2 = arr[i] + Math.max(dp[i - 2], 0);
+			dp[i] = Math.max(p1, p2);
+		}
+		return dp[arr.length - 1];
+	}
+
 	// 给定一个数组arr，在不能取相邻数的情况下，返回所有组合中的最大累加和
 	// 思路：
 	// 定义dp[i] : 表示arr[0...i]范围上，在不能取相邻数的情况下，返回所有组合中的最大累加和
