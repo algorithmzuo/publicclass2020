@@ -65,7 +65,7 @@ public class Code03_Cola {
 		int preQianRest = 0;
 		// 之前面值的钱还剩下多少总张数
 		int preQianZhang = 0;
-		for (int i = 0; i < 3 && m != 0; i++) {
+		for (int i = 0; i < qian.length && m != 0; i++) {
 			// 要用之前剩下的钱、当前面值的钱，共同买第一瓶可乐
 			// 之前的面值剩下多少钱，是preQianRest
 			// 之前的面值剩下多少张，是preQianZhang
@@ -109,6 +109,8 @@ public class Code03_Cola {
 		return m == 0 ? puts : -1;
 	}
 
+	// qian [100, 50, 10]
+	// zhang [ 2, 10, 5]
 	public static void giveRest(int[] qian, int[] zhang, int i, int oneTimeRest, int times) {
 		for (; i < 3; i++) {
 			zhang[i] += (oneTimeRest / qian[i]) * times;
