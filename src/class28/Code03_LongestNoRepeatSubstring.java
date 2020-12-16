@@ -1,5 +1,8 @@
 package class28;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class Code03_LongestNoRepeatSubstring {
 
 	/*
@@ -7,43 +10,46 @@ public class Code03_LongestNoRepeatSubstring {
 	 * 
 	 */
 
-	public static int lnrs1(String s) {
-		if (s == null || s.length() == 0) {
-			return 0;
-		}
-		char[] str = s.toCharArray();
-		int N = str.length;
-		int max = 0;
-		for (int i = 0; i < N; i++) {
-			boolean[] set = new boolean[26];
-			for (int j = i; j < N; j++) {
-				if (set[str[j] - 'a']) {
-					break;
+	public static int maxNoRepeatSubstringLen1(char[] str) {
+		int len = 0;
+		for (int L = 0; L < str.length; L++) {
+			for (int R = L; R < str.length; R++) {
+				HashSet<Character> set = new HashSet<>();
+				boolean noRepeat = true;
+				for (int i = L; i <= R; i++) {
+					if (set.contains(str[i])) {
+						noRepeat = false;
+						break;
+					}
+					set.add(str[i]);
 				}
-				set[str[j] - 'a'] = true;
-				max = Math.max(max, j - i + 1);
+				if (noRepeat) {
+					int cur = R - L + 1;
+					len = Math.max(len, cur);
+				}
 			}
 		}
-		return max;
+		return len;
 	}
 
-	public static int lnrs2(String s) {
-		if (s == null || s.length() == 0) {
+	public static int maxNoRepeatSubstringLen2(char[] str) {
+		if (str == null || str.length == 0) {
 			return 0;
 		}
-		char[] str = s.toCharArray();
 		int N = str.length;
-		int[] last = new int[26];
-		for (int i = 0; i < 26; i++) {
-			last[i] = -1;
-		}
-		last[str[0] - 'a'] = 0;
+		int[] dp = new int[N];
+		HashMap<Character, Integer> lastMap = new HashMap<>();
+		dp[0] = 1;
+		lastMap.put(str[0], 0);
 		int max = 1;
-		int preMaxLen = 1;
 		for (int i = 1; i < N; i++) {
-			preMaxLen = Math.min(i - last[str[i] - 'a'], preMaxLen + 1);
-			max = Math.max(max, preMaxLen);
-			last[str[i] - 'a'] = i;
+			int lastIndex = lastMap.containsKey(str[i]) ? lastMap.get(str[i]) : -1;
+			int preNo = i - 1 - dp[i - 1];
+			int no = Math.max(lastIndex, preNo);
+			int curAns = i - no;
+			dp[i] = curAns;
+			lastMap.put(str[i], i);
+			max = Math.max(max, dp[i]);
 		}
 		return max;
 	}
@@ -60,12 +66,12 @@ public class Code03_LongestNoRepeatSubstring {
 	public static void main(String[] args) {
 		int possibilities = 26;
 		int strMaxSize = 100;
-		int testTimes = 1000000;
+		int testTimes = 10000;
 		System.out.println("test begin, test time : " + testTimes);
 		for (int i = 0; i < testTimes; i++) {
 			String str = getRandomString(possibilities, strMaxSize);
-			int ans1 = lnrs1(str);
-			int ans2 = lnrs2(str);
+			int ans1 = maxNoRepeatSubstringLen1(str.toCharArray());
+			int ans2 = maxNoRepeatSubstringLen2(str.toCharArray());
 			if (ans1 != ans2) {
 				System.out.println("Oops!");
 			}

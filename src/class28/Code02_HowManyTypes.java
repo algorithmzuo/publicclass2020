@@ -36,7 +36,7 @@ public class Code02_HowManyTypes {
 			char[] chs = str.toCharArray();
 			int key = 0;
 			for (int i = 0; i < chs.length; i++) {
-				key |= (1 << (chs[i] - 'a'));
+				key = key | (1 << (chs[i] - 'a'));
 			}
 			types.add(key);
 		}
