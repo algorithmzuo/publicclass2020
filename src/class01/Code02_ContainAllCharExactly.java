@@ -10,19 +10,9 @@ public class Code02_ContainAllCharExactly {
 		}
 		char[] aim = a.toCharArray();
 		Arrays.sort(aim);
-		// aim -> 排完序  aimSort
 		String aimSort = String.valueOf(aim);
-		
-		
-		//O ( N^3 * logN)
-		// O(N)
-		for (int L = 0; L < s.length(); L++) { // 枚举每一个字符串的开头
-			// 0-0  0-1   0-2   0-N-1
-			// 1-1  1-2  1-3   1-n-1
-			// n-1  ~ n-1
+		for (int L = 0; L < s.length(); L++) {
 			for (int R = L; R < s.length(); R++) {
-				// [L...R]
-				// [)
 				char[] cur = s.substring(L, R + 1).toCharArray();
 				Arrays.sort(cur);
 				String curSort = String.valueOf(cur);
@@ -40,11 +30,7 @@ public class Code02_ContainAllCharExactly {
 		}
 		char[] str = s.toCharArray();
 		char[] aim = a.toCharArray();
-		// 假设aim长度为M
-		// 枚举，str中的子串，长度为M的，所有可能的开头
 		for (int L = 0; L <= str.length - aim.length; L++) {
-			
-			
 			if (isCountEqual(str, L, aim)) {
 				return L;
 			}
@@ -52,8 +38,6 @@ public class Code02_ContainAllCharExactly {
 		return -1;
 	}
 
-	// 假设aim的长度为M
-	// str[L...一共取M个字符]
 	public static boolean isCountEqual(char[] str, int L, char[] aim) {
 		int[] count = new int[256];
 		for (int i = 0; i < aim.length; i++) {
@@ -80,7 +64,6 @@ public class Code02_ContainAllCharExactly {
 		char[] str = s.toCharArray();
 		int inValidTimes = 0;
 		int R = 0;
-		// 先让窗口拥有M个字符
 		for (; R < M; R++) {
 			if (count[str[R]]-- <= 0) {
 				inValidTimes++;
