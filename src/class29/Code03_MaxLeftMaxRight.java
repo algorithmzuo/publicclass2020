@@ -9,11 +9,6 @@ public class Code03_MaxLeftMaxRight {
 		}
 		int N = arr.length;
 		int ans = Integer.MIN_VALUE;
-		// 0...0 左   1...N-1
-		// 0...1 左   2...N-1 右
-		// 0...2 左   3...N-1 右
-		// 0...LeftEnd 左  leftEnd+1..N-1 右
-		// 0...N-1    右无
 		for (int leftEnd = 0; leftEnd < N - 1; leftEnd++) {
 			int leftMax = arr[0];
 			for (int i = 1; i <= leftEnd; i++) {
@@ -41,24 +36,11 @@ public class Code03_MaxLeftMaxRight {
 		return max - Math.min(arr[0], arr[N - 1]);
 	}
 
-	// 生成随机数组arr
-	// arr的长度也是随机决定的，为[0, maxLen]范围
-	// arr的每个值也是随机决定的，为[-maxValue, +maxValue]范围
-	// 最终返回arr
 	public static int[] randomArray(int maxLen, int maxValue) {
-		// Math.random()      ->   [O,1) 小数 等概率返回
-		// Math.random() * N  ->   [0,N) 小数 等概率返回
-		// (int)(Math.random() * N)  ->  [0,N-1] 整数 等概率返回
-		// (int)(Math.random() * (N + 1)) -> [0,N] 整数 等概率返回
-		// len ->  [0, maxLen] 整数，等概率
 		int len = (int) (Math.random() * (maxLen + 1));
 		int[] arr = new int[len];
 		for (int i = 0; i < arr.length; i++) {
-			// arr[i]    [-maxValue, +maxValue]
-			arr[i] = 
-					(int) (Math.random() * (maxValue + 1)) // [0, maxValue]
-					- 
-					(int) (Math.random() * (maxValue + 1)); // [0, maxValue]
+			arr[i] = (int) (Math.random() * (maxValue + 1)) - (int) (Math.random() * (maxValue + 1));
 		}
 		return arr;
 	}
@@ -83,13 +65,12 @@ public class Code03_MaxLeftMaxRight {
 			if (ans1 != ans2) {
 				System.out.println("出错了！");
 				System.out.println(ans1 + " , " + ans2);
-				
-				for(int k = 0 ; k < arr.length;k++) {
+
+				for (int k = 0; k < arr.length; k++) {
 					System.out.print(arr[k] + " ");
 				}
 				System.out.println();
-				
-				
+
 				break;
 			}
 		}
