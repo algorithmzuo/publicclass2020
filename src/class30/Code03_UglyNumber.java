@@ -1,9 +1,33 @@
 package class30;
 
 // 测试链接：https://leetcode.com/problems/ugly-number-ii
-public class Code04_UglyNumber {
+public class Code03_UglyNumber {
 
-	public static int nthUglyNumber(int n) {
+	public static boolean isUgly(int num) {
+		while (num % 2 == 0) {
+			num /= 2;
+		}
+		while (num % 3 == 0) {
+			num /= 3;
+		}
+		while (num % 5 == 0) {
+			num /= 5;
+		}
+		return num == 1;
+	}
+
+	public static int nthUglyNumber1(int n) {
+		int find = 0;
+		int num = 1;
+		for (; find < n; num++) {
+			if (isUgly(num)) {
+				find++;
+			}
+		}
+		return num - 1;
+	}
+
+	public static int nthUglyNumber2(int n) {
 		int[] ugly = new int[n + 1];
 		ugly[1] = 1;
 		int i2 = 1;

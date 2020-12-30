@@ -1,7 +1,7 @@
 package class30;
 
 // 测试链接：https://leetcode.com/problems/linked-list-cycle-ii
-public class Code02_EnterLoopNode {
+public class Code04_EnterLoopNode {
 
 	// 这个类不用提交
 	public static class ListNode {
