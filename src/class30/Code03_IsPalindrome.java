@@ -1,7 +1,7 @@
 package class30;
 
 // 测试链接：https://leetcode.com/problems/palindrome-number
-public class Code03_isPalindrome {
+public class Code03_IsPalindrome {
 
 	public static boolean isPalindrome(int n) {
 		if (n < 0) {
