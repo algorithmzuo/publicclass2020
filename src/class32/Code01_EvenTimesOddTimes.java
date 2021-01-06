@@ -1,6 +1,6 @@
-package class31;
+package class32;
 
-public class Code04_EvenTimesOddTimes {
+public class Code01_EvenTimesOddTimes {
 
 	public static void printOddTimesNum1(int[] arr) {
 		int eor = 0;

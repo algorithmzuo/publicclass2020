@@ -1,6 +1,6 @@
-package class31;
+package class32;
 
-public class Code05_MakeNo {
+public class Code02_MakeNo {
 
 	public static int[] makeNo(int size) {
 		if (size == 1) {
