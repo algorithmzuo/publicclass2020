@@ -1,4 +1,4 @@
-package class33;
+package class34;
 
 public class Code01_EvenTimesOddTimes {
 
