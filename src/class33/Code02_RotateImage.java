@@ -1,18 +1,13 @@
 package class33;
 
-import java.util.HashMap;
-
 public class Code02_RotateImage {
 
 	public static void rotate(int[][] matrix) {
-		// matrix.length == matrix[0].length
-		// (a,b)  左上角的点，在a行b列上
 		int a = 0;
 		int b = 0;
-		// (a,b)  右下角的点，在c行d列上
 		int c = matrix.length - 1;
 		int d = matrix[0].length - 1;
-		while (a < c) { // 一定是正方形，
+		while (a < c) {
 			rotateEdge(matrix, a++, b++, c--, d--);
 		}
 	}
@@ -27,35 +22,29 @@ public class Code02_RotateImage {
 			m[a + i][d] = tmp;
 		}
 	}
-	
-	
-	
-	public static HashMap<Integer, Integer> map = new HashMap<>();
-	
-	public static void generateMap() {
-		for(int i = 0 ;i < 32;i++) {
-			map.put(1 << i , i);
+
+	public static void printMatrix(int[][] m) {
+		int N = m.length;
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				System.out.print(m[i][j] + " ");
+			}
+			System.out.println();
 		}
 	}
-	
-	// 返回num最右侧的1，在第几位
-	//  高  ......  低
-	public static int f(int num) {
-		// num = 24
-		// num = 00000..0000011000
-		//       00000..0000001000
-		if(map.size() == 0) {
-			generateMap();
-		}
-		int rightOne = num & (-num); // num & (~num + 1)
-		return map.get(rightOne);
-	}
-	
-	
+
 	public static void main(String[] args) {
+		int[][] matrix = {
+				{ 1, 2, 3 },
+				{ 4, 5, 6 },
+				{ 7, 8, 9 } };
+		printMatrix(matrix);
+		System.out.println("========");
+
+		rotate(matrix);
+		printMatrix(matrix);
+		System.out.println("========");
 
 	}
-	
-	
 
 }

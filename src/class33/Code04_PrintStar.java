@@ -40,7 +40,7 @@ public class Code04_PrintStar {
 	}
 
 	public static void main(String[] args) {
-		printStar(8);
+		printStar(10);
 	}
 
 }

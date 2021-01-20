@@ -8,9 +8,8 @@ public class Code01_FindHalfMajority {
 	public static int halfMajor(int[] arr) {
 		int cand = 0;
 		int HP = 0;
-		// 遍历一遍数组arr，一次删掉两个不同的数，谁会剩下来，谁就是cand
 		for (int i = 0; i != arr.length; i++) {
-			if (HP == 0) { // 无候选
+			if (HP == 0) {
 				cand = arr[i];
 				HP = 1;
 			} else if (arr[i] == cand) {
@@ -20,7 +19,6 @@ public class Code01_FindHalfMajority {
 			}
 		}
 		if (HP == 0) {
-			System.out.println("你他妈在逗我，没水王");
 			return -1;
 		}
 		HP = 0;
