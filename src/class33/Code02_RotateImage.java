@@ -12,6 +12,8 @@ public class Code02_RotateImage {
 		}
 	}
 
+	// 在二维数组m中，左上角点(a,b), 右下角点(c,d)
+	// 只在规定好的框上，顺时针转好
 	public static void rotateEdge(int[][] m, int a, int b, int c, int d) {
 		int tmp = 0;
 		for (int i = 0; i < d - b; i++) {

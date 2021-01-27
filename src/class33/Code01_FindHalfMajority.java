@@ -6,13 +6,13 @@ import java.util.Map.Entry;
 public class Code01_FindHalfMajority {
 
 	public static int halfMajor(int[] arr) {
-		int cand = 0;
+		int target = 0;
 		int HP = 0;
 		for (int i = 0; i != arr.length; i++) {
 			if (HP == 0) {
-				cand = arr[i];
+				target = arr[i];
 				HP = 1;
-			} else if (arr[i] == cand) {
+			} else if (arr[i] == target) {
 				HP++;
 			} else {
 				HP--;
@@ -23,11 +23,11 @@ public class Code01_FindHalfMajority {
 		}
 		HP = 0;
 		for (int i = 0; i != arr.length; i++) {
-			if (arr[i] == cand) {
+			if (arr[i] == target) {
 				HP++;
 			}
 		}
-		return HP > arr.length / 2 ? cand : -1;
+		return HP > arr.length / 2 ? target : -1;
 	}
 
 	// for test
