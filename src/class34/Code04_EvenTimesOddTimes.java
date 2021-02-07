@@ -11,17 +11,23 @@ public class Code04_EvenTimesOddTimes {
 	}
 
 	public static void printOddTimesNum2(int[] arr) {
+		// arr中，a和b出现了奇数次，其他数都是偶数次
 		int eor = 0;
 		for (int i = 0; i < arr.length; i++) {
 			eor ^= arr[i];
 		}
+		// eor = a ^ b
+		// eor != 0
+		// eor       : 001100100
+		// rightOne  : 000000100
 		int rightOne = eor & (~eor + 1);
-		int onlyOne = 0;
+		int onlyOne = 0; // eor'
 		for (int i = 0; i < arr.length; i++) {
 			if ((arr[i] & rightOne) != 0) {
 				onlyOne ^= arr[i];
 			}
 		}
+		// eor' = a or b
 		System.out.println(onlyOne + " " + (eor ^ onlyOne));
 	}
 
