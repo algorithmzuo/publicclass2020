@@ -32,12 +32,10 @@ public class Code03_CoverMax {
 			lines[i] = new Line(m[i][0], m[i][1]);
 		}
 		Arrays.sort(lines, new StartComparator());
-		// lines   
-		// 
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
 		int max = 0;
 		for (int i = 0; i < lines.length; i++) {
-			// lines[i] -> cur  在黑盒中，把<=cur.start 东西都弹出
+			// lines[i] -> cur 在黑盒中，把<=cur.start 东西都弹出
 			while (!heap.isEmpty() && heap.peek() <= lines[i].start) {
 				heap.poll();
 			}

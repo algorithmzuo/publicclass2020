@@ -27,6 +27,13 @@ public class Code01_UglyNumber {
 		return num - 1;
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	public static int nthUglyNumber2(int n) {
 		int[] ugly = new int[n + 1];
 		ugly[1] = 1;
@@ -49,9 +56,7 @@ public class Code01_UglyNumber {
 	}
 	
 	public static void main(String[] args) {
-		for(int  i = 1; i < 100;i++) {
-			System.out.println(nthUglyNumber2(i));
-		}
+		System.out.println(nthUglyNumber2(10000));
 	}
 
 }
