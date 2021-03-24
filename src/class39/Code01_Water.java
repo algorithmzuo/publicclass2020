@@ -8,6 +8,8 @@ public class Code01_Water {
 		if (arr == null || arr.length < 2) {
 			return 0;
 		}
+		// O位置无水量
+		// 0~N-1,N-1无水量
 		int N = arr.length;
 		int water = 0;
 		for (int i = 1; i < N - 1; i++) {
