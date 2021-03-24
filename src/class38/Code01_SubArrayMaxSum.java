@@ -24,12 +24,46 @@ public class Code01_SubArrayMaxSum {
 		return max;
 	}
 
+	public static int max1(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int N = arr.length;
+		int[] ans = new int[N];
+		ans[0] = arr[0];
+		int max = ans[0];
+		for (int end = 1; end < N; end++) {
+			int p1 = arr[end];
+			int p2 = ans[end - 1] + arr[end];
+			ans[end] = Math.max(p1, p2);
+			max = Math.max(max, ans[end]);
+		}
+		return max;
+	}
+	
+	
+	public static int max2(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int N = arr.length;
+		int pre = arr[0];
+		int max = pre;
+		for (int end = 1; end < N; end++) {
+			int p1 = arr[end];
+			int p2 = pre + arr[end];
+			max = Math.max(max, Math.max(p1, p2));
+			pre = Math.max(p1, p2);
+		}
+		return max;
+	}
+
 	public static int dp1(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return 0;
 		}
 		int[] dp = new int[arr.length];
-		// dp[i]  子数组必须以i位置结尾的情况下，能得到的最大累加和
+		// dp[i] 子数组必须以i位置结尾的情况下，能得到的最大累加和
 		dp[0] = arr[0];
 		for (int i = 1; i < arr.length; i++) {
 			int p1 = arr[i];
@@ -42,7 +76,7 @@ public class Code01_SubArrayMaxSum {
 		}
 		return max;
 	}
-	
+
 	public static int dp2(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return 0;

@@ -9,7 +9,7 @@ public class Code04_MissingNumber {
 		while (l != r) {
 			if (arr[l] == l + 1) {
 				l++;
-			} else if (arr[l] <= l + 1 || arr[l] > r || arr[arr[l] - 1] == arr[l]) {
+			} else if (arr[l] <= l || arr[l] > r || arr[arr[l] - 1] == arr[l]) {
 				swap(arr, l, --r);
 			} else {
 				swap(arr, l, arr[l] - 1);
