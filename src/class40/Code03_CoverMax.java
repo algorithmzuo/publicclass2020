@@ -26,12 +26,16 @@ public class Code03_CoverMax {
 		return cover;
 	}
 
+	// [10,30]
+	// [1,5]
+	// [3,9]
 	public static int maxCover2(int[][] m) {
 		Line[] lines = new Line[m.length];
 		for (int i = 0; i < m.length; i++) {
 			lines[i] = new Line(m[i][0], m[i][1]);
 		}
 		Arrays.sort(lines, new StartComparator());
+		// 小根堆
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
 		int max = 0;
 		for (int i = 0; i < lines.length; i++) {

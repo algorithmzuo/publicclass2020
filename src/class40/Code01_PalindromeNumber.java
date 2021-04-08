@@ -6,7 +6,6 @@ public class Code01_PalindromeNumber {
 		if (n < 0) {
 			return false;
 		}
-		n = Math.abs(n);
 		int help = 1;
 		while (n / help >= 10) {
 			help *= 10;
