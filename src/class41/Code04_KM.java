@@ -23,7 +23,6 @@ public class Code04_KM {
 	}
 
 	public static HashMap<Integer, Integer> map = new HashMap<>();
-
 	// 请保证arr中，只有一种数出现了K次，其他数都出现了M次
 	public static int onlyKTimes(int[] arr, int k, int m) {
 		if (map.size() == 0) {
