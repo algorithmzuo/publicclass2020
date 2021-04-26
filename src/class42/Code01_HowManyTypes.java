@@ -62,20 +62,20 @@ public class Code01_HowManyTypes {
 	}
 
 	public static void main(String[] args) {
-		int possibilities = 5;
-		int strMaxSize = 10;
-		int arrMaxSize = 100;
-		int testTimes = 500000;
-		System.out.println("test begin, test time : " + testTimes);
-		for (int i = 0; i < testTimes; i++) {
-			String[] arr = getRandomStringArray(possibilities, strMaxSize, arrMaxSize);
-			int ans1 = types1(arr);
-			int ans2 = types2(arr);
-			if (ans1 != ans2) {
-				System.out.println("Oops!");
-			}
-		}
-		System.out.println("test finish");
+//		int possibilities = 5;
+//		int strMaxSize = 10;
+//		int arrMaxSize = 100;
+//		int testTimes = 500000;
+//		System.out.println("test begin, test time : " + testTimes);
+//		for (int i = 0; i < testTimes; i++) {
+//			String[] arr = getRandomStringArray(possibilities, strMaxSize, arrMaxSize);
+//			int ans1 = types1(arr);
+//			int ans2 = types2(arr);
+//			if (ans1 != ans2) {
+//				System.out.println("Oops!");
+//			}
+//		}
+//		System.out.println("test finish");
 
 	}
 

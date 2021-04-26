@@ -7,29 +7,29 @@ import java.util.Map.Entry;
 
 public class Code03_FindHalfMajority {
 
-	public static int halfMajor(int[] arr) {
-		int target = 0;
-		int HP = 0;
-		for (int i = 0; i != arr.length; i++) {
-			if (HP == 0) {
-				target = arr[i];
-				HP = 1;
-			} else if (arr[i] == target) {
-				HP++;
+	public static int superWater(int[] arr) {
+		int candidate = 0;
+		int hp = 0;
+		for (int num : arr) {
+			if (hp == 0) {
+				candidate = num;
+				hp = 1;
+			} else if (num == candidate) {
+				hp++;
 			} else {
-				HP--;
+				hp--;
 			}
 		}
-		if (HP == 0) {
+		if (hp == 0) {
 			return -1;
 		}
-		HP = 0;
-		for (int i = 0; i != arr.length; i++) {
-			if (arr[i] == target) {
-				HP++;
+		hp = 0;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == candidate) {
+				hp++;
 			}
 		}
-		return HP > arr.length / 2 ? target : -1;
+		return hp > arr.length / 2 ? candidate : -1;
 	}
 
 	// for test
@@ -65,7 +65,7 @@ public class Code03_FindHalfMajority {
 		System.out.println("test begin");
 		for (int i = 0; i < testTime; i++) {
 			int[] arr = genareteRandomArray(len, max);
-			int ans1 = halfMajor(arr);
+			int ans1 = superWater(arr);
 			int ans2 = right(arr);
 			if (ans1 != ans2) {
 				System.out.println("Oops!");

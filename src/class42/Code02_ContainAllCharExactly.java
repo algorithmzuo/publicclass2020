@@ -109,7 +109,6 @@ public class Code02_ContainAllCharExactly {
 			}
 		}
 		System.out.println("test finish");
-
 	}
 
 }
