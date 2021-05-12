@@ -9,7 +9,7 @@ public class Code01_AppleMinBags {
 		if (apple == 0) {
 			return 0;
 		}
-		// 最多的8号袋开始试，
+		// 最多的8号袋开始试，apple / 8
 		for (int max = (apple / 8); max >= 0; max--) {
 			int rest = apple - (max * 8);
 			if (rest % 6 == 0) {
@@ -54,14 +54,14 @@ public class Code01_AppleMinBags {
 			} else {
 				return -1;
 			}
-		} else {
+		} else { // apple >= 18 且 是偶数
 			return (apple - 18) / 8 + 3;
 		}
 	}
 
 	public static void main(String[] args) {
 		for (int apple = 0; apple <= 100; apple++) {
-			System.out.println(minBag1(apple) == minBag2(apple));
+			System.out.println(apple + " : " + minBag1(apple));
 		}
 
 	}
