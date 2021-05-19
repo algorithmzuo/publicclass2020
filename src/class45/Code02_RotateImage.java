@@ -1,6 +1,6 @@
-package class44;
+package class45;
 
-public class Code05_RotateImage {
+public class Code02_RotateImage {
 
 	public static void rotate(int[][] matrix) {
 		int a = 0;

@@ -1,6 +1,6 @@
-package class44;
+package class45;
 
-public class Code03_MaxLeftMaxRight {
+public class Code01_MaxLeftMaxRight {
 
 	// 笨办法，但是好想
 	public static int solution1(int[] arr) {

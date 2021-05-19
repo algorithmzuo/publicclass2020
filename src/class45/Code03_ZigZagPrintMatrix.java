@@ -1,6 +1,6 @@
-package class44;
+package class45;
 
-public class Code04_ZigZagPrintMatrix {
+public class Code03_ZigZagPrintMatrix {
 
 	public static void printMatrixZigZag(int[][] m) {
 		// (a,b)  A  先往右，再往下
