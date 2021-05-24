@@ -2,6 +2,32 @@ package class44;
 
 public class Code03_MaxSumNoAdjoin {
 
+	public static int maxSumSubseqNoAdjoin(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		if (arr.length == 1) {
+			return arr[0];
+		}
+		if (arr.length == 2) {
+			return Math.max(arr[0], arr[1]);
+		}
+		// arr不止两个数
+		int N = arr.length;
+		int[] dp = new int[N];
+		// dp[i] 0...i 不能选相邻数的情况下，子序列的最大累加和
+		// dp[N-1] 0..N-1
+		dp[0] = arr[0];
+		dp[1] = Math.max(arr[0], arr[1]);
+		for (int i = 2; i < N; i++) {
+			int p1 = dp[i - 1];
+			int p2 = arr[i];
+			int p3 = arr[i] + dp[i - 2];
+			dp[i] = Math.max(Math.max(p1, p2), p3);
+		}
+		return dp[N - 1];
+	}
+
 	public static int subSqeMaxSumNoNext(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return 0;
