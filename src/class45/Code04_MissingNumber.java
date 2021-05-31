@@ -4,6 +4,8 @@ package class45;
 public class Code04_MissingNumber {
 
 	public static int firstMissingPositive(int[] arr) {
+		// l是盯着的位置
+		// 0~l-1
 		int l = 0;
 		int r = arr.length;
 		while (l != r) {

@@ -7,7 +7,7 @@ public class Code02_RotateImage {
 		int b = 0;
 		int c = matrix.length - 1;
 		int d = matrix[0].length - 1;
-		while (a < c) {
+		while (a < c) {  // a>=c
 			rotateEdge(matrix, a++, b++, c--, d--);
 		}
 	}
