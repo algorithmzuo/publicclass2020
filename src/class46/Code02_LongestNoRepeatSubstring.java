@@ -6,6 +6,27 @@ public class Code02_LongestNoRepeatSubstring {
 	 * 
 	 */
 
+	public static int max(String s) {
+		if (s == null || s.length() == 0) {
+			return 0;
+		}
+		char[] str = s.toCharArray();
+		int N = str.length;
+		int[] map = new int[256];
+		for (int i = 0; i < 255; i++) {
+			map[i] = -1;
+		}
+		map[str[0]] = 0;
+		int pre = 1;
+		int max = 1;
+		for (int i = 1; i < N; i++) {
+			pre = Math.min(i - map[str[i]], pre + 1);
+			max = Math.max(max, pre);
+			map[str[i]] = i;
+		}
+		return max;
+	}
+
 	public static int lnrs1(String s) {
 		if (s == null || s.length() == 0) {
 			return 0;
