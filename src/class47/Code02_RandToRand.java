@@ -3,7 +3,7 @@ package class47;
 public class Code02_RandToRand {
 
 	// 此函数只能用，不能修改
-	// 等概率返回1~5
+	// 等概率返回1~5  黑盒！
 	public static int f() {
 		return (int) (Math.random() * 5) + 1;
 	}
@@ -14,6 +14,7 @@ public class Code02_RandToRand {
 		do {
 			ans = f();
 		} while (ans == 3);
+		// 1 2 4 5
 		return ans < 3 ? 0 : 1;
 	}
 
@@ -21,8 +22,10 @@ public class Code02_RandToRand {
 	public static int b() {
 		int ans = 0;
 		do {
+			// 0/1 << 2   0/1 << 1  0/1
 			ans = (a() << 2) + (a() << 1) + a();
 		} while (ans == 7);
+		// 0 1 2 3 4 5 6
 		return ans;
 	}
 
