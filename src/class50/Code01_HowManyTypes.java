@@ -31,11 +31,12 @@ public class Code01_HowManyTypes {
 	}
 
 	public static int types2(String[] arr) {
+		// 放整型的set
 		HashSet<Integer> types = new HashSet<>();
 		for (String str : arr) {
 			char[] chs = str.toCharArray();
 			int key = 0;
-			for(int i = 0 ; i < chs.length;i++) {
+			for (int i = 0; i < chs.length; i++) {
 				key |= (1 << (chs[i] - 'a'));
 			}
 			types.add(key);

@@ -23,6 +23,7 @@ public class Code03_FindHalfMajority {
 		if (hp == 0) {
 			return -1;
 		}
+		// hp!=0 , candidate
 		hp = 0;
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == candidate) {
