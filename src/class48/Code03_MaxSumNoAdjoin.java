@@ -2,6 +2,27 @@ package class48;
 
 public class Code03_MaxSumNoAdjoin {
 
+	public static int max1(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		if (arr.length == 1) {
+			return arr[0];
+		}
+		int N = arr.length;
+		int[] dp = new int[N];
+		dp[0] = arr[0];
+		dp[1] = Math.max(arr[0], arr[1]);// arr[0..1]
+		for (int i = 2; i < N; i++) {
+			// dp[i]
+			int p1 = arr[i];
+			int p2 = dp[i - 1];
+			int p3 = dp[i - 2] + arr[i];
+			dp[i] = Math.max(Math.max(p1, p2), p3);
+		}
+		return dp[N - 1];
+	}
+
 	public static int maxSumSubseqNoAdjoin(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return 0;

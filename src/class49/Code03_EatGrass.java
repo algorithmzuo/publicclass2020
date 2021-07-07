@@ -2,29 +2,26 @@ package class49;
 
 public class Code03_EatGrass {
 
-	public static String whoWin(int grass) {
-		return process(grass, "先手");
+	public static String whoWin(int N) {
+		return who(N, "先手");
 	}
 
-	// 只有两个选手，分别是字符串 "先手" "后手"
-	// 当前，轮到cur这个选手
-	// 还剩rest份草
-	// 返回谁赢，"先手"先手赢 "后手"后手赢
-	public static String process(int rest, String cur) {
-		String against = cur.equals("先手") ? "后手" : "先手";
+	// int rest : 剩下多少草
+	// String cur : "先手"、"后手" 表示，当前轮到谁
+	// 返回："先手"、"后手"，最终谁会赢
+	public static String who(int rest, String cur) {
 		if (rest == 0) {
-			return against;
+			return cur.equals("先手") ? "后手" : "先手";
 		}
-		// 还剩下不止0份草 1 4 16 64 rest
-		int choose = 1;
-		while (choose <= rest) {
-			int nextRest = rest - choose;
-			if (process(nextRest, against).equals(cur)) {
+		// 接下来，rest > 0, cur 将穷尽一切努力!
+		int pick = 1;
+		while (pick <= rest) {
+			if (cur.equals(who(rest - pick, cur.equals("先手") ? "后手" : "先手"))) {
 				return cur;
 			}
-			choose *= 4;
+			pick *= 4;
 		}
-		return against;
+		return cur.equals("先手") ? "后手" : "先手";
 	}
 
 	public static String winner2(int n) {

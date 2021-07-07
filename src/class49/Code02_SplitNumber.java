@@ -6,8 +6,7 @@ public class Code02_SplitNumber {
 		if (num <= 2) {
 			return false;
 		}
-		// num > 2
-		for (int start = 1; start < num; start++) {
+		for (int start = 1; start < num; start++) { // 开始的最小数字 
 			int ans = start;
 			for (int next = start + 1; next < num; next++) {
 				if (ans + next > num) {
@@ -36,14 +35,14 @@ public class Code02_SplitNumber {
 	}
 
 	public static void main(String[] args) {
-		int num = 128; // 0...0111
-		printNumberBinary(num);
-		
-		printNumberBinary(num - 1);
+//		int num = 128; // 0...0111
+//		printNumberBinary(num);
+//		
+//		printNumberBinary(num - 1);
 
-//		for (int i = 0; i < 100; i++) {
-//			System.out.println(i + " : " + isSplit2(i));
-//		}
+		for (int i = 0; i < 100; i++) {
+			System.out.println(i + " : " + isSplit1(i));
+		}
 	}
 
 }
