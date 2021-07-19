@@ -1,4 +1,4 @@
-package class51;
+package class52;
 
 public class Code04_MakeNo {
 

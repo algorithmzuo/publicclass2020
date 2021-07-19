@@ -1,6 +1,55 @@
 package class51;
 
 public class Code01_LongestNoRepeatSubstring {
+
+	// 返回str的最长无重复字符子串长度
+	public static int maxLen1(String str) {
+		if (str == null || str.length() == 0) {
+			return 0;
+		}
+		char[] s = str.toCharArray();
+		int N = s.length;
+		int[] dp = new int[N]; // 0 dp[0] 1 dp[1] ... dp max
+		int[] map = new int[256];// a 上次出现的位置 b 0 ~ 255
+		for (int i = 0; i < 256; i++) {
+			// i 字符的asc码 map[i] == -1
+			map[i] = -1;
+		}
+		int ans = 1;
+		dp[0] = 1;
+		map[s[0]] = 0;
+		for (int i = 1; i < N; i++) {
+			// i [i]上次出现的位置，i距离
+			int p1 = i - map[s[i]];
+			int p2 = dp[i - 1] + 1;
+			dp[i] = Math.min(p1, p2);
+			map[s[i]] = i;
+			ans = Math.max(ans, dp[i]);
+		}
+		return ans;
+	}
+
+	public static int maxLen2(String str) {
+		if (str == null || str.length() == 0) {
+			return 0;
+		}
+		char[] s = str.toCharArray();
+		int N = s.length;
+		int[] map = new int[256];
+		for (int i = 0; i < 256; i++) {
+			map[i] = -1;
+		}
+		int ans = 1;
+		int pre = 1;
+		map[s[0]] = 0;
+		for (int i = 1; i < N; i++) {
+			pre = Math.min(i - map[s[i]], pre + 1);
+			map[s[i]] = i;
+			ans = Math.max(ans, pre);
+		}
+		return ans;
+	}
+
 	/*
 	 * 给定一个只由小写字母（a~z）组成的字符串str， 返回其中最长无重复字符的子串长度
 	 * 
@@ -63,7 +112,7 @@ public class Code01_LongestNoRepeatSubstring {
 		for (int i = 0; i < testTimes; i++) {
 			String str = getRandomString(possibilities, strMaxSize);
 			int ans1 = lnrs1(str);
-			int ans2 = lnrs2(str);
+			int ans2 = maxLen2(str);
 			if (ans1 != ans2) {
 				System.out.println("Oops!");
 			}

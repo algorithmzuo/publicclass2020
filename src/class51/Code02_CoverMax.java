@@ -64,6 +64,40 @@ public class Code02_CoverMax {
 
 	}
 
+	public static class LineStartComparator implements Comparator<Line> {
+
+		@Override
+		public int compare(Line o1, Line o2) {
+			return o1.start - o2.start;
+		}
+
+	}
+
+	public static int maxOver(int[][] ls) {
+		if (ls == null || ls.length == 0) {
+			return 0;
+		}
+		int N = ls.length;
+		Line[] lines = new Line[N];
+		for (int i = 0; i < N; i++) {
+			lines[i] = new Line(ls[i][0], ls[i][1]);
+		}
+		// 把所有线段，根据开头位置排序
+		Arrays.sort(lines, new LineStartComparator());
+		PriorityQueue<Integer> heap = new PriorityQueue<>();
+		int ans = 0;
+		for (Line line : lines) {
+			int start = line.start;
+			int end = line.end;
+			while (!heap.isEmpty() && heap.peek() <= start) {
+				heap.poll();
+			}
+			heap.add(end);
+			ans = Math.max(ans, heap.size());
+		}
+		return ans;
+	}
+
 	// for test
 	public static int[][] generateLines(int N, int L, int R) {
 		int size = (int) (Math.random() * N) + 1;
@@ -91,26 +125,65 @@ public class Code02_CoverMax {
 
 	public static void main(String[] args) {
 
-		Line l1 = new Line(4, 9);
-		Line l2 = new Line(1, 4);
-		Line l3 = new Line(7, 15);
-		Line l4 = new Line(2, 4);
-		Line l5 = new Line(4, 6);
-		Line l6 = new Line(3, 7);
+//		Line l1 = new Line(4, 9);
+//		Line l2 = new Line(1, 4);
+//		Line l3 = new Line(7, 15);
+//		Line l4 = new Line(2, 4);
+//		Line l5 = new Line(4, 6);
+//		Line l6 = new Line(3, 7);
+//
+//		Line[] lines = { l1, l2, l3, l4, l5, l6 };
+//		Arrays.sort(lines, new StartComparator());
+//
+//		for (Line l : lines) {
+//			System.out.println(l.start + "," + l.end);
+//		}
 
-		// 底层堆结构，heap
-		PriorityQueue<Line> heap = new PriorityQueue<>(new StartComparator());
-		heap.add(l1);
-		heap.add(l2);
-		heap.add(l3);
-		heap.add(l4);
-		heap.add(l5);
-		heap.add(l6);
+//		// add peek poll O(logN)
+//		PriorityQueue<Integer> heap = new PriorityQueue<>();
+//		
+//		heap.add(6);
+//		
+//		// 6
+//		System.out.println(heap.peek());
+//		
+//		heap.add(3);
+//		// 3  6
+//		System.out.println(heap.peek());
+//		
+//		heap.add(9);
+//		// 3 6 9
+//		System.out.println(heap.peek());
+//		
+//		heap.add(3);
+//		// 3 3 6 9
+//		heap.add(6);
+//		System.out.println("======");
+//		// 3 3 6 6 9;
+//		while(!heap.isEmpty()) {
+//			System.out.println(heap.poll());
+//		}
 
-		while (!heap.isEmpty()) {
-			Line cur = heap.poll();
-			System.out.println(cur.start + "," + cur.end);
-		}
+//		Line l1 = new Line(4, 9);
+//		Line l2 = new Line(1, 4);
+//		Line l3 = new Line(7, 15);
+//		Line l4 = new Line(2, 4);
+//		Line l5 = new Line(4, 6);
+//		Line l6 = new Line(3, 7);
+//
+//		// 底层堆结构，heap
+//		PriorityQueue<Line> heap = new PriorityQueue<>(new StartComparator());
+//		heap.add(l1);
+//		heap.add(l2);
+//		heap.add(l3);
+//		heap.add(l4);
+//		heap.add(l5);
+//		heap.add(l6);
+//
+//		while (!heap.isEmpty()) {
+//			Line cur = heap.poll();
+//			System.out.println(cur.start + "," + cur.end);
+//		}
 
 		System.out.println("test begin");
 		int N = 100;
@@ -120,7 +193,7 @@ public class Code02_CoverMax {
 		for (int i = 0; i < testTimes; i++) {
 			int[][] lines = generateLines(N, L, R);
 			int ans1 = maxCover1(lines);
-			int ans2 = maxCover2(lines);
+			int ans2 = maxOver(lines);
 			if (ans1 != ans2) {
 				System.out.println("Oops!");
 			}

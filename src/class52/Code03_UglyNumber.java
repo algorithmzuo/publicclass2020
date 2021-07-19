@@ -1,4 +1,4 @@
-package class51;
+package class52;
 
 // 测试链接：https://leetcode.com/problems/ugly-number-ii
 public class Code03_UglyNumber {

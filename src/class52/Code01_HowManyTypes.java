@@ -1,4 +1,4 @@
-package class42;
+package class52;
 
 import java.util.HashSet;
 
