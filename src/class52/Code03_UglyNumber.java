@@ -36,6 +36,7 @@ public class Code03_UglyNumber {
 	
 	public static int nthUglyNumber2(int n) {
 		int[] ugly = new int[n + 1];
+		// ugly[0] 不用了，废掉
 		ugly[1] = 1;
 		int i2 = 1;
 		int i3 = 1;

@@ -2,18 +2,20 @@ package class52;
 
 public class Code04_MakeNo {
 
-	public static int[] makeNo(int size) {
-		if (size == 1) {
+	public static int[] makeNo(int N) {
+		if (N == 1) {
 			return new int[] { 1 };
 		}
-		int halfSize = (size + 1) / 2;
+		// N -> 一半
+		// N = 7  ->  4
+		int halfSize = (N + 1) / 2;
 		int[] base = makeNo(halfSize);
-		int[] ans = new int[size];
+		int[] ans = new int[N];
 		int index = 0;
 		for (; index < halfSize; index++) {
 			ans[index] = base[index] * 2 + 1;
 		}
-		for (int i = 0; index < size; index++, i++) {
+		for (int i = 0; index < N; index++, i++) {
 			ans[index] = base[i] * 2;
 		}
 		return ans;

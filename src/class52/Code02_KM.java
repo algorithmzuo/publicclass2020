@@ -22,6 +22,38 @@ public class Code02_KM {
 		return -1;
 	}
 
+	// 其他所有的数字都出现了M次，只有一种数，出现了K次
+	// 请打印出现了K次的数，K < M
+	public static void find(int[] arr, int K, int M) {
+		// 1） 先遍历一遍数组，看看0，是不是出现了K次的数
+		// 如果是，直接打印0
+
+		int[] tmp = new int[32];
+		for (int num : arr) {
+			// 我要提取出，num的每一位
+			for (int i = 31; i >= 0; i--) {
+				// 第i位如果是1，curbit = 1；第i位如果是0，curbit = 0；
+				int curbit = (num & (1 << i)) != 0 ? 1 : 0;
+				tmp[i] += curbit;
+				tmp[i] %= M;
+			}
+		}
+		// tmp 得到了！
+		int ans = 0;
+		for(int i = 31; i >=0 ;i--) {
+			// tmp[i]有没有数字剩下来！
+			// i位上，有数剩下来，has = 1
+			// i位上，没有数剩下来，has = 0
+			ans |= ((tmp[i] != 0 ? 1 : 0) << i);
+		}
+		System.out.println(ans);
+		// 打印ans
+		
+		
+		
+
+	}
+
 	public static HashMap<Integer, Integer> map = new HashMap<>();
 
 	// 请保证arr中，只有一种数出现了K次，其他数都出现了M次
