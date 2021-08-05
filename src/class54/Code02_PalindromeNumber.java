@@ -6,16 +6,23 @@ public class Code02_PalindromeNumber {
 		if (n < 0) {
 			return false;
 		}
-		int help = 1;
-		while (n / help >= 10) {
-			help *= 10;
+		int tmp = 1;
+		// num = 7654567
+		// tmp = 1000000
+		while (n / tmp >= 10) {
+			tmp *= 10;
 		}
 		while (n != 0) {
-			if (n / help != n % 10) {
+			if (n / tmp != n % 10) {
 				return false;
 			}
-			n = (n % help) / 10;
-			help /= 100;
+			// num = 7654567
+			// tmp = 1000000
+			// n%t = 654567
+			// /10 = 65456
+			// = 10000
+			n = (n % tmp) / 10;
+			tmp /= 100;
 		}
 		return true;
 	}

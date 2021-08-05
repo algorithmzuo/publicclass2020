@@ -5,6 +5,34 @@ import java.util.Map.Entry;
 
 public class Code01_FindHalfMajority {
 
+	// 时间复杂度O(N)，额外空间复杂度O(1)
+	// [1,5,2,5,3,5]
+	public static int find(int[] arr) {
+		int target = 0;
+		int hp = 0;
+		for (int num : arr) {
+			if (hp == 0) {
+				target = num;
+				hp = 1;
+			} else if (num != target) {
+				hp--;
+			} else {
+				hp++;
+			}
+		}
+		if (hp == 0) {
+			return -1;
+		}
+		// hp > 0, target
+		hp = 0;
+		for (int num : arr) {
+			if (num == target) {
+				hp++;
+			}
+		}
+		return hp > arr.length / 2 ? target : -1;
+	}
+
 	public static int halfMajor(int[] arr) {
 		int target = 0;
 		int HP = 0;
