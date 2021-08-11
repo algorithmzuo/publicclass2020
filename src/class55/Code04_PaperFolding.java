@@ -1,6 +1,6 @@
 package class55;
 
-public class Code03_PaperFolding {
+public class Code04_PaperFolding {
 
 	public static void printAllFolds(int N) {
 		process(1, N, true);
