@@ -7,9 +7,9 @@ public class Code04_PaperFolding {
 		System.out.println();
 	}
 
-	// 假想中的当前节点，在i层，一共N层，
-	// 假想中的当前节点凹还是凸？down决定！down = true 凹 down = false 凸
-	// 打印以假想节点为头的整棵树，中序打印
+	// 想象中的节点，在第i层
+	// N，最多有多少层，固定参数
+	// 想象中的节点，是凸还是凹，down = true 凹 down = false 凸
 	public static void process(int i, int N, boolean down) {
 		if (i > N) {
 			return;
@@ -20,7 +20,7 @@ public class Code04_PaperFolding {
 	}
 
 	public static void main(String[] args) {
-		int N = 4;
+		int N = 3;
 		printAllFolds(N);
 	}
 }

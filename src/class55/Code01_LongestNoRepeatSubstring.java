@@ -4,7 +4,7 @@ package class55;
 public class Code01_LongestNoRepeatSubstring {
 
 	public static int lengthOfLongestSubstring(String s) {
-		if (s == null || s.equals("")) {
+		if (s == null || s.length() == 0) {
 			return 0;
 		}
 		char[] str = s.toCharArray();
@@ -13,10 +13,9 @@ public class Code01_LongestNoRepeatSubstring {
 			map[i] = -1;
 		}
 		map[str[0]] = 0;
-		int N = str.length;
-		int ans = 1;
 		int pre = 1;
-		for (int i = 1; i < N; i++) {
+		int ans = 1;
+		for (int i = 1; i < str.length; i++) {
 			pre = Math.min(i - map[str[i]], pre + 1);
 			ans = Math.max(ans, pre);
 			map[str[i]] = i;
