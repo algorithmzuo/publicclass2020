@@ -1,7 +1,7 @@
-package class55;
+package class56;
 
 // 测试链接：https://leetcode.com/problems/first-missing-positive/
-public class Code05_MissingNumber {
+public class Code01_MissingNumber {
 
 	public static int firstMissingPositive(int[] arr) {
 		int l = 0;
