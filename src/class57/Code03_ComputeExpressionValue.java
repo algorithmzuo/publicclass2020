@@ -17,6 +17,10 @@ public class Code03_ComputeExpressionValue {
 		return compute(s.toCharArray(), 0)[0];
 	}
 
+	// s[i.....]一旦遇到 ) 或者  字符串终止位置，停！
+	// 返回值：
+	// 0) 负责这一段的结果（得分）是多少？
+	// 1) 计算到了什么位置也返回
 	public static int[] compute(char[] s, int i) {
 		if (s[i] == ')') {
 			return new int[] { 1, i };
