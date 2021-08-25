@@ -18,8 +18,7 @@ import java.util.HashMap;
 public class Code04_Ratio01Split {
 
 	public static int[] split(int[] arr) {
-		
-		
+
 		// key -> int -> 分子
 		// value -> key这个分子下的，分母表 -> 次数
 		HashMap<Integer, HashMap<Integer, Integer>> pre = new HashMap<>();
