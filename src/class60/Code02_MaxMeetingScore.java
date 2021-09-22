@@ -43,8 +43,12 @@ public class Code02_MaxMeetingScore {
 		return Math.max(p1, p2);
 	}
 
+	// 所有会议，先根据截止时间排序
+	// [10,40] 、 [5,32]   ->  [5,32]  [10,40]
+	// 比较器！java c++ 重载比较运算符
 	public static int maxScore2(int[][] meetings) {
 		Arrays.sort(meetings, (a, b) -> a[0] - b[0]);
+		// 小根堆，里面放收益，收益小的在顶，收益大的在底
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
 		int time = 0;
 		// 已经把所有会议，按照截止时间，从小到大，排序了！
@@ -53,7 +57,7 @@ public class Code02_MaxMeetingScore {
 			if (time + 10 <= meetings[i][0]) {
 				heap.add(meetings[i][1]);
 				time += 10;
-			} else {
+			} else { // 不能通过增加会议数量，来安排；只能看，能不能挤掉之前的、最不行的会议
 				if (!heap.isEmpty() && heap.peek() < meetings[i][1]) {
 					heap.poll();
 					heap.add(meetings[i][1]);

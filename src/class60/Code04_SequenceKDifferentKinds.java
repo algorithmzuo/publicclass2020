@@ -6,6 +6,57 @@ package class60;
 // 已知str中都是小写字母
 public class Code04_SequenceKDifferentKinds {
 
+//	public static int waysAll(String str, int k) {
+//
+//		int[] arr = 通过str生成;
+//		// arr[0....]自由选择，一定要选出k中字符来！不同的子序列有多少个
+//		return ways(arr, 0, k);
+//
+//	}
+
+	// "aababddfeeef"
+	// a 3个
+	// b 2个
+	// c 0个
+	// d 2个
+	// e 3个
+	// f 2个
+	// g 0个
+	// ...
+	// z 0个
+	// int[] arr = { 3 2 0 2 3 }
+	// 0 1 2 3 4...
+	// 原始的字符串，变成了arr的形式来表达！
+	// restKinds : 还剩下几种字符，需要去选！
+	// "....." K = 3
+	// "....." -> int[] arr
+	// return ways(arr, 3);
+	// arr[i....]桶，自由选择，一定要选出restKinds种来
+	public static int zuo(int[] arr, int i, int restKinds) {
+		if (i == arr.length) { // 结束了
+			return restKinds == 0 ? 1 : 0;
+		} else { // 没结束，还有字符，可供选择
+
+			// 就是不考虑i位置的字符
+			int p1 = zuo(arr, i + 1, restKinds);
+
+			// 一定要选择，i位置的字符
+			int p2 = 0;
+			if (arr[i] != 0) {
+
+//				选i字符的方法 = C n 1 + C n 2 + C n 3 + ..... + C n n
+//						
+//				
+//				p2 = 选i字符的方法  *  ways(arr, i+1,  restKinds-1);
+//				
+//				p2 = (2的arr[i]次方  - 1)  *  ways(arr, i+1,  restKinds-1);
+
+				p2 = ((1 << arr[i]) - 1) * zuo(arr, i + 1, restKinds - 1);
+			}
+			return p1 + p2;
+		}
+	}
+
 	// bu -> {6,7,0,0,6,3}
 	// 0 1 2 3 4 5
 	// a b c d e f
