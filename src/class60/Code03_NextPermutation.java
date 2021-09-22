@@ -1,6 +1,6 @@
 package class60;
 
-// 来自leetcode
+// 来自Amazon
 // leetcode原题 : https://leetcode.com/problems/next-permutation/
 public class Code03_NextPermutation {
 
