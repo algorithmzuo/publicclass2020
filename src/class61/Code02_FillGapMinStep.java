@@ -7,7 +7,7 @@ package class61;
 // ...
 // 第i轮，把i选择给a或者b
 // 想让a和b的值一样大，请问至少需要多少轮？
-public class Code03_FillGapMinStep {
+public class Code02_FillGapMinStep {
 
 	// 暴力方法
 	// 不要让a、b过大！
