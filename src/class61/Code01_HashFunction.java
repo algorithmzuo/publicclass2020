@@ -35,7 +35,7 @@ public class Code01_HashFunction {
 		String algorithm = "MD5";
 		Hash hash = new Hash(algorithm);
 
-		String input1 = "zuochengyunzuochengyun1";
+		String input1 = "zuofdjkafjksadfjasdkljfalsjflaskfjklasdfjklsdjflkdsfjadksfjlkdfjasdlkfjadlskjfkldjflkadsfjlkasdjflkdfjlkdjf";
 		String input2 = "zuochengyunzuochengyun2";
 		String input3 = "zuochengyunzuochengyun3";
 		String input4 = "zuochengyunzuochengyun4";
