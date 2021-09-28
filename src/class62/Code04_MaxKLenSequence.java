@@ -13,9 +13,11 @@ public class Code04_MaxKLenSequence {
 		}
 		char[] str = s.toCharArray();
 		int n = str.length;
+		// 栈，栈大小 size 栈顶stack[size-1]
 		char[] stack = new char[n];
 		int size = 0;
 		for (int i = 0; i < n; i++) {
+			// 当前字符 str[i]
 			while (size > 0 && stack[size - 1] < str[i] && size + n - i > k) {
 				size--;
 			}
@@ -28,6 +30,7 @@ public class Code04_MaxKLenSequence {
 	}
 
 	// 为了测试
+	// 纯暴力，我把str，所有的、长度为k的，子序列全生成了！找出一个最大的！
 	public static String test(String str, int k) {
 		if (k <= 0 || str.length() < k) {
 			return "";
@@ -62,6 +65,8 @@ public class Code04_MaxKLenSequence {
 	}
 
 	public static void main(String[] args) {
+		System.out.println(maxString("ccfaa", 3));
+
 		int n = 12;
 		int r = 5;
 		int testTime = 10000;

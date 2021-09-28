@@ -36,6 +36,13 @@ public class Code01_MonotonousStack {
 		return res;
 	}
 
+	
+	// arr [  3 , 4, 3, 2, 3, 4, 1 ]
+	//        0   1  2  3  4  5  6
+	
+	
+	//    0  ->  3     [-1,  3]
+	//    1  ->  4     [0 ,  2]
 	public static int[][] getNearLess(int[] arr) {
 		int[][] res = new int[arr.length][2];
 		Stack<List<Integer>> stack = new Stack<>();
