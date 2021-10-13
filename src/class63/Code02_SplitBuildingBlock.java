@@ -29,6 +29,7 @@ public class Code02_SplitBuildingBlock {
 	// k是魔法积木的数量，每一块魔法积木都能变成任何重量
 	// x差值，后 - 前 <= x
 	public static int minSplit(int[] arr, int k, int x) {
+		// 从小到大排序！
 		Arrays.sort(arr);
 		int n = arr.length;
 		int[] needs = new int[n];
