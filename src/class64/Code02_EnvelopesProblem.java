@@ -1,10 +1,10 @@
-package class63;
+package class64;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
 // 本题测试链接 : https://leetcode.com/problems/russian-doll-envelopes/
-public class Code04_EnvelopesProblem {
+public class Code02_EnvelopesProblem {
 
 	public static int maxEnvelopes(int[][] matrix) {
 		Envelope[] arr = sort(matrix);

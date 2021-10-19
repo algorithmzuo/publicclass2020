@@ -1,7 +1,7 @@
-package class63;
+package class64;
 
 // 本题测试链接 : https://leetcode.com/problems/longest-increasing-subsequence
-public class Code03_LIS {
+public class Code01_LIS {
 
 	// 时间复杂度O(N^2)
 	public static int maxLen(int[] arr) {
