@@ -15,7 +15,7 @@ import java.util.HashMap;
 // 题目限制 : arr长度 <= 4000, arr中的值<= 10^9
 // 离散化之后，arr长度 <= 4000,  arr中的值<= 4000
 public class Code04_PoemProblem {
-	
+
 	public static int maxLen1(int[] arr) {
 		if (arr == null || arr.length < 4) {
 			return 0;
@@ -113,32 +113,37 @@ public class Code04_PoemProblem {
 
 	// 为了测试
 	public static void main(String[] args) {
-
 		// 1111 2332 4343 7799
 		int[] test = { 1, 1, 15, 1, 34, 1, 2, 67, 3, 3, 2, 4, 15, 3, 17, 4, 3, 7, 52, 7, 81, 9, 9 };
 		System.out.println(maxLen1(test));
 		System.out.println(maxLen2(test));
 		System.out.println("===========");
-
-		int len = 16;
-		int value = 10;
-		int[] arr = randomArray(len, value);
-		int[] arr1 = Arrays.copyOf(arr, arr.length);
-		int[] arr2 = Arrays.copyOf(arr, arr.length);
-		System.out.println(maxLen1(arr1));
-		System.out.println(maxLen2(arr2));
-
+		System.out.println("随机测试开始");
+		int len = 20;
+		int value = 6;
+		int testTime = 1000;
+		for (int i = 0; i < testTime; i++) {
+			int n = (int) (Math.random() * len) + 1;
+			int[] arr = randomArray(n, value);
+			int[] arr1 = Arrays.copyOf(arr, arr.length);
+			int[] arr2 = Arrays.copyOf(arr, arr.length);
+			int ans1 = maxLen1(arr1);
+			int ans2 = maxLen2(arr2);
+			if (ans1 != ans2) {
+				System.out.println("出错了!");
+			}
+		}
+		System.out.println("随机测试结束");
 		System.out.println("===========");
 
 		long start;
 		long end;
-		int[] longArr = randomArray(4000, 20);
+		int[] longArr = randomArray(5000000, 20);
 		start = System.currentTimeMillis();
-		System.out.println(maxLen2(longArr));
+		maxLen2(longArr);
 		end = System.currentTimeMillis();
-		System.out.println("运行时间(毫秒) : " + (end - start));
+		System.out.println("大样本量运行时间(毫秒) : " + (end - start));
 		System.out.println("===========");
-
 	}
 
 }
