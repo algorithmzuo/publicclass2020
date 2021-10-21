@@ -49,6 +49,13 @@ public class Code03_MinSwapTimes {
 	public static int minSwap2(int[] arr) {
 		int ans = 0;
 		for (int i = 0; i < arr.length; i++) {
+			// 来到0、1、2、3、。。。。i
+			// 0 -> 0 跳过
+			// 7 -> 7 跳过
+			// 6 -> 13 不能跳过！
+			// 6 != 13  6位置，13位置的数，交换
+			// [6] = 13 -> 正确归为
+			// [13] = ? -> 来到6位置
 			while (i != arr[i]) {
 				swap(arr, i, arr[i]);
 				ans++;
