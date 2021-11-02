@@ -1,6 +1,6 @@
 package class065;
 
-public class Code04_TrappingRainWater {
+public class Code03_TrappingRainWater {
 
 	/*
 	 * 给定一个正整数数组arr，把arr想象成一个直方图。返回这个直方图如果装水，能装下几格水？
