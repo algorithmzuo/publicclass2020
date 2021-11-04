@@ -92,42 +92,66 @@ public class Code01_CoverMax {
 	}
 
 	public static void main(String[] args) {
-
-		Line l1 = new Line(4, 9);
-		Line l2 = new Line(1, 4);
-		Line l3 = new Line(7, 15);
-		Line l4 = new Line(2, 4);
-		Line l5 = new Line(4, 6);
-		Line l6 = new Line(3, 7);
-
-		// 底层堆结构，heap
-		PriorityQueue<Line> heap = new PriorityQueue<>(new StartComparator());
-		heap.add(l1);
-		heap.add(l2);
-		heap.add(l3);
-		heap.add(l4);
-		heap.add(l5);
-		heap.add(l6);
-
-		while (!heap.isEmpty()) {
-			Line cur = heap.poll();
-			System.out.println(cur.start + "," + cur.end);
+		
+		
+		PriorityQueue<Integer> t = new PriorityQueue<>();
+		
+		// add poll 极快，O（logN）
+		t.add(5);
+		t.add(3);
+		t.add(2);
+		t.add(4);
+		t.add(2);
+		t.add(3);
+		
+		while(!t.isEmpty()) {
+			System.out.println(t.poll());
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
-		System.out.println("test begin");
-		int N = 100;
-		int L = 0;
-		int R = 200;
-		int testTimes = 200000;
-		for (int i = 0; i < testTimes; i++) {
-			int[][] lines = generateLines(N, L, R);
-			int ans1 = maxCover1(lines);
-			int ans2 = maxCover2(lines);
-			if (ans1 != ans2) {
-				System.out.println("Oops!");
-			}
-		}
-		System.out.println("test end");
+//		Line l1 = new Line(4, 9);
+//		Line l2 = new Line(1, 4);
+//		Line l3 = new Line(7, 15);
+//		Line l4 = new Line(2, 4);
+//		Line l5 = new Line(4, 6);
+//		Line l6 = new Line(3, 7);
+//
+//		// 底层堆结构，heap
+//		PriorityQueue<Line> heap = new PriorityQueue<>(new StartComparator());
+//		heap.add(l1);
+//		heap.add(l2);
+//		heap.add(l3);
+//		heap.add(l4);
+//		heap.add(l5);
+//		heap.add(l6);
+//
+//		while (!heap.isEmpty()) {
+//			Line cur = heap.poll();
+//			System.out.println(cur.start + "," + cur.end);
+//		}
+//
+//		System.out.println("test begin");
+//		int N = 100;
+//		int L = 0;
+//		int R = 200;
+//		int testTimes = 200000;
+//		for (int i = 0; i < testTimes; i++) {
+//			int[][] lines = generateLines(N, L, R);
+//			int ans1 = maxCover1(lines);
+//			int ans2 = maxCover2(lines);
+//			if (ans1 != ans2) {
+//				System.out.println("Oops!");
+//			}
+//		}
+//		System.out.println("test end");
 	}
 
 }
