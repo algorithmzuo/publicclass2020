@@ -1,7 +1,5 @@
 package class067;
 
-import java.util.HashMap;
-
 // 测试链接 : https://leetcode.com/problems/subarrays-with-k-different-integers/
 public class Code03_SubarraysWithKDifferentIntegers {
 
@@ -11,15 +9,15 @@ public class Code03_SubarraysWithKDifferentIntegers {
 
 	public static int numsMostK(int[] arr, int k) {
 		int i = 0, res = 0;
-		HashMap<Integer, Integer> count = new HashMap<>();
+		int[] counts = new int[arr.length + 1];
 		for (int j = 0; j < arr.length; ++j) {
-			if (count.getOrDefault(arr[j], 0) == 0) {
+			if (counts[arr[j]] == 0) {
 				k--;
 			}
-			count.put(arr[j], count.getOrDefault(arr[j], 0) + 1);
+			counts[arr[j]]++;
 			while (k < 0) {
-				count.put(arr[i], count.get(arr[i]) - 1);
-				if (count.get(arr[i]) == 0) {
+				counts[arr[i]]--;
+				if (counts[arr[i]] == 0) {
 					k++;
 				}
 				i++;
