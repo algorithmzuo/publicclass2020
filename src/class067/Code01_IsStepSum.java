@@ -43,10 +43,6 @@ public class Code01_IsStepSum {
 
 	// for test
 	public static void main(String[] args) {
-		
-		System.out.println(stepSum(100));
-		
-		
 		int max = 1000000;
 		int maxStepSum = stepSum(max);
 		HashMap<Integer, Integer> ans = generateStepSumNumberMap(max);
