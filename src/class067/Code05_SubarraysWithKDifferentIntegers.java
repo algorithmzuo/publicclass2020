@@ -8,27 +8,23 @@ public class Code05_SubarraysWithKDifferentIntegers {
 	}
 
 	public static int numsMostK(int[] arr, int k) {
-		int i = 0, res = 0;
-		int[] counts = new int[arr.length + 1];
-		for (int j = 0; j < arr.length; ++j) {
-			if (counts[arr[j]] == 0) {
-				k--;
+		int n = arr.length;
+		int ans = 0;
+		int[] counts = new int[n + 1];
+		for (int left = 0, right = 0, kinds = 0; right < n; right++) {
+			if (counts[arr[right]]++ == 0) {
+				kinds++;
 			}
-			counts[arr[j]]++;
-			while (k < 0) {
-				counts[arr[i]]--;
-				if (counts[arr[i]] == 0) {
-					k++;
+			while (kinds > k) {
+				if (counts[arr[left++]]-- == 1) {
+					kinds--;
 				}
-				i++;
 			}
-			res += j - i + 1;
+			ans += right - left;
 		}
-		return res;
+		return ans;
 	}
 
-	// nums 数组，题目规定，nums中的数字，不会超过nums的长度
-	// [ ]长度为5，0~5
 	public static int subarraysWithKDistinct2(int[] nums, int k) {
 		int n = nums.length;
 		// <= k-1种数的窗口词频统计
