@@ -13,7 +13,7 @@ public class Code03_SplitArrayLargestSum {
 		long ans = 0;
 		while (l <= r) {
 			long mid = (l + r) / 2;
-			long cur = getNeedParts(nums, mid);
+			long cur = need(nums, mid);
 			if (cur <= M) {
 				ans = mid;
 				r = mid - 1;
@@ -24,7 +24,7 @@ public class Code03_SplitArrayLargestSum {
 		return (int) ans;
 	}
 
-	public static int getNeedParts(int[] arr, long aim) {
+	public static int need(int[] arr, long aim) {
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] > aim) {
 				return Integer.MAX_VALUE;
