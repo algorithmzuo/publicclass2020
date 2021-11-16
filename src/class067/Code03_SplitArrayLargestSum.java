@@ -4,16 +4,16 @@ package class067;
 public class Code03_SplitArrayLargestSum {
 
 	public static int splitArray(int[] nums, int M) {
-		long sum = 0;
+		int sum = 0;
 		for (int i = 0; i < nums.length; i++) {
 			sum += nums[i];
 		}
-		long l = 0;
-		long r = sum;
-		long ans = 0;
+		int l = 0;
+		int r = sum;
+		int ans = 0;
 		while (l <= r) {
-			long mid = (l + r) / 2;
-			long cur = need(nums, mid);
+			int mid = (l + r) / 2;
+			int cur = need(nums, mid);
 			if (cur <= M) {
 				ans = mid;
 				r = mid - 1;
@@ -21,7 +21,7 @@ public class Code03_SplitArrayLargestSum {
 				l = mid + 1;
 			}
 		}
-		return (int) ans;
+		return ans;
 	}
 
 	public static int need(int[] arr, long aim) {
