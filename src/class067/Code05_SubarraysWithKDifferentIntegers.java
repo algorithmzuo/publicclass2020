@@ -1,7 +1,7 @@
 package class067;
 
 // 测试链接 : https://leetcode.com/problems/subarrays-with-k-different-integers/
-public class Code03_SubarraysWithKDifferentIntegers {
+public class Code05_SubarraysWithKDifferentIntegers {
 
 	public static int subarraysWithKDistinct1(int[] arr, int k) {
 		return numsMostK(arr, k) - numsMostK(arr, k - 1);

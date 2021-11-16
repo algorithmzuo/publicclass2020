@@ -1,7 +1,7 @@
 package class067;
 
 // 测试链接 : https://leetcode.com/problems/minimum-window-substring/
-public class Code01_MinimumWindowSubstring {
+public class Code04_MinimumWindowSubstring {
 
 	public static String minWindow(String s, String t) {
 		if (s.length() < t.length()) {
