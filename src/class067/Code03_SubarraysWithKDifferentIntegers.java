@@ -31,38 +31,38 @@ public class Code03_SubarraysWithKDifferentIntegers {
 	// [ ]长度为5，0~5
 	public static int subarraysWithKDistinct2(int[] nums, int k) {
 		int n = nums.length;
-		// k-1种数的窗口词频统计
-		int[] lessCounts = new int[n + 1];
-		// k种数的窗口词频统计
-		int[] equalCounts = new int[n + 1];
-		int lessLeft = 0;
-		int equalLeft = 0;
-		int lessKinds = 0;
-		int equalKinds = 0;
+		// <= k-1种数的窗口词频统计
+		int[] minusOneWindow = new int[n + 1];
+		int minusOneWindowLeft = 0;
+		int minusOneWindowKinds = 0;
+		// <= k种数的窗口词频统计
+		int[] kWindow = new int[n + 1];
+		int kWindowLeft = 0;
+		int kWindowKinds = 0;
 		int ans = 0;
 		for (int r = 0; r < n; r++) {
 			// 当前刚来到r位置！
-			if (lessCounts[nums[r]] == 0) {
-				lessKinds++;
+			if (minusOneWindow[nums[r]] == 0) {
+				minusOneWindowKinds++;
 			}
-			if (equalCounts[nums[r]] == 0) {
-				equalKinds++;
+			if (kWindow[nums[r]] == 0) {
+				kWindowKinds++;
 			}
-			lessCounts[nums[r]]++;
-			equalCounts[nums[r]]++;
-			while (lessKinds == k) {
-				if (lessCounts[nums[lessLeft]] == 1) {
-					lessKinds--;
+			minusOneWindow[nums[r]]++;
+			kWindow[nums[r]]++;
+			while (minusOneWindowKinds == k) {
+				if (minusOneWindow[nums[minusOneWindowLeft]] == 1) {
+					minusOneWindowKinds--;
 				}
-				lessCounts[nums[lessLeft++]]--;
+				minusOneWindow[nums[minusOneWindowLeft++]]--;
 			}
-			while (equalKinds > k) {
-				if (equalCounts[nums[equalLeft]] == 1) {
-					equalKinds--;
+			while (kWindowKinds > k) {
+				if (kWindow[nums[kWindowLeft]] == 1) {
+					kWindowKinds--;
 				}
-				equalCounts[nums[equalLeft++]]--;
+				kWindow[nums[kWindowLeft++]]--;
 			}
-			ans += lessLeft - equalLeft;
+			ans += minusOneWindowLeft - kWindowLeft;
 		}
 		return ans;
 	}
