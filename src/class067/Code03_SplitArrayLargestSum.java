@@ -24,6 +24,9 @@ public class Code03_SplitArrayLargestSum {
 		return ans;
 	}
 
+	// 每一幅画需要的时间，都在arr里
+	// 如果我一定要求整体不能超过aim小时
+	// 返回需要的最少画家数量
 	public static int need(int[] arr, long aim) {
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] > aim) {
