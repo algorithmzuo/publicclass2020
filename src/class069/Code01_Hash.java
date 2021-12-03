@@ -1,4 +1,4 @@
-package class068;
+package class069;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -6,20 +6,23 @@ import java.security.Security;
 
 import javax.xml.bind.DatatypeConverter;
 
-public class Hash {
+public class Code01_Hash {
 
-	private MessageDigest hash;
+	public static class Hash {
 
-	public Hash(String algorithm) {
-		try {
-			hash = MessageDigest.getInstance(algorithm);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+		private MessageDigest hash;
+
+		public Hash(String algorithm) {
+			try {
+				hash = MessageDigest.getInstance(algorithm);
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
 		}
-	}
 
-	public String hashCode(String input) {
-		return DatatypeConverter.printHexBinary(hash.digest(input.getBytes())).toUpperCase();
+		public String hashCode(String input) {
+			return DatatypeConverter.printHexBinary(hash.digest(input.getBytes())).toUpperCase();
+		}
 	}
 
 	public static void main(String[] args) {
