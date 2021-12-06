@@ -3,7 +3,6 @@ package class069;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
-
 import javax.xml.bind.DatatypeConverter;
 
 public class Code01_Hash {
@@ -32,7 +31,7 @@ public class Code01_Hash {
 		}
 		System.out.println("=======");
 
-		String algorithm = "MD5";
+		String algorithm = "SHA-256";
 		Hash hash = new Hash(algorithm);
 
 		String input1 = "zuochengyunzuochengyun1";
