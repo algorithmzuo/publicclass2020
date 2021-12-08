@@ -1,5 +1,6 @@
 package class070;
 
+// 测试链接 : https://leetcode.com/problems/find-the-celebrity/
 public class Code01_FindTheCelebrity {
 
 	// 提交时不要提交这个函数，因为默认系统会给你这个函数

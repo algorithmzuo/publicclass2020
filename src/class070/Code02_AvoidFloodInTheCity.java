@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
+// 测试链接 : https://leetcode.com/problems/avoid-flood-in-the-city/
 public class Code02_AvoidFloodInTheCity {
 
 	// rains[i] = j 第i天轮到j号湖泊下雨
