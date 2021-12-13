@@ -4,7 +4,7 @@ package class070;
 public class Code01_FindTheCelebrity {
 
 	// 提交时不要提交这个函数，因为默认系统会给你这个函数
-	// knows方法默认自己不认识自己
+	// knows方法默认自己认识自己
 	public static boolean knows(int x, int i) {
 		return true;
 	}
@@ -18,6 +18,7 @@ public class Code01_FindTheCelebrity {
 				cand = i;
 			}
 		}
+		// cand....右边，cand都不认识！
 		// cand是什么？唯一可能是明星的人！
 		// 下一步就是验证，它到底是不是明星
 		// 1) cand是不是不认识所有的人 cand...（右侧cand都不认识）

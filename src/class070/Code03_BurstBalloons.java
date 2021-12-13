@@ -3,6 +3,53 @@ package class070;
 // 本题测试链接 : https://leetcode.com/problems/burst-balloons/
 public class Code03_BurstBalloons {
 
+	public static int max(int[] arr) {
+		int n = arr.length;
+		int[] help = new int[n + 2];
+		help[0] = 1;
+		help[n + 1] = 1;
+		// 1 1
+		for (int i = 0; i < arr.length; i++) {
+			help[i + 1] = arr[i];
+		}
+		// arr    0 1 2 3 4
+		// help 0 1 2 3 4 5 6
+		return f(help, 1, n);
+	}
+
+	// balls[L...R] 这个范围的气球，选择最优的打爆顺序，返回最大的得分
+	// 你想调用这个函数，必须遵循一个潜台词：
+	// ball[L-1]气球，一定没爆！
+	// ball[R+1]气球，一定没爆！
+	// 为什么要设计这样的潜台词？是因为可能性是按照最后打爆的气球来展开的
+	public static int f(int[] balls, int L, int R) {
+		if(L == R) {
+			return   balls[L-1] * balls[L] * balls[R+1];
+		}
+		// L...R 不止一个气球！
+		// 可能性1，L位置的气球最后打爆
+		int p1 = f(balls, L+1,R) + balls[L-1] * balls[L] * balls[R+1];
+		// 可能性2，R位置的气球最后打爆
+		int p2 = f(balls, L, R-1) + balls[L-1] * balls[R] * balls[R+1];
+		int ans = Math.max(p1, p2);
+		// 枚举，任何一个中间气球，最后打爆！
+		for(int mid = L + 1; mid < R;mid++) {
+			// L .... mid-1  mid    mid+1.....R
+			int curP = f(balls, L, mid-1) + f(balls, mid+1, R) 
+			+  balls[L-1] * balls[mid] * balls[R+1];
+			ans = Math.max(ans, curP);
+		}
+		return ans;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
 	public static int maxCoins0(int[] arr) {
 		// [3,2,1,3]
 		// [1,3,2,1,3,1]
