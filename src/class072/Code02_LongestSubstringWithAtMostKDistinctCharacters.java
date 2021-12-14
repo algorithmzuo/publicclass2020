@@ -1,4 +1,4 @@
-package class071;
+package class072;
 
 // 测试链接 : https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/
 public class Code02_LongestSubstringWithAtMostKDistinctCharacters {
