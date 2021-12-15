@@ -1,7 +1,6 @@
 package class071;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Code01_CoverMax {
@@ -26,44 +25,33 @@ public class Code01_CoverMax {
 		return cover;
 	}
 
-	public static int maxCover2(int[][] m) {
-		Line[] lines = new Line[m.length];
-		for (int i = 0; i < m.length; i++) {
-			lines[i] = new Line(m[i][0], m[i][1]);
+	// [ [4, 5], [3, 6] , [1, 3] ]
+	// [ [1, 3] [3, 6] [4 ,5]
+	public static int maxCover2(int[][] lines) {
+		if (lines == null || lines.length == 0) {
+			return 0;
 		}
-		Arrays.sort(lines, new StartComparator());
-		// lines   
-		// 
+		// 排序：每个线段，根据开头位置排序，开头的位置如果一样，怎么排序无所谓！
+		// java Arrays sort 比较
+		// java lambda 表达式
+		Arrays.sort(lines, (a, b) -> a[0] - b[0]);
+		// 准备一个堆
+		// 在这里，不去谈堆的实现，只是使用
+		// 小根堆：小 到 大 组织
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
 		int max = 0;
-		for (int i = 0; i < lines.length; i++) {
-			// lines[i] -> cur  在黑盒中，把<=cur.start 东西都弹出
-			while (!heap.isEmpty() && heap.peek() <= lines[i].start) {
+		for (int[] line : lines) {
+			int start = line[0];
+			int end = line[1];
+			// <= start的数字，都从小根堆里弹出！
+			while (!heap.isEmpty() && heap.peek() <= start) {
 				heap.poll();
 			}
-			heap.add(lines[i].end);
-			max = Math.max(max, heap.size());
+			heap.add(end);
+			int cur = heap.size();
+			max = Math.max(max, cur);
 		}
 		return max;
-	}
-
-	public static class Line {
-		public int start;
-		public int end;
-
-		public Line(int s, int e) {
-			start = s;
-			end = e;
-		}
-	}
-
-	public static class EndComparator implements Comparator<Line> {
-
-		@Override
-		public int compare(Line o1, Line o2) {
-			return o1.end - o2.end;
-		}
-
 	}
 
 	// for test
@@ -82,76 +70,21 @@ public class Code01_CoverMax {
 		return ans;
 	}
 
-	public static class StartComparator implements Comparator<Line> {
-
-		@Override
-		public int compare(Line o1, Line o2) {
-			return o1.start - o2.start;
-		}
-
-	}
-
 	public static void main(String[] args) {
-		
-		
-		PriorityQueue<Integer> t = new PriorityQueue<>();
-		
-		// add poll 极快，O（logN）
-		t.add(5);
-		t.add(3);
-		t.add(2);
-		t.add(4);
-		t.add(2);
-		t.add(3);
-		
-		while(!t.isEmpty()) {
-			System.out.println(t.poll());
+		System.out.println("test begin");
+		int N = 100;
+		int L = 0;
+		int R = 200;
+		int testTimes = 200000;
+		for (int i = 0; i < testTimes; i++) {
+			int[][] lines = generateLines(N, L, R);
+			int ans1 = maxCover1(lines);
+			int ans2 = maxCover2(lines);
+			if (ans1 != ans2) {
+				System.out.println("Oops!");
+			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-//		Line l1 = new Line(4, 9);
-//		Line l2 = new Line(1, 4);
-//		Line l3 = new Line(7, 15);
-//		Line l4 = new Line(2, 4);
-//		Line l5 = new Line(4, 6);
-//		Line l6 = new Line(3, 7);
-//
-//		// 底层堆结构，heap
-//		PriorityQueue<Line> heap = new PriorityQueue<>(new StartComparator());
-//		heap.add(l1);
-//		heap.add(l2);
-//		heap.add(l3);
-//		heap.add(l4);
-//		heap.add(l5);
-//		heap.add(l6);
-//
-//		while (!heap.isEmpty()) {
-//			Line cur = heap.poll();
-//			System.out.println(cur.start + "," + cur.end);
-//		}
-//
-//		System.out.println("test begin");
-//		int N = 100;
-//		int L = 0;
-//		int R = 200;
-//		int testTimes = 200000;
-//		for (int i = 0; i < testTimes; i++) {
-//			int[][] lines = generateLines(N, L, R);
-//			int ans1 = maxCover1(lines);
-//			int ans2 = maxCover2(lines);
-//			if (ans1 != ans2) {
-//				System.out.println("Oops!");
-//			}
-//		}
-//		System.out.println("test end");
+		System.out.println("test end");
 	}
 
 }

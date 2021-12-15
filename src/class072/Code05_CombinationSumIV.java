@@ -1,9 +1,9 @@
-package class071;
+package class072;
 
 import java.util.Arrays;
 
 // leetcode 377题
-public class Code04_CombinationSumIV {
+public class Code05_CombinationSumIV {
 
 	// 当前剩下的值是rest，
 	// nums中所有的值，都可能作为分解rest的，第一块！全试一试
