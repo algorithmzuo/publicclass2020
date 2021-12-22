@@ -12,6 +12,82 @@ import java.util.Scanner;
 
 public class Code01_SplitApples {
 
+	public static int ways1(int apples, int plates) {
+		if (apples == 0) { // 没有苹果了！摆法有一种，“什么也不用摆”
+			return 1;
+		}
+		if (plates == 0) {
+			return 0; // 还剩下苹果，但是盘子没了！0种方法
+		}
+		// 苹果也有，盘子也有
+		if (apples < plates) {
+			// 多余的盘子都敲碎，因为没有，不会影响分布的种数
+			return ways1(apples, apples);
+		}
+		// apples >= plates
+		// 1) 所有的盘子全部都要使用，方法数是a
+		int a = ways1(apples - plates, plates);
+		// 2) 不全使用！所有的盘子不都使用，方法数是b
+		int b = ways1(apples, plates - 1);
+		return a + b;
+	}
+
+	// 苹果数量，初始时候，不超过100个
+	// 盘子数量，初始视乎，不超过100个
+	// 参数apples，0~100之间！
+	// 参数plates，0~100之间！
+	public static int[][] map = null;
+	// int apples, int plates -> map
+
+	// map[7][5] -> 苹果有7个，盘子有5个，有几种摆放方法！
+
+	// map[7][5] == 0, 苹果有7个，盘子有5个，有0种摆放方法！
+	
+	// map[7][5] == -1，苹果有7个，盘子有5个，这个过程，还没有计算过！
+
+	public static int ways2(int apples, int plates) {
+		if(map == null) {
+			map = new int[101][101];
+			for (int i = 0; i <= apples; i++) {
+				for (int j = 0; j <= plates; j++) {
+					map[i][j] = -1;
+				}
+			}
+		}
+		return process(apples, plates);
+	}
+	
+	// map可以用
+	
+	public static int process(int apples, int plates) {
+		if(map[apples][plates] != -1) {
+			return map[apples][plates];
+		}
+		int ans = 0;
+		if (apples == 0) { // 没有苹果了！摆法有一种，“什么也不用摆”
+			ans =  1;
+		} else if (plates == 0) {
+			ans =  0; // 还剩下苹果，但是盘子没了！0种方法
+		} else if (apples < plates) {
+			ans =  ways1(apples, apples);
+		}else {
+			// apples >= plates
+			// 1) 所有的盘子全部都要使用，方法数是a
+			int a = ways1(apples - plates, plates);
+			// 2) 不全使用！所有的盘子不都使用，方法数是b
+			int b = ways1(apples, plates - 1);
+			ans =  a + b;
+		}
+		map[apples][plates] = ans;
+		return ans;
+	}
+	
+	
+	
+	
+	
+	
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		while (sc.hasNext()) {
