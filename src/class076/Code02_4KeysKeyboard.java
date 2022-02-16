@@ -9,7 +9,8 @@ public class Code02_4KeysKeyboard {
 			dp[i] = i;
 		}
 		for (int i = 6; i <= n; i++) {
-			dp[i] = Math.max(Math.max(dp[i - 3] * 2, dp[i - 4] * 3),
+			dp[i] = Math.max(
+					Math.max(dp[i - 3] * 2, dp[i - 4] * 3),
 					Math.max(dp[i - 5] * 4, dp[i - 6] * 5));
 		}
 		return dp[n];
