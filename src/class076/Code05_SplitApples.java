@@ -12,6 +12,44 @@ import java.util.Scanner;
 
 public class Code05_SplitApples {
 
+	public static int test(int apples, int plates) {
+		// 1000
+		// 1000
+		int[][] dp = new int[apples + 1][plates + 1];
+		for (int i = 0; i <= apples; i++) {
+			for (int j = 0; j <= plates; j++) {
+				dp[i][j] = -1;
+			}
+		}
+		return f(apples, plates, dp);
+	}
+
+	// 摆法要符合题目的意思：排完序之后，如果数字分布一样，就认为是同一种摆法！
+	// 给你苹果数量apples，给你盘子数量plates
+	// 返回，几种摆法！
+	// 1000个
+	// 1000个
+	// 1000 * 1000
+	public static int f(int apples, int plates, int[][] dp) {
+		if (dp[apples][plates] != -1) {
+			return dp[apples][plates];
+		}
+		int ans = 0;
+		if (apples == 0) {
+			ans = 1;
+		} else if (plates == 0) {
+			ans = 0;
+		} else {
+			if (plates > apples) {
+				ans = f(apples, apples, dp);
+			} else { // apples >= plates;
+				ans = f(apples, plates - 1, dp) + f(apples - plates, plates, dp);
+			}
+		}
+		dp[apples][plates] = ans;
+		return ans;
+	}
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		while (sc.hasNext()) {
