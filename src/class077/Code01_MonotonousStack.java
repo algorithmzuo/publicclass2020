@@ -37,32 +37,38 @@ public class Code01_MonotonousStack {
 	}
 
 	
-	// arr [  3 , 4, 3, 2, 3, 4, 1 ]
-	//        0   1  2  3  4  5  6
-	
-	
-	//    0  ->  3     [-1,  3]
-	//    1  ->  4     [0 ,  2]
+	// arr中可能有重复值，[3,2,3,3,1]
+	//                  0 1 2 3 4
+	// 
+	// 0 -> 3 :   -1   1->2
+	// 0 :  [-1, 1]
+	// 1 :  [-1, 4]
+	// 2 :  [ 1, 4]
+	// n-1 : [ a, b]
 	public static int[][] getNearLess(int[] arr) {
 		int[][] res = new int[arr.length][2];
-		Stack<List<Integer>> stack = new Stack<>();
+		Stack<   List<Integer>   > stack = new Stack<>();
 		for (int i = 0; i < arr.length; i++) { // i -> arr[i] 进栈
+			// i -> arr[i]
 			while (!stack.isEmpty() && arr[stack.peek().get(0)] > arr[i]) {
 				List<Integer> popIs = stack.pop();
-				int leftLessIndex = stack.isEmpty() ? -1 : stack.peek().get(stack.peek().size() - 1);
+				int leftLessIndex = stack.isEmpty() 
+						? -1 : stack.peek().get(stack.peek().size() - 1);
 				for (Integer popi : popIs) {
 					res[popi][0] = leftLessIndex;
 					res[popi][1] = i;
 				}
 			}
+			// 1) 弹出完之后，顶部有东西，和当前值一样
 			if (!stack.isEmpty() && arr[stack.peek().get(0)] == arr[i]) {
 				stack.peek().add(Integer.valueOf(i));
-			} else {
+			} else { // 2) 栈为空  or  栈顶值 < 当前值
 				ArrayList<Integer> list = new ArrayList<>();
 				list.add(i);
 				stack.push(list);
 			}
 		}
+		// 单独清算栈里的东西！
 		while (!stack.isEmpty()) {
 			List<Integer> popIs = stack.pop();
 			int leftLessIndex = stack.isEmpty() ? -1 : stack.peek().get(stack.peek().size() - 1);
