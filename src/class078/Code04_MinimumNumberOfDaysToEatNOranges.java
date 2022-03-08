@@ -6,6 +6,30 @@ import java.util.HashMap;
 // 测试链接 : https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/
 public class Code04_MinimumNumberOfDaysToEatNOranges {
 
+	public static int zuo(int n) {
+		// 17 -> 5
+		HashMap<Integer, Integer> cache = new HashMap<>();
+		return minDay(n, cache);
+	}
+
+	public static int minDay(int n, HashMap<Integer, Integer> cache) {
+		if (cache.containsKey(n)) {
+			return cache.get(n);
+		}
+		int ans = 0;
+		if (n == 0) {
+			ans = 0;
+		} else if (n == 1) {
+			ans = 1;
+		} else {
+			int p1 = n % 2 + 1 + minDay(n / 2, cache);
+			int p2 = n % 3 + 1 + minDay(n / 3, cache);
+			ans = Math.min(p1, p2);
+		}
+		cache.put(n, ans);
+		return ans;
+	}
+
 	// 所有的答案都填在这个表里
 	// 这个表对所有的过程共用
 	public static HashMap<Integer, Integer> dp = new HashMap<>();

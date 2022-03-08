@@ -7,18 +7,16 @@ package class078;
 public class Code02_NearBiggerNoSameNeighbour {
 
 	public static int near(int num) {
-		// num = 174
-		// "0175"
-		// num = 899
-		// "0900"
-		// num = 999
-		// "01000"
+		// "99998"
+		// [0, 9, 9, 9, 9, 9]
 		char[] raw = ("0" + String.valueOf(num + 1)).toCharArray();
 		process(raw);
 		return Integer.valueOf(String.valueOf(raw));
 	}
 
 	public static void process(char[] raw) {
+		// 0 1 ->
+		// 1 2 ->
 		for (int i = 1; i < raw.length; i++) {
 			if (raw[i - 1] == raw[i]) {
 				addOne(raw, i);

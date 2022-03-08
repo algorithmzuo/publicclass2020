@@ -10,6 +10,41 @@ import java.util.Arrays;
 // 返回arr中最多有多少组
 public class Code03_MaxTeamNumber {
 
+	public static int maxSum1(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int n = arr.length;
+		int[] dp = new int[n];
+		dp[0] = arr[0];
+		int ans = dp[0];
+		for (int i = 1; i < n; i++) {
+			int p1 = arr[i];
+			int p2 = arr[i] + dp[i-1];
+			dp[i] = Math.max(p1, p2);
+			ans = Math.max(ans, dp[i]);
+		}
+		return ans;
+	}
+	
+	
+	
+	public static int maxSum2(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int n = arr.length;
+		int lastStepAns = arr[0];
+		int ans = lastStepAns;
+		for (int i = 1; i < n; i++) {
+			lastStepAns = Math.max(arr[i], arr[i] + lastStepAns);
+			ans = Math.max(ans, lastStepAns);
+		}
+		return ans;
+	}
+	
+	
+
 	// 对数器方法
 	public static int maxTeams1(int[] arr, int num, int k) {
 		Arrays.sort(arr);
