@@ -1,4 +1,4 @@
-package class080;
+package class081;
 
 // 测试链接 : https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
 public class Code05_LongestSubstringWithAtLeastKRepeatingCharacters {
