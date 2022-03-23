@@ -53,6 +53,7 @@ public class Code01_ArrangeJob {
 				if (heap.peek() <= curTime) {
 					return false;
 				}
+				lastTime = curTime;
 			}
 		}
 		return true;
