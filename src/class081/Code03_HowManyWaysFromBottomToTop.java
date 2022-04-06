@@ -13,7 +13,7 @@ package class081;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Code04_HowManyWaysFromBottomToTop {
+public class Code03_HowManyWaysFromBottomToTop {
 
 	public static int[] in = new int[5001];
 	public static boolean[] out = new boolean[5001];
