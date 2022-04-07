@@ -9,6 +9,8 @@ import java.util.Arrays;
 // 给定一个会议数组，返回安排的会议列表
 public class Code02_ArrangeMeetingPosCancelPre {
 
+	// 彻底暴力做的！
+	// 对数器！
 	public static ArrayList<int[]> arrange1(int[][] meetings) {
 		int max = 0;
 		for (int[] meeting : meetings) {
@@ -49,7 +51,7 @@ public class Code02_ArrangeMeetingPosCancelPre {
 			int[] cur = meetings[i];
 			int from = rank(rank, cur[0]);
 			int to = rank(rank, cur[1] - 1);
-			if (st.get(from, to) == 0) {
+			if (st.sum(from, to) == 0) {
 				ans.add(cur);
 			}
 			st.add(from, to, 1);
@@ -121,7 +123,7 @@ public class Code02_ArrangeMeetingPosCancelPre {
 			pushUp(rt);
 		}
 
-		public int get(int L, int R) {
+		public int sum(int L, int R) {
 			return query(L, R, 1, n, 1);
 		}
 
