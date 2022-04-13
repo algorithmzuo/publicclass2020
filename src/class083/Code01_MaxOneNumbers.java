@@ -6,6 +6,41 @@ package class083;
 // 请问翻转后可以使得1的个数最多是多少？
 public class Code01_MaxOneNumbers {
 
+	// arr中，子数组的最大累加和，返回
+	public static int maxSum1(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int n = arr.length;
+		int[] dp = new int[n];
+		dp[0] = arr[0];
+		int max = dp[0];
+		for (int i = 1; i < n; i++) {
+			int p1 = arr[i];
+			int p2 = dp[i - 1] + arr[i];
+			dp[i] = Math.max(p1, p2);
+			max = Math.max(max, dp[i]);
+		}
+		return max;
+	}
+	
+	public static int maxSum2(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int n = arr.length;
+		int pre = arr[0]; // pre -> dp[0];
+		int max = pre;
+		for (int i = 1; i < n; i++) {
+			pre = Math.max(arr[i], pre + arr[i]);
+			max = Math.max(max, pre);
+		}
+		return max;
+	}
+	
+	
+	
+
 	public static int maxOneNumbers1(int[] arr) {
 		int ans = 0;
 		for (int l = 0; l < arr.length; l++) {
