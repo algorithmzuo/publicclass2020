@@ -43,7 +43,7 @@ public class Code04_ClassicDP {
 			dp[0][cost[0] * k] = k * value[0];
 		}
 		for (int i = 1; i < n; i++) {
-			for (int j = 1; j <= m; j++) {
+			for (int j = 1; j <= m; j++) {				
 				dp[i][j] = dp[i - 1][j];
 				if (j - cost[i] >= 0 && dp[i][j - cost[i]] != -1) {
 					dp[i][j] = Math.max(dp[i][j], dp[i][j - cost[i]] + value[i]);

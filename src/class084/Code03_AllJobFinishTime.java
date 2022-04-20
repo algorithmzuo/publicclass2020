@@ -15,6 +15,9 @@ import java.util.Queue;
 // 输入可以保证没有循环依赖
 public class Code03_AllJobFinishTime {
 
+	// n : 0 ~ n-1
+	// time : time[i]是i号任务自己完成需要的时间
+	// matrix : 依赖关系
 	public static int[] finishTime(int n, int[] time, int[][] matrix) {
 		ArrayList<ArrayList<Integer>> nexts = new ArrayList<>();
 		for (int i = 0; i < n; i++) {

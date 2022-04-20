@@ -17,6 +17,31 @@ public class Code01_MinDepth {
 		}
 	}
 
+	// head为头的二叉树，最小深度返回
+	public static int ans = Integer.MAX_VALUE;
+
+	public static int minDepth(TreeNode head) {
+		if(head == null) {
+			return 0;
+		}
+		ans = Integer.MAX_VALUE;
+		zuo(head, 1);
+		return ans;
+	}
+
+	public static void zuo(TreeNode x, int level) {
+		if (x.left == null && x.right == null) {
+			ans = Math.min(ans, level);
+		} else {
+			if (x.left != null) {
+				zuo(x.left, level + 1);
+			}
+			if (x.right != null) {
+				zuo(x.right, level + 1);
+			}
+		}
+	}
+
 	// 下面的方法是一般解
 	public static int minDepth1(TreeNode head) {
 		if (head == null) {
