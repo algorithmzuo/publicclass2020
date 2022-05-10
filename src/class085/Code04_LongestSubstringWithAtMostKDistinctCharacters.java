@@ -1,7 +1,7 @@
 package class085;
 
 // 测试链接 : https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/
-public class Code02_LongestSubstringWithAtMostKDistinctCharacters {
+public class Code04_LongestSubstringWithAtMostKDistinctCharacters {
 
 	public static int lengthOfLongestSubstringKDistinct(String s, int k) {
 		if (s == null || s.length() == 0 || k < 1) {
