@@ -37,16 +37,23 @@ public class Code01_TwoObjectMaxValue {
 	public static int max2(int[] w, int[] v, int bag) {
 		int n = w.length;
 		int[][] arr = new int[n][2];
+		// [  [20,6], [14,8] , [3, 2]        ]
 		for (int i = 0; i < n; i++) {
 			arr[i][0] = w[i];
 			arr[i][1] = v[i];
 		}
+		// 根据重量排序
+		// [  [20,6], [14,8] , [3, 2]        ]
+		// [  [3,2] 、[14,8] 、 [20,6] ]
 		Arrays.sort(arr, (a, b) -> (a[0] - b[0]));
+		// arr是二维数组，但是，只使用价值，不使用重量！
 		RMQ rmq = new RMQ(arr);
 		int ans = 0;
 		for (int i = 0, j = 1; i < n && arr[i][0] <= bag; i++, j++) {
 			int right = right(arr, bag - arr[i][0]) + 1;
 			int rest = 0;
+			// right:查询的和你搭配的货，的范围！
+			// j
 			if (right == j) {
 				rest = rmq.max(1, right - 1);
 			} else if (right < j) {
@@ -80,8 +87,15 @@ public class Code01_TwoObjectMaxValue {
 		public int[][] max;
 
 		public RMQ(int[][] arr) {
+			// n = 16个数
 			int n = arr.length;
+			// k = 4
 			int k = power2(n);
+			// 行：1~n
+			// 列：0~4
+			// 请注意：
+			// 数组来说，下标从0开始
+			// 对于RMQ来说，下标从1开始
 			max = new int[n + 1][k + 1];
 			for (int i = 1; i <= n; i++) {
 				max[i][0] = arr[i - 1][1];
@@ -101,6 +115,73 @@ public class Code01_TwoObjectMaxValue {
 			return Math.max(max[l][k], max[r - (1 << k) + 1][k]);
 		}
 
+		// 求2的几次方，离m最近，又不超过m
+		private int power2(int m) {
+			int ans = 0;
+			while ((1 << ans) <= (m >> 1)) {
+				ans++;
+			}
+			return ans;
+		}
+
+	}
+	
+	
+	
+	public static class RMQZuo {
+		public int[][] max;// 如果传入的数组长度是N，max大小:N*logN大小
+
+		public RMQZuo(int[] arr) {
+			// n = 16个数
+			int n = arr.length;
+			// k = 4
+			int k = power2(n);
+			// 行：1~n
+			// 列：0~4
+			// 请注意：
+			// 数组来说，下标从0开始
+			// 对于RMQ来说，下标从1开始
+			max = new int[n + 1][k + 1];
+			for (int i = 1; i <= n; i++) {
+				max[i][0] = arr[i-1];
+			}
+			for (int j = 1; (1 << j) <= n; j++) {
+				for (int i = 1; i + (1 << j) - 1 <= n; i++) {
+					// 10....8(2的3次方)
+					// 10...4 14...4
+					
+					
+					// max[10][3] = ?
+					// max[10][2] 10...2的2次方个数(4个)
+					// i + (1 << (j - 1)) -> 10 + 4 -> 14...2的2次方个数(4个)
+					
+					max[i][j] = 
+							Math.max(max[i][j - 1],
+									max[i + (1 << (j - 1))][j - 1]);
+				}
+			}
+		}
+
+		// O(1)
+		public int max(int l, int r) {
+			if (r < l) {
+				return 0;
+			}
+			int k = power2(r - l + 1);
+			// l....r
+			// r - l + 1有几个数？2的k次方，离这个个数，最近，且不超过
+			// l....  ?....r
+			// l...r -> 3...11
+			// 11 - 3 + 1 = 9
+			// 2的3次方 = 8 <= 9
+			// k = 3
+			// l...2的3次方个数: max[l][k]
+			// r - (1 << k) + 1
+			// 11 - 8 + 1 -> 4
+			return Math.max(max[l][k], max[r - (1 << k) + 1][k]);
+		}
+
+		// 求2的几次方，离m最近，又不超过m
 		private int power2(int m) {
 			int ans = 0;
 			while ((1 << ans) <= (m >> 1)) {
