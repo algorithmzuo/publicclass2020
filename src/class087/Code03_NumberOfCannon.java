@@ -1,7 +1,6 @@
 package class087;
 
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 // 来自学员问题
 // 给定一个数组arr，表示从早到晚，依次会出现的导弹的高度
@@ -46,52 +45,60 @@ public class Code03_NumberOfCannon {
 
 	public static void main(String[] args) {
 
-		// 有序表来说
-		// add
-		// remove
-		// ceiling
-		// <= floor
-		// O(logN)!
-		TreeSet<Integer> set = new TreeSet<>();
+		// orderedMap C++
+		TreeMap<Integer, String> map = new TreeMap<>();
+		map.put(1, "我是1");
+		map.put(5, "我是5");
+		map.put(50, "我是50");
+		map.remove(5);
 
-		set.add(17);
-		set.add(20);
-		set.add(25);
+		System.out.println(map.get(5));
 
-		// >= 23
-		System.out.println(set.ceiling(26));
+		// 查 >= 15 , 并且离15最近的key
+		System.out.println(map.ceilingKey(55));
 
-		// 有序表是去重的，key去重
-		// A ：99
-		// B : 99
-		// C : 99
+		// 查 <= 15
+		System.out.println(map.floorKey(15));
 
-		TreeMap<Integer, Integer> map = new TreeMap<>();
-		map.put(99, 3);
-		// 76
-		
-		if (map.ceilingKey(76) == null) {
-			//  没有大炮可以打76
-			// 新开一门大炮，打76
-			// 这个新跑，只能打75~
-			map.put(75, map.getOrDefault(75, 0) + 1);
-		} else { // 之前有大炮可以打76，不需要新开一门炮！
-			int key = map.ceilingKey(76);
-			// 99  -1    75 +1
-			
-			if(map.get(key)  > 1) {
-				map.put(key, map.get(key) - 1);
-			}else {
-				map.remove(key);
+		// put、get、remove、ceilingKey、floorKey
+		// 时间复杂度O(log N)
+		// TreeMap，key是Integer，去重的！
+
+		// key : 大炮来到的高度，<=key以下高度的导弹
+		// value : 这样高度的大炮有几门
+		TreeMap<Integer, Integer> cannonMap = new TreeMap<Integer, Integer>();
+
+		// A ： 80 B ：80 C ： 80 D ： 20
+		// 80 : 3
+		// 20 : 1
+		// 假设map中有一些大炮，
+		int h = 100;
+		// >= 100，的key存在？
+		if (cannonMap.ceilingKey(h) == null) { // 没有能打100高度的
+			// 新开一门炮，100消灭！99
+			if (cannonMap.containsKey(h - 1)) {
+				cannonMap.put(h - 1, cannonMap.get(h - 1) + 1);
+			} else {
+				cannonMap.put(h - 1, 1);
 			}
-			
-			map.put(75, map.getOrDefault(75, 0) + 1);
+		} else { // 有能打100高度的
+			// 100   110  99
+			int cannonH = cannonMap.ceilingKey(h);
+			if(cannonMap.get(cannonH) == 1) {
+				cannonMap.remove(cannonH);
+			}else {
+				cannonMap.put(cannonH , cannonMap.get(cannonH) - 1);
+			}
+			if (cannonMap.containsKey(h - 1)) {
+				cannonMap.put(h - 1, cannonMap.get(h - 1) + 1);
+			} else {
+				cannonMap.put(h - 1, 1);
+			}
 		}
 		
+		
+		// map ,values 累加 返回~
 
-//		
-//		int[] arr = { 15, 7, 14, 6, 5, 13, 5, 10, 9 };
-//		System.out.println(numOfCannon(arr));
 	}
 
 }
