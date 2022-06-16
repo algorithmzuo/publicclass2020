@@ -10,6 +10,7 @@ import java.util.PriorityQueue;
 // 假设：m远远大于n，比如n<=1000, m <= 10的9次方，该怎么做？
 public class Code02_MinWaitingTime {
 
+	// 堆！堆模拟！方法1！
 	public static int minWaitingTime1(int[] arr, int m) {
 		if (arr == null || arr.length == 0) {
 			return -1;
@@ -27,6 +28,7 @@ public class Code02_MinWaitingTime {
 		return heap.peek()[0];
 	}
 
+	// 二分答案！
 	public static int minWaitingTime2(int[] arr, int m) {
 		if (arr == null || arr.length == 0) {
 			return -1;

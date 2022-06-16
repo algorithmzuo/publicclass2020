@@ -11,7 +11,12 @@ import java.util.Arrays;
 // leetcode测试链接 : https://leetcode.com/problems/maximum-running-time-of-n-computers/
 public class Code01_FourNumbersMinusOne {
 
+	// n，电脑台数
+	// arr，所有的电池
 	public static long maxRunTime(int n, int[] arr) {
+		// 电量排个序
+		// 2, 3, 5, 15, 23...
+		// 2, 5,10, 25, 48
 		Arrays.sort(arr);
 		int size = arr.length;
 		long[] sums = new long[size];
@@ -19,6 +24,9 @@ public class Code01_FourNumbersMinusOne {
 		for (int i = 1; i < size; i++) {
 			sums[i] = sums[i - 1] + arr[i];
 		}
+		// 答案的范围，定好，因为要二分，最大流程！
+		// 所有电量加起来，1000，电脑有10台。
+		// 0 ~ 100
 		long l = 0;
 		long m = 0;
 		long r = sums[size - 1] / n;
@@ -35,11 +43,19 @@ public class Code01_FourNumbersMinusOne {
 		return ans;
 	}
 
+	// 电池数组arr，前缀和数组sum
+	// 撑够的分钟数：time
+	// 几台电脑：num
+	// 返回：能不能做到！
 	public static boolean ok(int[] arr, long[] sum, long time, int num) {
 		int l = 0;
 		int m = 0;
 		int r = arr.length - 1;
 		int left = arr.length;
+		// 20分钟
+		// arr，有序的！
+		// >=20分钟，有几块电池！7块
+		// 电脑有10台，7台，3台（碎片电池去搞定！< 20）
 		// >= time 最左
 		while (l <= r) {
 			m = (l + r) / 2;
