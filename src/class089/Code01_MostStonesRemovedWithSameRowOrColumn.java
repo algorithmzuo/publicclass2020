@@ -11,12 +11,20 @@ import java.util.HashMap;
 // 测试链接 : https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
 public class Code01_MostStonesRemovedWithSameRowOrColumn {
 
+	// stones[i] = [a,b]  i号石子，行所在a行，列所在b列
 	public static int removeStones(int[][] stones) {
+		// n，石子数量
 		int n = stones.length;
+		// 100万行，A石子，第17个石子
+		// 100万(key)      17
 		HashMap<Integer, Integer> rowPre = new HashMap<Integer, Integer>();
+		// 200万列 R石子，第105个石子
+		// 200万(key)     105
 		HashMap<Integer, Integer> colPre = new HashMap<Integer, Integer>();
+		// 并查集，n个石子，一开始都在各自的集合里！
 		UnionFind uf = new UnionFind(n);
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) { // 遍历石子
+			// 当前石子，i号，行 x  列 y
 			int x = stones[i][0];
 			int y = stones[i][1];
 			if (!rowPre.containsKey(x)) {

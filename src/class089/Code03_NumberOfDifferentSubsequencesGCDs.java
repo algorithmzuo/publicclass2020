@@ -25,21 +25,25 @@ public class Code03_NumberOfDifferentSubsequencesGCDs {
 		for (int num : nums) {
 			set[num] = true;
 		}
+		// 最终要返回的答案，所有子序列的不同最大公约数个数！
 		int ans = 0;
 		// a是当前想确定，是不是某个子序列的最大公约数，有a！
+		// 1 2 3 4 5 ... max
 		for (int a = 1; a <= max; a++) {
-			// 1)找到，离a最近的，a的倍数！1 2 3 ... g就是
+			// a
+			// 1)找到，离a最近的，a的倍数！在数组中存在的!
 			int g = a;
 			for (; g <= max; g += a) {
 				if (set[g]) {
 					break;
 				}
 			}
-			// 2) 找到了a最近的倍数，g
-			// g + 0 , g ?= a
-			// g + a , g ?= a
-			// g + 2a , g ?= a
-			// g + 3a , g ?= a
+			// 2) 找到了离a最近的、a的倍数！是g
+			// g g(存在！) 最大公约数，是不是a，是，结束了！ans+1
+			// g g + a(存在！) 最大公约数，是不是a，是，结束了！ans+1
+			// g g + 2a(存在！) 最大公约数，是不是a，是，结束了！ans+1
+			// g g + 3a(存在！) 最大公约数，是不是a，是，结束了！ans+1
+			// g g + 4a(存在！) 最大公约数，是不是a，是，结束了！ans+1
 			for (int b = g; b <= max; b += a) {
 				if (set[b]) {
 					g = gcd(g, b);
