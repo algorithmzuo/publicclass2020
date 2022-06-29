@@ -68,10 +68,10 @@ public class Code02_MaxAnimalNumber {
 					r = m - 1;
 				}
 			}
-			if (find == endsSize - 1) {
+			if (find == endsSize - 1) { // 能扩充有效区！
 				ends[endsSize] = ends[endsSize - 1] + arr[i];
 				endsSize++;
-			} else {
+			} else { // 不能扩充有效区
 				if (ends[find + 1] > ends[find] + arr[i]) {
 					ends[find + 1] = ends[find] + arr[i];
 				}

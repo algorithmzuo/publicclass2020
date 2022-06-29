@@ -7,6 +7,7 @@ import java.util.Comparator;
 public class Code03_EnvelopesProblem {
 
 	public static int maxEnvelopes(int[][] matrix) {
+		// 生成信封，根据宽度从小到大，宽度一样的，高度从大到小
 		Envelope[] arr = sort(matrix);
 		int[] ends = new int[matrix.length];
 		ends[0] = arr[0].h;
