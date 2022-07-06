@@ -1,54 +1,17 @@
 package class091;
 
-//有m个同样的苹果，认为苹果之间无差别
-//有n个同样的盘子，认为盘子之间也无差别
-//还有，比如5个苹果如果放进3个盘子，
-//那么1、3、1和1、1、3和3、1、1的放置方法，也认为是一种方法
-//如上的设定下，返回有多少种放置方法
-//测试链接 : https://www.nowcoder.com/practice/bfd8234bb5e84be0b493656e390bdebf
-//提交以下的code，提交时请把类名改成"Main"
+// 有m个同样的苹果，认为苹果之间无差别
+// 有n个同样的盘子，认为盘子之间也无差别
+// 比如有3个苹果，有2个盘子
+// 方法有两种分别为：1、2 ; 3
+// 1、2和2、1的放置认为是一种方法
+// 返回有多少种放置苹果的方法
+// 测试链接 : https://www.nowcoder.com/practice/bfd8234bb5e84be0b493656e390bdebf
+// 提交以下的code，提交时请把类名改成"Main"
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Code04_SplitApples {
-
-	public static int test(int apples, int plates) {
-		// 1000
-		// 1000
-		int[][] dp = new int[apples + 1][plates + 1];
-		for (int i = 0; i <= apples; i++) {
-			for (int j = 0; j <= plates; j++) {
-				dp[i][j] = -1;
-			}
-		}
-		return f(apples, plates, dp);
-	}
-
-	// 摆法要符合题目的意思：排完序之后，如果数字分布一样，就认为是同一种摆法！
-	// 给你苹果数量apples，给你盘子数量plates
-	// 返回，几种摆法！
-	// 1000个
-	// 1000个
-	// 1000 * 1000
-	public static int f(int apples, int plates, int[][] dp) {
-		if (dp[apples][plates] != -1) {
-			return dp[apples][plates];
-		}
-		int ans = 0;
-		if (apples == 0) {
-			ans = 1;
-		} else if (plates == 0) {
-			ans = 0;
-		} else {
-			if (plates > apples) {
-				ans = f(apples, apples, dp);
-			} else { // apples >= plates;
-				ans = f(apples, plates - 1, dp) + f(apples - plates, plates, dp);
-			}
-		}
-		dp[apples][plates] = ans;
-		return ans;
-	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

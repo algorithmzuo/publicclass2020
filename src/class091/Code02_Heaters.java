@@ -2,7 +2,12 @@ package class091;
 
 import java.util.Arrays;
 
-// leetcode 475题
+// 你的任务是设计一个有固定加热半径的供暖器向所有房屋供暖。
+// 在加热器的加热半径范围内的每个房屋都可以获得供暖。
+// 现在，给出位于一条水平线上的房屋 houses 和供暖器 heaters 的位置，
+// 请你找出并返回可以覆盖所有房屋的最小加热半径。
+// 说明：所有供暖器都遵循你的半径标准，加热的半径都一样。
+// 测试链接 :https://leetcode.cn/problems/heaters
 public class Code02_Heaters {
 
 	// 比如地点是7, 9, 14
@@ -50,8 +55,7 @@ public class Code02_Heaters {
 	// 如果a < b, 说明是最优，供暖不应该跳下一个位置
 	// 如果a >= b, 说明不是最优，应该跳下一个位置
 	public static boolean best(int[] houses, int[] heaters, int i, int j) {
-		return j == heaters.length - 1 
-				|| Math.abs(heaters[j] - houses[i]) < Math.abs(heaters[j + 1] - houses[i]);
+		return j == heaters.length - 1 || Math.abs(heaters[j] - houses[i]) < Math.abs(heaters[j + 1] - houses[i]);
 	}
 
 	// 下面这个方法不对，你能找出原因嘛？^_^

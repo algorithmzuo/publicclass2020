@@ -1,13 +1,11 @@
 package class091;
 
+// 给定一个正整数数组arr，把arr想象成一个直方图。
+// 返回这个直方图如果装水，能装下几格水？
+// 测试链接 : https://leetcode.cn/problems/trapping-rain-water
 public class Code03_TrappingRainWater {
 
-	/*
-	 * 给定一个正整数数组arr，把arr想象成一个直方图。返回这个直方图如果装水，能装下几格水？
-	 * 
-	 */
-
-	public static int water1(int[] arr) {
+	public static int trap1(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
 		}
@@ -27,7 +25,7 @@ public class Code03_TrappingRainWater {
 		return water;
 	}
 
-	public static int water2(int[] arr) {
+	public static int trap2(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
 		}
@@ -50,7 +48,7 @@ public class Code03_TrappingRainWater {
 		return water;
 	}
 
-	public static int water3(int[] arr) {
+	public static int trap3(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
 		}
@@ -69,7 +67,7 @@ public class Code03_TrappingRainWater {
 		return water;
 	}
 
-	public static int water4(int[] arr) {
+	public static int trap4(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return 0;
 		}
@@ -89,33 +87,6 @@ public class Code03_TrappingRainWater {
 			}
 		}
 		return water;
-	}
-
-	// for test
-	public static int[] generateRandomArray(int len, int value) {
-		int[] ans = new int[(int) (Math.random() * len) + 1];
-		for (int i = 0; i < ans.length; i++) {
-			ans[i] = (int) (Math.random() * value) + 1;
-		}
-		return ans;
-	}
-
-	public static void main(String[] args) {
-		int len = 100;
-		int value = 200;
-		int testTimes = 100000;
-		System.out.println("测试开始");
-		for (int i = 0; i < testTimes; i++) {
-			int[] arr = generateRandomArray(len, value);
-			int ans1 = water1(arr);
-			int ans2 = water2(arr);
-			int ans3 = water3(arr);
-			int ans4 = water4(arr);
-			if (ans1 != ans2 || ans3 != ans4 || ans1 != ans3) {
-				System.out.println("Oops!");
-			}
-		}
-		System.out.println("测试结束");
 	}
 
 }

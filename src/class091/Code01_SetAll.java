@@ -2,6 +2,11 @@ package class091;
 
 import java.util.HashMap;
 
+// 设计有一个带有setAll功能的哈希表，有如下功能
+// 1) put(x, y) : 新增或者更新，key为x，value是y
+// 2) get(x)    : 返回key为x的时候，value是多少
+// 3) setAll(y) : 把调用这个方法之前所有的key，value都设置成y
+// 要求三个方法的时间复杂度都是O(1)
 public class Code01_SetAll {
 
 	public static class MyValue<V> {
