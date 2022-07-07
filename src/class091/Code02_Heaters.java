@@ -34,12 +34,22 @@ public class Code02_Heaters {
 	// 由此可知，地点14应该由供暖点15来供暖，半径是1
 	// 以此类推
 	public static int findRadius(int[] houses, int[] heaters) {
+		// 排序
+		// 时间复杂度O(N*logN)
 		Arrays.sort(houses);
 		Arrays.sort(heaters);
+		// 至少的供暖半径
 		int ans = 0;
 		// 时间复杂度O(N)
 		// i是地点，j是供暖点
 		for (int i = 0, j = 0; i < houses.length; i++) {
+			// 3 9 13 17
+			// 0 1 2 3
+			// i就是房子的编号，houses[i]房子所在的位置
+			// j火炉的编号
+			// 2 5 8 13 16
+			// 0 1 2 3 4
+			// best ： i号房，由j号火炉给其供暖，是不是最优的！
 			while (!best(houses, heaters, i, j)) {
 				j++;
 			}
@@ -55,7 +65,11 @@ public class Code02_Heaters {
 	// 如果a < b, 说明是最优，供暖不应该跳下一个位置
 	// 如果a >= b, 说明不是最优，应该跳下一个位置
 	public static boolean best(int[] houses, int[] heaters, int i, int j) {
-		return j == heaters.length - 1 || Math.abs(heaters[j] - houses[i]) < Math.abs(heaters[j + 1] - houses[i]);
+		return
+		// 已经来到最后的火炉了！一定是最优！
+		j == heaters.length - 1 ||
+		// 当前的火炉到当前的房子距离 < 下一个火炉到当前的房子距离
+				Math.abs(heaters[j] - houses[i]) < Math.abs(heaters[j + 1] - houses[i]);
 	}
 
 	// 下面这个方法不对，你能找出原因嘛？^_^

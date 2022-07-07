@@ -20,8 +20,12 @@ public class Code01_SetAll {
 	}
 
 	public static class MyHashMap<K, V> {
+		// key : 原始的key
+		// value : 封装好的一个MyValue结构：原始的value、时间戳
 		private HashMap<K, MyValue<V>> map;
+		// 全局时间点，每一次put、或者setAll都会让时间点 + 1
 		private long time;
+		// setAll区域：setAllValue，setAllTime
 		private MyValue<V> setAll;
 
 		public MyHashMap() {
