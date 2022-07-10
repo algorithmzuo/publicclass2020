@@ -3,6 +3,8 @@ package class069;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
+
+// 这个类所包含的jar包需要自己找到，然后导入项目
 import javax.xml.bind.DatatypeConverter;
 
 public class Code01_Hash {
