@@ -29,8 +29,11 @@ public class Code01_FindDuplicateOnlyOne {
 		if (arr == null || arr.length < 2) {
 			return -1;
 		}
+		// 0位置开始跳，slow == 0，arr[0]
+		// 0位置开始跳，fast == 0，arr[arr[0]]
 		int slow = arr[0];
 		int fast = arr[arr[0]];
+		// slow 和 fast如果没相遇，就一直跳 !
 		while (slow != fast) {
 			slow = arr[slow];
 			fast = arr[arr[fast]];

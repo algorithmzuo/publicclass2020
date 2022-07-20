@@ -15,6 +15,51 @@ package class093;
 // 测试链接 : https://leetcode.cn/problems/selling-pieces-of-wood/
 public class Code02_SellingPiecesOfWood {
 
+	public static int zuo(int m, int n, int[][] projects) {
+		// 50 * 60
+		int[][] prices = new int[m + 1][n + 1];
+		for (int[] project : projects) {
+			int row = project[0];
+			int col = project[1];
+			int value = project[2];
+			prices[row][col] = Math.max(prices[row][col], value);
+		}
+		return maxMoney(m, n, prices);
+	}
+
+	// 当前还剩下的木板，规格 : m * n
+	// 请按照题目说的方式来切割！
+	// 每一种规格的报价，都在prices里面
+	// 比如，想要查 10 * 20规格的木板，的最好报价，prices[10][20] 值！
+	// 返回最大的钱数！
+	public static int maxMoney(int m, int n, int[][] prices) {
+		if (m == 0 || n == 0) {
+			return 0;
+		}
+		// m > 0, n > 0
+		// 可能性1 : 当前的木板根本不切，看看有没有报价
+		int p1 = prices[m][n];
+		// 可能性2 : 当前的木板水平切
+		int p2 = 0;
+		for (int up = 1; up < m; up++) {
+			int down = m - up;
+			int upMoney = maxMoney(up, n, prices);
+			int downMoney = maxMoney(down, n, prices);
+			int cur = upMoney + downMoney;
+			p2 = Math.max(p2, cur);
+		}
+		// 可能性3 : 当前木板，垂直切
+		int p3 = 0;
+		for (int left = 1; left < n; left++) {
+			int right = n - left;
+			int leftMoney = maxMoney(m, left, prices);
+			int rightMoney = maxMoney(m, right, prices);
+			int cur = leftMoney + rightMoney;
+			p3 = Math.max(p3, cur);
+		}
+		return Math.max(p1, Math.max(p2, p3));
+	}
+
 	// 递归尝试版本
 	public static long sellingWood1(int m, int n, int[][] prices) {
 		// 单一报价
@@ -57,6 +102,9 @@ public class Code02_SellingPiecesOfWood {
 		return f2(m, n, values, dp);
 	}
 
+	// m n 一旦确定，返回值，确定！
+	// dp[m][n] == -1 没算过！
+	// dp[m][n] != -1 之前算过！结果是什么呢？dp[m][n]的值
 	public static long f2(int m, int n, long[][] values, long[][] dp) {
 		if (m == 0 || n == 0) {
 			return 0;
