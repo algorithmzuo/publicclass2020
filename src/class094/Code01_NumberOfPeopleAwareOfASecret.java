@@ -1,4 +1,4 @@
-package class94;
+package class094;
 
 // 在第 1 天，有一个人发现了一个秘密。
 // 给你一个整数 delay ，表示每个人会在发现秘密后的 delay 天之后，

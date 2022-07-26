@@ -1,4 +1,4 @@
-package class94;
+package class094;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
