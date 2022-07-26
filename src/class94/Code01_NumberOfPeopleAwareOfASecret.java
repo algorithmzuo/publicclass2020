@@ -1,4 +1,4 @@
-package class093;
+package class94;
 
 // 在第 1 天，有一个人发现了一个秘密。
 // 给你一个整数 delay ，表示每个人会在发现秘密后的 delay 天之后，
@@ -8,7 +8,7 @@ package class093;
 // 给你一个整数 n ，请你返回在第 n 天结束时，知道秘密的人数。
 // 由于答案可能会很大，请你将结果对 109 + 7 取余 后返回。
 // 测试链接 : https://leetcode.cn/problems/number-of-people-aware-of-a-secret/
-public class Code03_NumberOfPeopleAwareOfASecret {
+public class Code01_NumberOfPeopleAwareOfASecret {
 
 	public static int peopleAwareOfSecret(int n, int delay, int forget) {
 		long mod = 1000000007;
