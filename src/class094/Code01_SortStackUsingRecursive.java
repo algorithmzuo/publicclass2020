@@ -12,6 +12,70 @@ import java.util.Stack;
 // 2) 简单返回值的递归函数
 public class Code01_SortStackUsingRecursive {
 
+	public static void sortStack(Stack<Integer> stack) {
+		int deep = deep(stack);
+		while (deep > 0) {
+			int max = max(stack, deep);
+			int k = times(stack, max, deep);
+			down(stack, deep, max, k);
+			deep -= k;
+		}
+	}
+
+	// 返回栈的深度
+	// stack push pop isEmpty
+	public static int deep(Stack<Integer> stack) {
+		if (stack.isEmpty()) {
+			return 0;
+		}
+		int num = stack.pop();
+		int deep = deep(stack) + 1;
+		stack.push(num);
+		return deep;
+	}
+
+	// 从栈当前的顶部开始，往下数deep层
+	//) 返回这deep层里的最大值
+	public static int max(Stack<Integer> stack, int deep) {
+		if (deep == 0) {
+			return Integer.MIN_VALUE;
+		}
+		int num = stack.pop();
+		int restMax = max(stack, deep - 1);
+		int max = Math.max(num, restMax);
+		stack.push(num);
+		return max;
+	}
+
+	// 从栈当前的顶部开始，往下数deep层，已知最大值是max了
+	// 返回，max出现了几次，不改变栈的数据状况
+	public static int times(Stack<Integer> stack, int max, int deep) {
+		if (deep == 0) {
+			return 0;
+		}
+		int num = stack.pop();
+		int restTimes = times(stack, max, deep - 1);
+		int times = restTimes + (num == max ? 1 : 0);
+		stack.push(num);
+		return times;
+	}
+
+	// 从栈当前的顶部开始，往下数deep层，已知最大值是max，出现了k次
+	// 请把这k个最大值沉底，剩下的数据状况不变
+	public static void down(Stack<Integer> stack, int deep, int max, int k) {
+		if (deep == 0) {
+			for (int i = 0; i < k; i++) {
+				stack.push(max);
+			}
+		} else {
+			int num = stack.pop();
+			down(stack, deep - 1, max, k);
+			if (num != max) {
+				stack.push(num);
+			}
+		}
+	}
+
 	public static void sort(Stack<Integer> stack) {
 		int deep = size(stack);
 		while (deep > 0) {
@@ -106,18 +170,18 @@ public class Code01_SortStackUsingRecursive {
 	// 为了测试
 	public static void main(String[] args) {
 		Stack<Integer> test = new Stack<Integer>();
-		test.add(1);
+		test.add(7);
 		test.add(5);
 		test.add(4);
 		test.add(5);
 		test.add(3);
-		test.add(2);
+		test.add(6);
 		test.add(3);
 		test.add(1);
 		test.add(4);
-		test.add(2);
+		test.add(9);
 		// 1 5 4 5 3 2 3 1 4 2
-		sort(test);
+		sortStack(test);
 		while (!test.isEmpty()) {
 			System.out.println(test.pop());
 		}
