@@ -48,31 +48,16 @@ public class Code02_MaxNumberUnderLimit {
 
 	// 正式方法
 	public static int maxNumber2(int[] arr, int limit) {
-		// arr里面是不重复的数字，且只包含0~9
-		// 5, 8 , 2
-		// 2, 5, 8
 		Arrays.sort(arr);
 		limit--;
-		// <= limit 且最大的数字
-		// 68886
-		// 10000
-		// 为了取数而设计的！
-		// 457
-		// 100
 		int offset = 1;
 		while (offset <= limit / 10) {
 			offset *= 10;
 		}
-		// arr, 2 5 8
-		// limit--, 试图去追平的数字
-		// offset, 扣出limit中每一位的数字!
-		// 可以使用arr中的数字，期望得到尽可能接近limit的结果，并且位数一样
-		// 能做到，返回的结果就是答案
-		// 如果做不到和limit位数一样！返回-1
 		int ans = process2(arr, limit, offset);
 		if (ans != -1) {
 			return ans;
-		} else { // ans = -1 一定要减少位数，才能做到
+		} else {
 			offset /= 10;
 			int rest = 0;
 			while (offset > 0) {
@@ -83,54 +68,29 @@ public class Code02_MaxNumberUnderLimit {
 		}
 	}
 
-	// 可以选哪些数字，都在arr里，arr是有序的，[2,5,8]
-	// limit : <= limit 且尽量的大！
-	// offset : 为limit服务的，就是为了提取limit的每一位数字
 	public static int process2(int[] arr, int limit, int offset) {
-		// offset 1000 100 10 1 0
-		// offset == 0，意味着，之前的数字，全都可以追平，返回limit
-		// 之前的数字和limit完全一样，且limit所有数字都一样
 		if (offset == 0) {
 			return limit;
 		}
-		// limit中还有数字，没遍历到，
-		// (limit / offset) % 10
-		// 当前数字是谁，提取出来
 		int cur = (limit / offset) % 10;
-		
-		// 2 5 8
-		//  <=4
-		//   2 ....8888
 		int near = near(arr, cur);
 		if (near == -1) {
 			return -1;
-		} else if (arr[near] == cur) { // 找出来的数字，真的和当前数字cur一样!
-			// 当前位，追平了！
-			// 看看后续能不能走的通！
+		} else if (arr[near] == cur) {
 			int ans = process2(arr, limit, offset / 10);
-			// 1) 走通了！
-			// 2) 走不通，
-			// A ：当前位还有下降的空间！
-			// B ：当前位没有下降的空间！
 			if (ans != -1) {
 				return ans;
-			} else if (near > 0) { // 虽然后续没成功，但是我自己还能下降！还能选更小的数字
+			} else if (near > 0) {
 				near--;
 				return (limit / (offset * 10)) * offset * 10 + (arr[near] * offset) + rest(arr, offset / 10);
-			} else { // 后续没成功，我自己也不能再下降了！宣告失败，往上返回！
+			} else {
 				return -1;
 			}
-		} else { // arr[near] < cur
+		} else {
  			return (limit / (offset * 10)) * offset * 10 + (arr[near] * offset) + rest(arr, offset / 10);
 		}
 	}
 
-	// 比如offset = 100
-	// 一共3位数
-	// 那么就把arr中最大的数字x，拼成xxx，返回
-	// 比如offset = 10000
-	// 一共5位数
-	// 那么就把arr中最大的数字x，拼成xxxxx，返回
 	public static int rest(int[] arr, int offset) {
 		int rest = 0;
 		while (offset > 0) {
@@ -140,10 +100,6 @@ public class Code02_MaxNumberUnderLimit {
 		return rest;
 	}
 
-	// 在有序数组arr中，找到<=num，且最大的数字，在arr中的位置返回
-	// 如果所有数字都大于num，返回-1
-	// [3,6,9] num = 4  3
-	// [5,7,9] num = 4  -1
 	public static int near(int[] arr, int num) {
 		int l = 0;
 		int r = arr.length - 1;
