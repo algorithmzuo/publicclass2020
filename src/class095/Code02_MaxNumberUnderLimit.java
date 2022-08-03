@@ -12,7 +12,7 @@ public class Code02_MaxNumberUnderLimit {
 
 	public static int tmp = 0;
 
-	// 暴力尝试的方法
+	// 暴力尝试的方法 limit -1  -2 -3 -4
 	public static int maxNumber1(int[] arr, int limit) {
 		tmp = 0;
 		Arrays.sort(arr);
@@ -47,17 +47,54 @@ public class Code02_MaxNumberUnderLimit {
 	}
 
 	// 正式方法
+	// 用arr中的数字去拼，< limit ，尽量大
+	// 能拼出来尽量大的数字，返回
 	public static int maxNumber2(int[] arr, int limit) {
+		// [6,2,8] [8,2,6] [2,6,8]
 		Arrays.sort(arr);
+		// limit - 1
 		limit--;
+		// <= limit，尽量大即可
+		// limit : 657321
+		// offset: 100000
+		// 当前数 : (limit / offset) % 10 -> 6
+		// 下一个 :
+		// limit : 657321
+		// offset:  10000
+		// 当前数 : (limit / offset) % 10 -> 5
+		// 下一个 :
+		// limit : 657321
+		// offset:   1000
+		// 当前数 : (limit / offset) % 10 -> 7
 		int offset = 1;
 		while (offset <= limit / 10) {
 			offset *= 10;
 		}
+		
+		// 不要这么写，可能溢出！
+//		while(offset <= limit) {
+//			offset *=10;
+//		}
+//		offset /=10;
+		
+		
+		// limit : 65431098
+		// offset: 10000000
+		// arr中的数字，<=limit, offset方便我提取数字用的！
+		// limit : 65431098
+		// process2 : 拼出来的数字，和limit位数一定要一样长！！！！
+		// 返回尽量大的数字！
+		// 如果拼出来的数字，无法和limit位数一样长，返回-1
 		int ans = process2(arr, limit, offset);
 		if (ans != -1) {
 			return ans;
 		} else {
+			// limit : 65431098
+			// offset:  1000000
+			// arr[5]
+			//          5000000
+//			             500000
+//			              50000
 			offset /= 10;
 			int rest = 0;
 			while (offset > 0) {
@@ -68,22 +105,39 @@ public class Code02_MaxNumberUnderLimit {
 		}
 	}
 
+	// 可以用arr中的数字！
+	// 去拼<=limit，尽量大！位数一定要和limit一样长
+	// offset是用来取数字的！
+	// limit = 876530
+	// offset=   1000
+	// 87这两位，一定做的决定是：追平！而且真的追平了！
 	public static int process2(int[] arr, int limit, int offset) {
+		// limit = 876530
+		// offset=      0
 		if (offset == 0) {
 			return limit;
 		}
+		// limit = 876530
+		// offset=   1000
 		int cur = (limit / offset) % 10;
+		// 当前数字已经知道了cur
+		// 去arr中拿数字试图追平！
+		// 6
+		// 1) 拿到了能追平的数字
+		// 2) 没拿到能追平的数字，但又较小的数字
+		// 3) <=当前想追平的数字，都不存在  -1
 		int near = near(arr, cur);
 		if (near == -1) {
 			return -1;
-		} else if (arr[near] == cur) {
+		} else if (arr[near] == cur) { // 1) 拿到了能追平的数字
+			// 当前位达成了！
 			int ans = process2(arr, limit, offset / 10);
-			if (ans != -1) {
+			if (ans != -1) { // 后续计算出了最优结果！
 				return ans;
 			} else if (near > 0) {
 				near--;
 				return (limit / (offset * 10)) * offset * 10 + (arr[near] * offset) + rest(arr, offset / 10);
-			} else {
+			} else { // 后续搞不定！当前位也没有办法再下降了
 				return -1;
 			}
 		} else {

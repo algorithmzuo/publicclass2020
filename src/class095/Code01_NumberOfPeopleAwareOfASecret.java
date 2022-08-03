@@ -10,14 +10,17 @@ package class095;
 // 测试链接 : https://leetcode.cn/problems/number-of-people-aware-of-a-secret/
 public class Code01_NumberOfPeopleAwareOfASecret {
 
+	// 1天 。。。。 n天
 	public static int peopleAwareOfSecret(int n, int delay, int forget) {
 		long mod = 1000000007;
+		// 从第1天开始，每一天到来的时候，争取把这三个数组正确的人数填对
 		// dpKnow[i], 第i天知道秘密的人
 		long[] dpKnow = new long[n + 1];
 		// dpForget[i], 第i天将要忘记秘密的人
 		long[] dpForget = new long[n + 1];
 		// dpShare[i], 第i天可以分享秘密的人
 		long[] dpShare = new long[n + 1];
+		
 		// 第1天的时候，知道秘密的人1个，A
 		// 第1天的时候，将要忘记秘密的人0个
 		// 第1天的时候，可以分享秘密的人0个
@@ -33,7 +36,13 @@ public class Code01_NumberOfPeopleAwareOfASecret {
 			// 第i天
 			// dpKnow[i - 1] - dpForget[i] + dpShare[i]
 			dpKnow[i] = (mod + dpKnow[i - 1] - dpForget[i] + dpShare[i]) % mod;
+			
+			
+			
+			
+			// 第i天，新增知道秘密的，dpShare[i]
 			if (i + forget <= n) {
+				
 				// dpShare[i] 是第i天，刚知道秘密的人！
 				// 这批人，会在i + forget天，都忘了!
 				dpForget[i + forget] = dpShare[i];
@@ -43,7 +52,9 @@ public class Code01_NumberOfPeopleAwareOfASecret {
 				// i + delay 天 , 100天后，会分享秘密的人
 				// 第i天，有一些新人，i + delay天分享，一部分, dpShare[i]
 				// 第二部分呢？i + delay - 1天，知道秘密并且会散播的人，- dpForget[i + delay]
-				dpShare[i + delay] = (mod + dpShare[i + delay - 1] - dpForget[i + delay] + dpShare[i]) % mod;
+				dpShare[i + delay] = 
+						(mod + dpShare[i + delay - 1] - dpForget[i + delay]
+								+ dpShare[i]) % mod;
 			}
 		}
 		return (int) dpKnow[n];
