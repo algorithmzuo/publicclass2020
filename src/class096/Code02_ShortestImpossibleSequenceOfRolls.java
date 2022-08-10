@@ -19,6 +19,7 @@ public class Code02_ShortestImpossibleSequenceOfRolls {
 		boolean[] set = new boolean[k + 1];
 		// 当前这一套，收集了几个数字了？
 		int size = 0;
+		// 一共能收集全几套
 		int ans = 0;
 		for (int num : rolls) {
 			if (!set[num]) {
