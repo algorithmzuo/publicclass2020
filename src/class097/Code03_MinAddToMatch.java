@@ -16,6 +16,45 @@ public class Code03_MinAddToMatch {
 		}
 	}
 
+	// 主 zuo(str, 0, str.length - 1)
+	// str[L.....R]这个范围的字符串
+	// 整体变成合法的，返回至少添加几个字符，能做到！
+	public static int zuo(char[] str, int L, int R) {
+		if (L == R) {
+			// str[L...R]只剩一个字符了
+			// ( or ) or [ or ]
+			return 1;
+		}
+		if (L == R - 1) {
+			// str[L...R]只剩两个字符了
+			// () 0
+			// [] 0
+			if ((str[L] == '(' && str[R] == ')') || (str[L] == '[' && str[R] == ']')) {
+				return 0;
+			}
+			return 2;
+		}
+		// 第一大类 : str[L....R]本身是最大的嵌套!
+		// 可能性1 : str[L]和str[R]，自消化！
+		int p1LRkill = Integer.MAX_VALUE;
+		if ((str[L] == '(' && str[R] == ')') || (str[L] == '[' && str[R] == ']')) {
+			p1LRkill = zuo(str, L + 1, R - 1);
+		}
+		// 可能性2 : str[L]和str[R]，无法自消化！
+		int p1lastL = 1 + zuo(str, L + 1, R);
+		int p1LasrR = zuo(str, L, R - 1) + 1;
+
+		int p1 = Math.max(Math.min(p1LRkill, p1lastL), p1LasrR);
+
+		// 第二大类 : str[L....R] 合法 + 合法，并列关系！
+
+		int p2 = Integer.MAX_VALUE;
+		for (int m = L; m < R; m++) {
+			p2 = Math.min(p2, zuo(str, L, m) + zuo(str, m + 1, R));
+		}
+		return Math.min(p1, p2);
+	}
+
 	public static int minAdd(char[] s) {
 		int n = s.length;
 		int[][] dp = new int[n][n];

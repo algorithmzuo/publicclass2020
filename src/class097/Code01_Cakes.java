@@ -82,6 +82,15 @@ public class Code01_Cakes {
 	}
 
 	public static void main(String[] args) {
+
+//		int a = 7;
+//		int b = 5;
+//		int c = 1;
+//		// [. . .....] ^ != 0
+//		//             ^ == 0
+//		System.out.println((a ^ b ^ c));
+		
+//
 		int V = 23;
 		System.out.println("测试开始");
 		int cnt = 0;
