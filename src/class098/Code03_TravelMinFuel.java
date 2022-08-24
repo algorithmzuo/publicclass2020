@@ -44,7 +44,17 @@ public class Code03_TravelMinFuel {
 		return cost[0];
 	}
 
-	public static void dfs(ArrayList<ArrayList<Integer>> graph, int cur, int[] dfn, int[] size, int[] cost) {
+	// 图graph
+	// 当前节点的编号cur
+	// 以cur为头的整棵树，每个节点，去分配dfn序号！
+	// 以cur为头的整棵树，每个节点，都去求子树的节点个数，size
+	// 以cur为头的整棵树，所有节点汇聚到cur，废了多少油，填入到cost
+	public static void dfs(
+			ArrayList<ArrayList<Integer>> graph,
+			int cur, 
+			int[] dfn,
+			int[] size,
+			int[] cost) {
 		dfn[cur] = ++cnt;
 		size[cur] = 1;
 		for (int next : graph.get(cur)) {

@@ -12,6 +12,92 @@ package class098;
 // 输出最小修改次数
 public class Code02_MinCostMostE {
 
+//	// int[] arr { d 0  e 1  r 2  }
+//	// 好e -> 好1
+//	// arr[i....] 请整出最多的好1来！
+//	// 返回1：整出多少个好1
+//	// 返回2: 低价是多少？
+//	// 返回最小代价
+//	//  prepre    pre
+//	// i-2       i-1
+//	
+//	
+//	
+//	// arr[0 0 0] 好1 左右0、2双全
+//	//     0 1 2
+//	// 
+//	// 1)  0 0 i  mostEminCost(arr, 2, 0 , 0)
+//	// 2)  0 1 i  mostEminCost(arr, 2, 0 , 1)
+//	// 3)  0 2 i
+//	// 4)  1 0 i
+//	// 5)  1 1 i
+//	// 
+//	// i 2 * 10^5
+//	// prepre 0 1 2
+//	// pre    0 1 2
+//	// 9 * 2 * 10^5
+//	public static Info mostEminCost(int[] arr, int i, int prepre, int pre) {
+//		if(i == arr.length) {
+//			return new Info(0,0);
+//		}
+//		// i位置不终止
+//		// 可能性1 ： [i] -> 0
+//		int curCost1 = arr[i] == 0 ? 0 :1;
+//		int curValue1 = prepre == 2 && pre == 1 ? 1 : 0;
+//		Info info1 = mostEminCost(arr, i + 1, pre, 0);
+//
+//		
+//		// 可能性2 ： [i] -> 1
+//		int curCost2 = arr[i] == 1 ? 0 : 1;
+//		int curValue2 = 0;
+//		Info info2 = mostEminCost(arr, i + 1, pre, 1);
+//	
+//		
+//		// 可能性3 ： [i] -> 2
+//		int curCost3 = arr[i] == 2 ? 0 : 1;
+//		int curValue3 = prepre == 0 && pre == 1 ? 1 : 0;
+//		Info info3 = mostEminCost(arr, i + 1, pre, 2);
+//		
+//		int p1Value = curValue1 + info1.value;
+//		int p1Cost = curCost1 + info1.cost;
+//		int p2Value = curValue2 + info2.value;
+//		int p2Cost = curCost2 + info2.cost;
+//		int p3Value = curValue3 + info3.value;
+//		int p3Cost = curCost3 + info3.cost;
+//		int bestValue = 0;
+//		int minCost = Integer.MAX_VALUE;
+//		
+//		if(bestValue < p1Value) {
+//			bestValue = p1Value;
+//			minCost = p1Cost;
+//		} else if(bestValue == p1Value) {
+//			minCost = Math.min(minCost, p1Cost);
+//		}
+//		if(bestValue < p2Value) {
+//			bestValue = p2Value;
+//			minCost = p2Cost;
+//		} else if(bestValue == p2Value) {
+//			minCost = Math.min(minCost, p2Cost);
+//		}
+//		if(bestValue < p3Value) {
+//			bestValue = p3Value;
+//			minCost = p3Cost;
+//		} else if(bestValue == p3Value) {
+//			minCost = Math.min(minCost, p3Cost);
+//		}
+//		return new Info(bestValue, minCost);
+//	}
+//	
+//	public static class Info{
+//		public int value;
+//		public int cost;
+//		
+//		public Info(int v, int c) {
+//			value = v;
+//			cost = c;
+//		}
+//	}
+
 	public static int minCost(String str) {
 		int n = str.length();
 		if (n < 3) {

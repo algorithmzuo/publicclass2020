@@ -29,6 +29,39 @@ public class Code01_ChangeToSame {
 		return change(A, B, 0, 0, dp);
 	}
 
+	// A, B
+	// zuo(A,B,0,0)
+	// A[ai.....] B[bi.....] 请变得一样！
+	// 返回最少代价！
+	public static int zuo(int[] A, int[] B, int ai, int bi) {
+		if (ai == A.length && bi == B.length) {
+			return 0;
+		}
+		if (ai == A.length && bi != B.length) {
+			return Math.abs(B[bi]) + zuo(A, B, ai, bi + 1);
+		}
+		if (ai != A.length && bi == B.length) {
+			return Math.abs(A[ai]) + zuo(A, B, ai + 1, bi);
+		}
+		// A[ai] 有数
+		// B[bi] 有数
+		// 可能性1 : A[ai]删掉！
+		int p1 = Math.abs(A[ai]) + zuo(A, B, ai + 1, bi);
+		// 可能性2 : B[bi]删掉！
+		int p2 = Math.abs(B[bi]) + zuo(A, B, ai, bi + 1);
+		// 可能性3 ： A[ai]删掉！、B[bi]删掉！
+		// int p3 = Math.abs(A[ai]) + Math.abs(B[bi]) + zuo(A, B, ai + 1, bi + 1);
+		// 可能性4 ： A[ai] -> B[bi]、B[bi] ->  A[ai]
+		int p4 = Math.abs(A[ai] - B[bi]) 
+				+ zuo(A, B, ai + 1, bi + 1);
+		// 可能性5 ： A[ai] == B[bi]
+//		int p5 = Integer.MAX_VALUE;
+//		if(A[ai] == B[bi]) {
+//			p5 = zuo(A, B, ai + 1, bi + 1);
+//		}
+		return Math.min(Math.min(p1, p2), p4);
+	}
+
 	// 暴力递归
 	// A[indexA....]和B[indexB....]完全一样
 	// 需要付出最少的代价返回
