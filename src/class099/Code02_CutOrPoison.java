@@ -59,10 +59,13 @@ public class Code02_CutOrPoison {
 		// 怪兽可能的最快死亡回合
 		int l = 1;
 		// 怪兽可能的最晚死亡回合
+		//int r = hp / poisons[0];
 		int r = hp + 1;
+		// 1 ~ hp + 1 二分找答案
 		int m = 0;
 		int ans = Integer.MAX_VALUE;
 		while (l <= r) {
+			// m = (l + r) / 2
 			m = l + ((r - l) >> 1);
 			if (ok(cuts, poisons, hp, m)) {
 				ans = m;
