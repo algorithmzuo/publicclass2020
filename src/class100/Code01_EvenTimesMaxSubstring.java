@@ -45,6 +45,8 @@ public class Code01_EvenTimesMaxSubstring {
 		return true;
 	}
 
+	// 正式方法
+	// 时间复杂度O(N)
 	public static int maxLen2(String s) {
 		HashMap<Integer, Integer> map = new HashMap<>();
 		map.put(0, -1);

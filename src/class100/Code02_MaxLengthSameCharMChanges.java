@@ -46,6 +46,7 @@ public class Code02_MaxLengthSameCharMChanges {
 	}
 
 	// 正式方法
+	// 时间复杂度O(N)
 	public static int maxLen2(String str, int[] arr, int m) {
 		char[] s = str.toCharArray();
 		int n = s.length;
