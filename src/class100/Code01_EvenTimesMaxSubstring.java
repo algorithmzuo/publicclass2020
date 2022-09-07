@@ -48,12 +48,19 @@ public class Code01_EvenTimesMaxSubstring {
 	// 正式方法
 	// 时间复杂度O(N)
 	public static int maxLen2(String s) {
+		// key : 状态int, 32位的，a~z一共26位，够用
+		// value : 该状态最早出现的位置
 		HashMap<Integer, Integer> map = new HashMap<>();
+		// 00000000..000000
 		map.put(0, -1);
+		// 0...当前字符，总状态！
 		int status = 0;
 		int ans = 0;
 		int n = s.length();
+		// ....0   .....1   .....2   .....i  ....n-1
 		for (int i = 0; i < n; i++) {
+			// 从开头....i位置的字符
+			// 总状态，出来了!
 			status ^= 1 << (s.charAt(i) - 'a');
 			if (map.containsKey(status)) {
 				ans = Math.max(ans, i - map.get(status));

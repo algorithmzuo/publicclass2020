@@ -54,23 +54,29 @@ public class Code02_MaxLengthSameCharMChanges {
 		for (char c = 'a'; c <= 'z'; c++) {
 			int r = 0;
 			int change = 0;
-			for (int i = 0; i < n; i++) {
+			for (int l = 0; l < n; l++) {
+				// [l..r)
+				// [l...r-1] r
 				while (r < n) {
 					if (s[r] == c) {
 						r++;
 						continue;
 					}
+					// s[r] != 你的要求
 					if (arr[r] == 0 || change == m) {
 						break;
 					}
+					// arr[r] == 1 &&  change < m
 					change++;
 					r++;
 				}
-				ans = Math.max(ans, r - i);
-				if (s[i] != c && arr[i] == 1) {
+				// [l...r-1] r
+				ans = Math.max(ans, r - l);
+				// [l....r-1] [l]吐出来！
+				if (s[l] != c && arr[l] == 1) {
 					change--;
 				}
-				r = Math.max(r, i + 1);
+				r = Math.max(r, l + 1);
 			}
 		}
 		return ans;
