@@ -12,6 +12,58 @@ package class103;
 // https://www.mashibing.com/question/detail/37485
 public class Code02_RedPalindromeGoodStrings {
 
+	// 根据好串的定义
+	// 长度为n的时候，返回好串的数量
+	public static int goods(int n) {
+		char[] path = new char[n];
+		return process(0, n, path);
+	}
+
+	// 长度为n所有可能的字符串，请都得到！
+	public static int process(int i, int n, char[] path) {
+		if (i == n) {
+			return ok(path) ? 1 : 0;
+		} else {
+			int ans = 0;
+			path[i] = 'r';
+			ans += process(i + 1, n, path);
+			path[i] = 'e';
+			ans += process(i + 1, n, path);
+			path[i] = 'd';
+			ans += process(i + 1, n, path);
+			return ans;
+		}
+	}
+
+	// 如果是好串，返回true；不是好串，返回false
+	public static boolean ok(char[] path) {
+		int count = 0;
+		for (int l = 0; l < path.length; l++) {
+			for (int r = l + 1; r < path.length; r++) {
+				if (isP(path, l, r)) {
+					count++;
+				}
+				if (count > 1) {
+					return false;
+				}
+			}
+		}
+		return count == 1;
+	}
+
+	// l.... r
+	// ? ? ? ?
+	public static boolean isP(char[] path, int l, int r) {
+		while (l < r) {
+			if (path[l] != path[r]) {
+				return false;
+			}
+			l++;
+			r--;
+		}
+		return true;
+	}
+
 	// 暴力方法
 	// 为了观察规律
 	// 具体方法论，在体系学习班，章节39 : 根据对数器找规律
@@ -95,9 +147,17 @@ public class Code02_RedPalindromeGoodStrings {
 	}
 
 	public static void main(String[] args) {
-		for (int i = 1; i <= 10; i++) {
-			System.out.println("长度为" + i + ", 答案:" + num1(i) + "," + num2(i));
-		}
+		System.out.println(goods(1));
+		System.out.println(goods(2));
+		System.out.println(goods(3));
+		System.out.println(goods(4));
+		System.out.println(goods(5));
+		System.out.println(goods(6));
+		System.out.println(goods(7));
+
+//		for (int i = 1; i <= 10; i++) {
+//			System.out.println("长度为" + i + ", 答案:" + num1(i) + "," + num2(i));
+//		}
 	}
 
 }
