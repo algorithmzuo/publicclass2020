@@ -8,6 +8,8 @@ package class104;
 // 则翻转后该数组的最大子段和最大能达到多少？
 public class Code02_MaxSumOnReverseArray {
 
+	// 暴力解
+	// 翻转每一个子数组，全求一遍
 	public static int maxSumReverse1(int[] arr) {
 		int ans = Integer.MIN_VALUE;
 		for (int L = 0; L < arr.length; L++) {

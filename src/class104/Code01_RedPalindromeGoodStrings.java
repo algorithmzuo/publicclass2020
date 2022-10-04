@@ -11,6 +11,48 @@ package class104;
 // n = 3, 输出18
 public class Code01_RedPalindromeGoodStrings {
 
+	public static int cnt = 0;
+
+	public static int num1(int n) {
+		cnt = 0;
+		process(new char[n], 0, n);
+		return cnt;
+	}
+
+	// path = {r,r,e,d } .. n
+	public static void process(char[] path, int i, int n) {
+		if (i == n) {
+			if (isGood(path)) {
+				cnt++;
+			}
+		} else {
+			path[i] = 'r';
+			process(path, i + 1, n);
+			path[i] = 'e';
+			process(path, i + 1, n);
+			path[i] = 'd';
+			process(path, i + 1, n);
+		}
+	}
+
+	// 验证path，是不是好串
+	// 好串：只有一个回文子串长度>=2
+	public static boolean isGood(char[] path) {
+		int ans = 0;
+		for (int l = 0; l < path.length; l++) {
+			for (int r = l + 1; r < path.length; r++) {
+				// path[l...r]是不是回文串！
+				if (isP(path, l, r)) {
+					ans++;
+				}
+				if (ans > 1) {
+					return false;
+				}
+			}
+		}
+		return ans == 1;
+	}
+
 	// 暴力方法
 	// 为了观察规律
 	// 根据好串的定义
@@ -79,16 +121,14 @@ public class Code01_RedPalindromeGoodStrings {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(goods(1));
-		System.out.println(goods(2));
-		System.out.println(goods(3));
-		System.out.println(goods(4));
-		System.out.println(goods(5));
-		System.out.println(goods(6));
-		System.out.println(goods(7));
-		System.out.println(goods(8));
-		System.out.println(goods(9));
-		System.out.println(goods(10));
+		System.out.println(num1(1));
+		System.out.println(num1(2));
+		System.out.println(num1(3));
+		System.out.println(num1(4));
+		System.out.println(num1(5));
+		System.out.println(num1(6));
+		System.out.println(num1(7));
+		System.out.println(num1(8));
 	}
 
 }

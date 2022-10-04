@@ -17,17 +17,19 @@ public class Code06_EvenTimesMaxSubstring {
 		if (arr == null || arr.length == 0) {
 			return 0;
 		}
+		// key : 某个前缀和
+		// value : 最早出现的位置
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		map.put(0, -1);
 		int len = 0;
-		int sum = 0;
+		int x = 0;
 		for (int i = 0; i < arr.length; i++) {
-			sum += arr[i];
-			if (map.containsKey(sum - k)) {
-				len = Math.max(i - map.get(sum - k), len);
+			x += arr[i];
+			if (map.containsKey(x - k)) {
+				len = Math.max(i - map.get(x - k), len);
 			}
-			if (!map.containsKey(sum)) {
-				map.put(sum, i);
+			if (!map.containsKey(x)) {
+				map.put(x, i);
 			}
 		}
 		return len;
