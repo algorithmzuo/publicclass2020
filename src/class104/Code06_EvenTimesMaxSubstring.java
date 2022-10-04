@@ -9,7 +9,29 @@ import java.util.HashMap;
 // 返回s中达标子串的最大长度
 // 1 <= s的长度 <= 10^5
 // 字符种类都是英文小写
-public class Code04_EvenTimesMaxSubstring {
+public class Code06_EvenTimesMaxSubstring {
+
+	// 一个经典问题
+	// 累加和等于k的最长子数组是多长
+	public static int maxLength(int[] arr, int k) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		map.put(0, -1);
+		int len = 0;
+		int sum = 0;
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+			if (map.containsKey(sum - k)) {
+				len = Math.max(i - map.get(sum - k), len);
+			}
+			if (!map.containsKey(sum)) {
+				map.put(sum, i);
+			}
+		}
+		return len;
+	}
 
 	// 为了测试
 	// 暴力方法

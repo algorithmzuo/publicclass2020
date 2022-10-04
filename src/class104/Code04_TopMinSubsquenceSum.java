@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 // 给定一个正数k
 // 返回所有子序列中，累加和最小的前k个子序列累加和
 // 假设K不大，怎么算最快？
-public class Code07_TopMinSubsquenceSum {
+public class Code04_TopMinSubsquenceSum {
 
 	public static int[] topMinSum1(int[] arr, int k) {
 		ArrayList<Integer> allAns = new ArrayList<>();
