@@ -1,4 +1,4 @@
-package class103;
+package class104;
 
 // 来自阿里
 // 小红定义一个仅有r、e、d三种字符的字符串中
@@ -9,7 +9,7 @@ package class103;
 // n = 1, 输出0
 // n = 2, 输出3
 // n = 3, 输出18
-public class Code02_RedPalindromeGoodStrings {
+public class Code01_RedPalindromeGoodStrings {
 
 	// 暴力方法
 	// 为了观察规律
