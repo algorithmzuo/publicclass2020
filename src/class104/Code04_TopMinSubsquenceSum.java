@@ -49,7 +49,8 @@ public class Code04_TopMinSubsquenceSum {
 			int sum = cur[1];
 			ans[i] = sum;
 			if (last + 1 < arr.length) {
-				heap.add(new int[] { last + 1, sum - arr[last] + arr[last + 1] });
+				heap.add(new int[] { last + 1, sum - arr[last] 
+						+ arr[last + 1] });
 				heap.add(new int[] { last + 1, sum + arr[last + 1] });
 			}
 		}
