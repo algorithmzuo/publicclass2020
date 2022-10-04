@@ -52,8 +52,6 @@ public class Code01_RedPalindromeGoodStrings {
 		return count == 1;
 	}
 
-	// l.... r
-	// ? ? ? ?
 	public static boolean isP(char[] path, int l, int r) {
 		while (l < r) {
 			if (path[l] != path[r]) {
@@ -88,6 +86,9 @@ public class Code01_RedPalindromeGoodStrings {
 		System.out.println(goods(5));
 		System.out.println(goods(6));
 		System.out.println(goods(7));
+		System.out.println(goods(8));
+		System.out.println(goods(9));
+		System.out.println(goods(10));
 	}
 
 }
