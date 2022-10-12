@@ -15,7 +15,7 @@ import java.util.HashSet;
 // 数据描述 : 
 // 1 <= N <= 10^5
 // 1 <= M <= 10^2
-// 所有查询所列出的所有实验编号数量 <= 10^4
+// 所有查询所列出的所有实验编号数量 <= 10^5
 public class Code01_EveryQueryUsers {
 
 	// 暴力方法
@@ -131,7 +131,7 @@ public class Code01_EveryQueryUsers {
 		int m = 100;
 		int[][] A = randomMatrix(n, m, m);
 		int q = 1000;
-		int c = 10;
+		int c = 100;
 		int[][] B = randomMatrix(q, c, m);
 		System.out.println("用户数量 : " + n);
 		System.out.println("实验数量 : " + m);
