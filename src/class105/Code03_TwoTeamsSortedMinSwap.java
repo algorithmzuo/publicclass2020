@@ -13,10 +13,40 @@ import java.util.HashMap;
 // 最少交换次数为10
 // n <= 1000
 public class Code03_TwoTeamsSortedMinSwap {
-	
+
+//	public static int zuo(int lastA, int lastB, int[] arr) {
+//		if (lastA == 0 && lastB == 0) {
+//			return 0;
+//		}
+//		// lastA != 0 || lastB != 0
+//		if (lastA == 0) {
+//			// lastB
+//			int curCost = lastB来到此时的终止位置的代价;
+//			int next = zuo(lastA, lastB - 1, arr);
+//			return curCost + next;
+//		}
+//		if(lastB == 0) {
+//			int curCost = lastA来到此时的终止位置的代价;
+//			int next = zuo(lastA - 1, lastB, arr);
+//			return curCost + next;
+//		}
+//		// lastA, lastB
+//		// 让lastA来到最后
+//		int p1 = Integer.MAX_VALUE;
+//		int lastAComeCost = lastA来到此时的终止位置的代价;
+//		int next1 = zuo(lastA - 1, lastB, arr);
+//		p1 = lastAComeCost + next1;
+//		// 让lastB来到最后
+//		int p2 = Integer.MAX_VALUE;
+//		int lastBComeCost = lastB来到此时的终止位置的代价;
+//		int next2 = zuo(lastA, lastB - 1, arr);
+//		p2 = lastBComeCost + next2;
+//		return Math.min(p1, p2);
+//	}
+
 	// [3,-3,1,-4,2,-2,-1,4]
-	//    -3   -4   -2 -1   -> -1 -2 -3 -4
-	//  3    1    2       4 ->  1  2  3  4
+	// -3 -4 -2 -1 -> -1 -2 -3 -4
+	// 3 1 2 4 -> 1 2 3 4
 
 	// 这个题写对数器太麻烦了
 	// 所以这就是正式解
@@ -43,28 +73,33 @@ public class Code03_TwoTeamsSortedMinSwap {
 	// 可以改二维动态规划！
 	// 因为it的状态，只由topA和topB决定
 	// 所以it的状态不用作为可变参数！
-	public static int f(int topA, int topB, 
-			IndexTree it, int end,
-			HashMap<Integer, Integer> map) {
-		if (topA == 0 && topB == 0) {
+	public static int f(int lastA, int lastB,
+			IndexTree it, // 支持快速的距离计算
+			int end, // 不变！永远n-1！
+			HashMap<Integer, Integer> map // 位置表
+			) {
+		if (lastA == 0 && lastB == 0) {
 			return 0;
 		}
 		int p1 = Integer.MAX_VALUE;
 		int p2 = Integer.MAX_VALUE;
 		int index, cost, next;
-		if (topA != 0) {
-			index = map.get(topA);
+		if (lastA != 0) {
+			// 查出原数组中，lastA在哪？
+			index = map.get(lastA);
+			// 
 			cost = it.sum(index, end) - 1;
+			// 既然搞定了lastA，indexTree
 			it.add(index, -1);
-			next = f(topA - 1, topB, it, end, map);
+			next = f(lastA - 1, lastB, it, end, map);
 			it.add(index, 1);
 			p1 = cost + next;
 		}
-		if (topB != 0) {
-			index = map.get(-topB);
+		if (lastB != 0) {
+			index = map.get(-lastB);
 			cost = it.sum(index, end) - 1;
 			it.add(index, -1);
-			next = f(topA, topB - 1, it, end, map);
+			next = f(lastA, lastB - 1, it, end, map);
 			it.add(index, 1);
 			p2 = cost + next;
 		}

@@ -18,6 +18,68 @@ import java.util.HashSet;
 // 所有查询所列出的所有实验编号数量 <= 10^5
 public class Code01_EveryQueryUsers {
 
+//	public static void main(String[] args) {
+////		int a = 11;
+////		int b = 10;
+////		// a / b向上取整 ：
+////		System.out.println((a + b - 1) / b);
+////
+////		System.out.println(100000 / 32);
+////		// 0 ~ 49999
+////		int n = 50000;
+////		int[] sets = new int[(n + 31) / 32];
+////		int i = 34601;
+////		// 34601 / 32
+////		// sets[0] : 0 ~ 31
+////		// sets[1] : 32 ~ 63
+////		// sets[2] : 64 ~
+////		int from = i / 32;
+////		// 34601 % 32
+////		sets[from] |= 1 << (i % 32);
+//
+//		int n = 100000;
+//		int m = 100;
+//		int parts = (n + 31) / 32;
+//		int[][] sets = new int[m][parts];
+//		int[][] A = { { 3, 6, 9 }, // 0
+//				{ 5, 17, 23 }, // 1
+//				{ 89, 73, 13 }, // 2
+//
+//		};
+//
+//		for (int i = 0; i < A.length; i++) {
+//			for (int exp : A[i]) {
+//				int[] set = sets[exp];
+//				set[i / 32] |= 1 << (1 % 32);
+//			}
+//		}
+//
+//		int[][] B = { 
+//				{ 4, 17, 23 }, // 第0条查询
+//				{ 3, 4, 41 }, // 第1条查询
+//		};
+//
+//		int[] ans = new int[B.length];
+//
+//		for (int i = 0; i < B.length; i++) {
+//			int ones = 0;
+//			// 4 : 0 1 ... parts-1
+//			//17 : 0 1 ... parts-1
+//			//23 : 0 1 ... parts-1
+//			for (int j = 0; j < parts; j++) {
+//				int count = 0;
+//				for(int exp : B[i]) {
+//					count |= sets[exp][j];
+//				}
+//				ones += countOnes(count);
+//			}
+//			ans[i] = ones;
+//		}
+//
+////		System.out.println(countOnes(set));
+//
+//	}
+
 	// 暴力方法
 	// 为了验证
 	public static int[] record1(int n, int m, int q, int[][] A, int[][] B) {
@@ -49,8 +111,8 @@ public class Code01_EveryQueryUsers {
 		// n 一共有多少人
 		// 任何一个实验，需要几个整数，能表示所有人谁出现谁没出现？
 		int parts = (n + 31) / 32;
-		// m    0 ~ m -1
-		// [i]  [.........]
+		// m 0 ~ m -1
+		// [i] [.........]
 		int[][] bitMap = new int[m][parts];
 		for (int i = 0; i < n; i++) {
 			// i 人的编号 : a b c
@@ -76,7 +138,9 @@ public class Code01_EveryQueryUsers {
 		return ans;
 	}
 
-	// 大厂刷题班，32节，leetcode专题 : https://leetcode.com/problems/number-of-1-bits/
+	// 大厂刷题班，32节，
+	// leetcode专题 : https://leetcode.com/problems/number-of-1-bits/
+	// 一个32位整数，求里面有几个1
 	public static int countOnes(int n) {
 		n = (n & 0x55555555) + ((n >>> 1) & 0x55555555);
 		n = (n & 0x33333333) + ((n >>> 2) & 0x33333333);
