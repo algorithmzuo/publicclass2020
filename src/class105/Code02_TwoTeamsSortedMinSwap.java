@@ -12,7 +12,7 @@ import java.util.HashMap;
 // [1,2,3,-1,-2,-3,-4,4]
 // 最少交换次数为10
 // n <= 1000
-public class Code03_TwoTeamsSortedMinSwap {
+public class Code02_TwoTeamsSortedMinSwap {
 
 //	public static int zuo(int lastA, int lastB, int[] arr) {
 //		if (lastA == 0 && lastB == 0) {
