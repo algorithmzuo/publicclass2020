@@ -26,9 +26,6 @@ import java.util.Arrays;
 // powers长度 == rates长度 == n <= 1000
 // 1 <= b <= 10^5
 // 1 <= powers[i]、rates[i] <= 10^5
-// 0号 : 10^5 * 10^3 -> 10^8
-// log 10^8 * N^2  -> 27 * 10^6 -> 10^7
-// 优化之后 : (log10^8) -> 27 * 1000 * 10
 public class Code03_RobotAndClothes {
 
 	// 通过不了的简单动态规划方法
