@@ -17,16 +17,28 @@ package class106;
 public class Code01_MaximumWidthRamp {
 
 	public static int maxWidthRamp(int[] arr) {
+		// 5 7 4 6 4 3....
+		// 0 1 2 3 4 5....
 		int n = arr.length;
 		int[] stack = new int[n];
 		int r = 0;
 		for (int i = 0; i < n; i++) {
+			// 5 7 4 6 4 3....
+			// 0 1 2 3 4 5....
+			//   i
 			if (r == 0 || arr[stack[r - 1]] > arr[i]) {
 				stack[r++] = i;
 			}
 		}
 		int ans = 0;
 		for (int j = n - 1; j >= 0; j--) {
+			//           ?   34
+			//           18  19
+			//  13 -> 3 X
+			//  9  -> 7 X
+			//  3  -> 50 停
+			//  2  -> 55
+			//  0  -> 100
 			while (r != 0 && arr[stack[r - 1]] <= arr[j]) {
 				int i = stack[--r];
 				ans = Math.max(ans, j - i);

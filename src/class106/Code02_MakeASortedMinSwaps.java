@@ -14,6 +14,61 @@ import java.util.Arrays;
 // A数组长度、B数组长度 <= 1000
 public class Code02_MakeASortedMinSwaps {
 
+//	public static int minSwapTimes(int[] A, int[] B) {
+//		int ans = zuo(A, B, 0, 0, 0);
+//		return ans == Integer.MAX_VALUE ? -1 : ans;
+//	}
+//
+//	// B数组有序的！
+//	// A[ai.....] 都递增
+//	// A[0...ai-1] 已经做到都递增了！可能用过B里的商品替换！
+//	// pre == 0，代表前一个数没换过！
+//	// pre == 1，代表前一个数换过！
+//	// 当前可以使用B[bi....]商品进行替换
+//	// B[0..bi-1]这些商品认为，不能再用了！
+//	// 在这种情况下，做到 A[ai.....] 都递增，至少还要换几件？返回
+//	public static int zuo(int[] A, int[] B, int ai, int bi, int pre) {
+//		if (ai == A.length) {
+//			return 0;
+//		}
+//		// A还有商品, 当前商品是[ai]
+//		// 前一件商品的价格，lastPrice
+//		int lastPrice = 0;
+//		if (ai == 0) {
+//			lastPrice = Integer.MIN_VALUE;
+//		} else { // 不是A里最左的商品
+//			if (pre == 0) {
+//				lastPrice = A[ai - 1];
+//			} else { // pre == 1
+//				lastPrice = B[bi - 1];
+//			}
+//		}
+//		// 当前商品
+//		// 可能性1，不换！
+//		int p1 = Integer.MAX_VALUE;
+//		if (lastPrice < A[ai]) {
+//			p1 = zuo(A, B, ai + 1, bi, 0);
+//		}
+//		// 可能性2， 换！
+//		int p2 = Integer.MAX_VALUE;
+//		int findChangeIndex = findMostLeft(B, bi, lastPrice);
+//		if (findChangeIndex != -1) {
+//			int next2 = zuo(A, B, ai + 1, findChangeIndex + 1, 1);
+//			if (next2 != Integer.MAX_VALUE) {
+//				p2 = 1 + next2;
+//			}
+//		}
+//		return Math.min(p1, p2);
+//	}
+//
+//	// B[bi.....] 找 >num 尽量左的位置返回！返回的是位置！
+//	// 如果B[bi.....] 没有 >num的数，返回-1
+//	// 有的话，返回 >num, 最左的位置
+//	// 二分
+//	public static int findMostLeft(int[] B, int bi, int num) {
+//
+//	}
+
 	// 可以用B里的数字，替换A里的数字，想让A严格递增
 	// 返回至少换几个数字
 	public static int minSwaps(int[] A, int[] B) {
@@ -46,6 +101,10 @@ public class Code02_MakeASortedMinSwaps {
 	// pre 只有0、1两种值
 	// 所以时间复杂度O(N*M*logM)
 	// 这个logM怎么来的，二分来的，看代码！
+	// ai 0...N
+	// bi 0...M
+	// pre 0、1
+	// N*M*2
 	public static int process(int[] A, int[] B, int ai, int bi, int pre) {
 		if (ai == A.length) {
 			return 0;
