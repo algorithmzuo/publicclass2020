@@ -52,16 +52,22 @@ public class Code01_ScoreAllMatrix {
 				|| (m[r - 1][c - 1] == 1 && m[r][c - 1] == 0 && m[r - 1][c] == 0 && m[r][c] == 1);
 	}
 
+	// 原始题目有取mod
+	// 本方法没有取mod，只展示大思路
 	public static int score2(int n, int m) {
 		if (n < 2 || m < 2) {
 			return 0;
 		}
+		// 注意！这里要求掌握一个技巧点
+		// 算一个数的k次方，怎么最快！
+		// 每算一次，都需要取mod！
+		// 快速幂来计算
 		return (n * m - m - n + 1) * (1 << (n * m - 3));
 	}
 
 	public static void main(String[] args) {
-		int n = 5;
-		int m = 4;
+		int n = 4;
+		int m = 6;
 		System.out.println(score1(n, m));
 		System.out.println(score2(n, m));
 	}

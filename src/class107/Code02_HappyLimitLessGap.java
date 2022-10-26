@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 // 来自蚂蚁金服
 // 小红有n个朋友, 她准备开个宴会，邀请一些朋友
-// i号朋友的财富值为a[i]，愉悦值为b[i]
+// i号朋友的愉悦值为a[i]，财富值为b[i]
 // 如果两个朋友同时参加宴会，这两个朋友之间的隔阂是其财富值差值的绝对值
 // 宴会的隔阂值，是财富差距最大的两人产生的财富值差值的绝对值
 // 宴会的愉悦值，是所有参加宴会朋友的愉悦值总和
@@ -43,18 +43,26 @@ public class Code02_HappyLimitLessGap {
 		int[][] f = new int[n][2];
 		int min = b[0];
 		int max = b[0];
+		// a : 30 13
+		// b : 10 50
+		//      0  1 ....
+		// [30,10] [13,50] [...]
+		// 财富排序
 		for (int i = 0; i < n; i++) {
 			f[i][0] = a[i];
 			f[i][1] = b[i];
 			min = Math.min(min, b[i]);
 			max = Math.max(max, b[i]);
 		}
+		// 财富排序
 		Arrays.sort(f, (x, y) -> x[1] - y[1]);
+		// 0 ~ max - min 
 		int l = 0;
 		int r = max - min;
 		int m = 0;
 		int ans = -1;
 		while (l <= r) {
+			// 隔阂阈值
 			m = (l + r) / 2;
 			if (maxHappy(f, m) >= k) {
 				ans = m;
@@ -66,6 +74,9 @@ public class Code02_HappyLimitLessGap {
 		return ans;
 	}
 
+	// 所有的人，财富、愉悦
+	// 隔阂阈值要求 limit
+	// 返回，最大宴会愉悦度
 	public static long maxHappy(int[][] f, int limit) {
 		int n = f.length;
 		long sum = 0;
