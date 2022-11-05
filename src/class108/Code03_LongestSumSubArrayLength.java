@@ -2,7 +2,7 @@ package class108;
 
 import java.util.HashMap;
 
-public class Code01_LongestSumSubArrayLength {
+public class Code03_LongestSumSubArrayLength {
 
 	public static int maxLength(int[] arr, int k) {
 		if (arr == null || arr.length == 0) {

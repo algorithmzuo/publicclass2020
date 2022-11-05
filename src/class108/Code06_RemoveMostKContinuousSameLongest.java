@@ -15,7 +15,7 @@ import java.util.LinkedList;
 // 1 <= arr长度 <= 3 * 10^5
 // -10^9 <= arr中的数值 <= 10^9
 // 0 <= k <= 3 * 10^5
-public class Code03_RemoveMostKContinuousSameLongest {
+public class Code06_RemoveMostKContinuousSameLongest {
 
 	// 暴力方法
 	// 为了测试
