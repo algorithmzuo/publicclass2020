@@ -7,12 +7,14 @@ import java.util.HashMap;
 // 并且是长度最大的，返回其长度
 public class Code03_LongestSumSubArrayLength {
 
+	// arr中，有正、有负、有0，都可能
+	// 累加和 == k，且最长是多长？
 	public static int maxLength(int[] arr, int k) {
 		if (arr == null || arr.length == 0) {
 			return 0;
 		}
 		// key:前缀和
-		// value : 0~value这个前缀和是最早出现key这个值的
+		// value : key这个前缀和，最早出现的位置
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		map.put(0, -1); // important
 		int len = 0;
@@ -20,8 +22,15 @@ public class Code03_LongestSumSubArrayLength {
 		for (int i = 0; i < arr.length; i++) {
 			sum += arr[i];
 			if (map.containsKey(sum - k)) {
+				// 0..................100
+				//                    1000
+				//                   k = 300
+				// 700
+				// 0...10
+				//       11.....100
 				len = Math.max(i - map.get(sum - k), len);
 			}
+			// sum
 			if (!map.containsKey(sum)) {
 				map.put(sum, i);
 			}

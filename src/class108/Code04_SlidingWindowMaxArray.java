@@ -10,6 +10,46 @@ import java.util.LinkedList;
 // 测试链接 : https://leetcode.cn/problems/sliding-window-maximum/
 public class Code04_SlidingWindowMaxArray {
 
+//	public static class Window {
+//
+//		// 一些结构
+//		
+//		public int[] help;
+//
+//		public Window(int[] arr) {
+//			help = arr;
+//		}
+//
+//		public void addNumberFromRight() {
+//
+//		}
+//
+//		public void deleteNumberFromLeft() {
+//
+//		}
+//
+//		public int max() {
+//
+//		}
+//
+//	}
+//
+//	public static void main(String[] args) {
+//		int[] arr = { 3, 5, 7, 2, 4, 2, 6 };
+//		//                [ 7, 2]
+//		Window w = new Window(arr);
+//		w.addNumberFromRight();
+//		w.addNumberFromRight();
+//		w.addNumberFromRight();
+//		System.out.println(w.max());
+//		w.deleteNumberFromLeft();
+//		w.deleteNumberFromLeft();
+//		w.addNumberFromRight();
+//		System.out.println(w.max());
+//	}
+
+	
+
 	// 暴力的对数器方法
 	public static int[] right(int[] arr, int w) {
 		if (arr == null || w < 1 || arr.length < w) {
