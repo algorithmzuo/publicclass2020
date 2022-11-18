@@ -54,6 +54,9 @@ public class Code04_RemoveMostKContinuousSameLongest {
 	// 正式方法
 	// 时间复杂度O(N)
 	public static int longest2(int[] arr, int k) {
+		// key : 某个数值
+		// value : 双端列表 ，头部或者尾部，进入或者弹出，都是非常方便的
+		// 哪些下标拥有这个数值
 		HashMap<Integer, LinkedList<Integer>> valueIndies = new HashMap<>();
 		int ans = 1;
 		for (int i = 0; i < arr.length; i++) {
@@ -62,6 +65,11 @@ public class Code04_RemoveMostKContinuousSameLongest {
 				valueIndies.put(value, new LinkedList<>());
 			}
 			LinkedList<Integer> indies = valueIndies.get(value);
+			// 依次考察开头是否能和当前i位置，连起来
+			// i - indies.peekFirst() : 一共有几个数
+			//   6 10 13 15      18 == 18 - 6
+			// indies.size()  6 ~ 17 有几个当前数！
+			// 一共有几个数 - 6 ~ 17 有几个当前数 = 需要使用几次删除才能让i和开头连起来！
 			while (!indies.isEmpty() && i - indies.peekFirst() - indies.size() > k) {
 				indies.pollFirst();
 			}

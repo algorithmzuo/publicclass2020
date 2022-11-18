@@ -4,7 +4,22 @@ import java.util.HashMap;
 
 public class Code02_LongestSumSubArrayLength {
 
-	public static int maxLength(int[] arr, int k) {
+	// 该代码不得分！
+//	public static int targetSumMaxLen(int[] arr, int target) {
+//		int ans = 0;
+//		for(int 开头  = 0; 开头 < arr.length;开头++) {
+//			for(int 结尾 = 开头; 结尾 <= arr.length; 结尾++) {
+//				// arr[开头....结尾]
+//				// 统计一下arr[开头....结尾]累加和
+//				// == target
+//				int cur = 结尾 - 开头 + 1;
+//				ans = Math.max(ans, cur);
+//			}
+//		}
+//		return ans;
+//	}
+
+	public static int maxLength(int[] arr, int target) {
 		if (arr == null || arr.length == 0) {
 			return 0;
 		}
@@ -14,10 +29,17 @@ public class Code02_LongestSumSubArrayLength {
 		map.put(0, -1); // important
 		int len = 0;
 		int sum = 0;
+		// O(N)
 		for (int i = 0; i < arr.length; i++) {
+			// 0...i整体前缀和
 			sum += arr[i];
-			if (map.containsKey(sum - k)) {
-				len = Math.max(i - map.get(sum - k), len);
+			if (map.containsKey(sum - target)) {
+				// 0.....17 1000 target == 300
+				// sum - target
+				// 0...4 700
+				// 5.....17 300
+				// 17 - 4
+				len = Math.max(i - map.get(sum - target), len);
 			}
 			if (!map.containsKey(sum)) {
 				map.put(sum, i);
