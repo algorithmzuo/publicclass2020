@@ -22,6 +22,48 @@ import java.util.HashMap;
 // 1 <= n <= 40000, 1 <= pi < 2^30, 1 <= wi <= 10^6。
 public class Code02_EntryRoomGetMoney {
 
+	public static int pickMoney(int[][] values) {
+		// values : {5, 100}, {2, 3000}, {150, 80} {2^30, 18}
+		Arrays.sort(values, (a, b) -> a[0] - b[0]);
+		HashMap<Integer, ArrayList<Integer>> graph = new HashMap<>();
+		ArrayList<Integer> starts = new ArrayList<>();
+		for (int[] v : values) {
+			int room = v[0];
+			int tmp = room;
+			while (tmp != 0) {
+				if (graph.containsKey(tmp)) {
+					graph.get(tmp).add(room);
+					break;
+				}
+				tmp /= 2;
+			}
+			graph.put(room, new ArrayList<>());
+			if (tmp == 0) {
+				starts.add(room);
+			}
+		}
+		HashMap<Integer, Integer> money = new HashMap<>();
+		for (int[] v : values) {
+			money.put(v[0], v[1]);
+		}
+		int ans = 0;
+		for (int start : starts) {
+			ans = Math.max(ans, maxValue(start, graph, money));
+		}
+		return ans;
+	}
+
+	public static int maxValue(int room, HashMap<Integer, ArrayList<Integer>> graph, HashMap<Integer, Integer> money) {
+		if (graph.get(room).isEmpty()) {
+			return money.get(room);
+		}
+		int next = 0;
+		for (int child : graph.get(room)) {
+			next = Math.max(next, maxValue(child, graph, money));
+		}
+		return next + money.get(room);
+	}
+
 	// 为了测试
 	// 普通动态规划
 	public static int maxMoney1(int n, int[] p, int[] w) {

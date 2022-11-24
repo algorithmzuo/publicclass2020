@@ -23,6 +23,34 @@ import java.util.Arrays;
 // 输出描述 输出一个整数，表示小美合理完成任务能得到的最大收益
 public class Code01_MoveCityGetMoney {
 
+	public static int max(int n, int m, int k, int[] c, int[] a, int[] b) {
+		return zuo(k, 0, c, a, b);
+	}
+
+	// 假设，小美目前身在curCity
+	// 还有i....m-1这么多任务可以去选择
+	// 返回最大的收益
+	// curCity -> n种
+	// i -> m种
+	// n * m二维表 -> 9 * (10 ^ 8)
+	public static int zuo(int curCity, int i, int[] c, int[] a, int[] b) {
+		if (i == c.length) {
+			return 0;
+		}
+		// 任务没结束 i号任务 有
+		// 可能性1，彻底放弃当前i任务
+		int p1 = zuo(curCity, i + 1, c, a, b);
+		// 可能性2，要做当前任务
+		// 小美在哪：curCity
+		// i号任务在哪：北京
+		// 如果身在北京 : 50 a[i]
+		// 如果不在北京 : 20 b[i]
+		int comeCity = c[i];
+		int p2 = curCity == comeCity ? a[i] : b[i];
+		p2 += zuo(comeCity, i + 1, c, a, b);
+		return Math.max(p1, p2);
+	}
+
 	// 暴力方法
 	// 时间复杂度O(N^2)
 	// 为了验证
@@ -68,16 +96,27 @@ public class Code01_MoveCityGetMoney {
 	// 时间复杂度O(N*logN)
 	public static int maxPorfit2(int n, int m, int k, int[] c, int[] a, int[] b) {
 		SegmentTree st = new SegmentTree(n);
+		
+		// st :
+		//  s s s s 0 s s s
+		//  0 1 2 3 4 5 6 7
+		//          k
 		st.update(k, 0);
-		int ans = 0;
+//		int ans = 0;
 		for (int i = 0; i < m; i++) {
-			// c[i]
-			int curAns = Math.max(Math.max(st.max(0, c[i] - 1), st.max(c[i] + 1, n - 1)) + b[i],
+			// c[i] : 3
+			// 外地 : 0 ~ 2   4 ~ 7
+			// 0~2 max   4 ~ 7 max -> max
+			int curAns = Math.max(
+					// 可能性1，从外地赶过来
+					Math.max(st.max(0, c[i] - 1),
+							st.max(c[i] + 1, n - 1)) + b[i],
+					// 可能性2，原地
 					st.max(c[i], c[i]) + a[i]);
-			ans = Math.max(ans, curAns);
+//			ans = Math.max(ans, curAns);
 			st.update(c[i], curAns);
 		}
-		return ans;
+		return st.max(0, n-1);
 	}
 
 	public static class SegmentTree {
