@@ -1,4 +1,4 @@
-package class111;
+package class112;
 
 // 来自微软
 // 给定两个数组A和B，比如
@@ -19,7 +19,7 @@ package class111;
 // 求所有居民去办公室的路上，最少耗费多少汽油
 import java.util.ArrayList;
 
-public class Code04_TravelMinFuel {
+public class Code02_TravelMinFuel {
 
 	public static int cnt = 0;
 

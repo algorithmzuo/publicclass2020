@@ -12,6 +12,38 @@ import java.util.HashMap;
 // strs里所有字符串总长度 <= 10^6
 public class Code01_ComplementaryPairsInStringArray {
 
+	public static int test(String[] strs) {
+		// key : 一种字符串的状态
+		// value : 这种状态出现了多少次
+		HashMap<Integer, Integer> map = new HashMap<>();
+		int ans = 0;
+		for (String str : strs) {
+			int status = 0;
+			for (int i = 0; i < str.length(); i++) {
+				status ^= 1 << (str.charAt(i) - 'a');
+			}
+			// 之前的字符串，和当前字符串一样的状态，有多少个？
+			ans += map.get(status);
+			// 每一位都允许和当前字符串状态不一样，但是剩下的状态得一样
+			//              g f e d c b a
+			// status :     0 0 1 1 0 0 1
+			// a上捣乱 :     0 0 1 1 0 0 0
+			// b上捣乱 :     0 0 1 1 0 1 1
+			// 0  ~
+			// ~  1  ~
+			//   ~  2 ~
+			for(int a = 0; a < 26; a++) {
+				ans += map.get(status ^ (1 << a));
+			}
+			if (!map.containsKey(status)) {
+				map.put(status, 1);
+			} else {
+				map.put(status, map.get(status) + 1);
+			}
+		}
+		return ans;
+	}
+
 	// 暴力方法
 	// 为了测试
 	public static int num1(String[] strs) {

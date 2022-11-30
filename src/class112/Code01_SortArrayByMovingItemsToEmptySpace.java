@@ -1,4 +1,4 @@
-package class111;
+package class112;
 
 import java.util.Arrays;
 
@@ -16,7 +16,7 @@ import java.util.Arrays;
 // [0, 1, 2, 3, 4]或者[1, 2, 3, 4, 0]都叫有序
 // 返回变成任何一种有序的情况都可以，最少的数字搬动次数
 // 测试链接 : https://leetcode.cn/problems/sort-array-by-moving-items-to-empty-space/
-public class Code03_SortArrayByMovingItemsToEmptySpace {
+public class Code01_SortArrayByMovingItemsToEmptySpace {
 
 	public static int sortArray(int[] nums) {
 		// 长度n
