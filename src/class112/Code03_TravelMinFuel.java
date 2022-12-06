@@ -19,7 +19,7 @@ package class112;
 // 求所有居民去办公室的路上，最少耗费多少汽油
 import java.util.ArrayList;
 
-public class Code02_TravelMinFuel {
+public class Code03_TravelMinFuel {
 
 	public static int cnt = 0;
 
