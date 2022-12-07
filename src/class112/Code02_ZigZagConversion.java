@@ -23,6 +23,7 @@ public class Code02_ZigZagConversion {
 		char[] ans = new char[n];
 		int fill = 0;
 		for (int i = 0; i < row; i++) {
+			// 来到i行，原始串开始下标j == i
 			for (int j = i, nextColTop = t; j < n; j += t, nextColTop += t) {
 				ans[fill++] = s.charAt(j);
 				if (i >= 1 && i <= row - 2 && nextColTop - i < n) {

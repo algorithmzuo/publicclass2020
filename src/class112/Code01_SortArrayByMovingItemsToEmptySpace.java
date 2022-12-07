@@ -19,21 +19,18 @@ import java.util.Arrays;
 public class Code01_SortArrayByMovingItemsToEmptySpace {
 
 	public static int sortArray(int[] nums) {
-		// 长度n
-		// ans1 : 0 1 2 3 4 .... 这种样子，至少交换几次
-		// ans2 : 1 2 3 4 .... 0 这种样子，至少交换几次
-		// m : 每个环里有几个数
-		// next : 往下跳的位置
+		// 1) 0 1 2 3 4 .... 这个样子，至少交换几次 ans1
+		// 2) 1 2 3 4 .... 0 这个样子，至少交换几次 ans2
 		int n = nums.length, ans1 = 0, ans2 = 0, m, next;
+		// 标记，i位置，在之前的环里的话！touched[i] == true
+		// 如果i位置不在之前的环里的话！touched[i] == false
 		boolean[] touched = new boolean[n];
-		// 0 1 2 3 4...
+		// 0 1 2 3 4 ....方案1 -> ans1
 		for (int i = 0; i < n; i++) {
-			// i == 0，找到的环，必含有0，m，m-1
-			// i !=0 找到的环，必不含有0，m，m+1
 			if (!touched[i]) {
-				// 12 17 9 6
-				// i(6) 9 12 17
-				// Y
+				// 4 6 0
+				// 0(i) -> 4 6
+				// y y y
 				touched[i] = true;
 				m = 1;
 				next = nums[i];
@@ -42,26 +39,22 @@ public class Code01_SortArrayByMovingItemsToEmptySpace {
 					touched[next] = true;
 					next = nums[next];
 				}
-				// m 当前环，有几个数
-				// 6
-				// 6
+				// m个 -> 几次？
 				if (m > 1) {
 					ans1 += i == 0 ? (m - 1) : (m + 1);
 				}
 			}
 		}
 		Arrays.fill(touched, false);
-		// 1 2 3 4 ... 0
-		// i == n-1
+		// 1 2 3 4 ... 0 方案2 -> ans2
 		for (int i = n - 1; i >= 0; i--) {
 			if (!touched[i]) {
 				touched[i] = true;
 				m = 1;
-				// next
-				// 5
-				// i(8) -> 4
-				// 0
-				// i(8) -> n-1
+				// n = 7 : 下标 0 ~ 6
+				// nums[i]
+				// i
+				// next = nums[next]
 				next = nums[i] == 0 ? (n - 1) : (nums[i] - 1);
 				while (next != i) {
 					m++;
@@ -75,5 +68,39 @@ public class Code01_SortArrayByMovingItemsToEmptySpace {
 		}
 		return Math.min(ans1, ans2);
 	}
+
+	public static int sortYours(int[] arr) {
+		// .....
+		return 100;
+	}
+
+	public static int[] randomArray(int len) {
+		int[] arr = new int[len];
+		for (int i = 0; i < len; i++) {
+			arr[i] = i;
+		}
+		for (int i = len - 1; i >= 0; i--) {
+			int swap = (int) (Math.random() * (i + 1));
+			// 0 1 2 3 4 5(i)
+			// 0 ~ 5 5
+			int tmp = arr[i];
+			arr[i] = arr[swap];
+			arr[swap] = tmp;
+		}
+		return arr;
+	}
+
+//	public static void main(String[] args) {
+//		int testTimes = 10000;
+//		int Len = 10;
+//		for(int i = 0; i < testTimes;i++) {
+//			int[] arr = randomArray(10);
+//			int ans1 = my();
+//			int ans2 = yours();
+//			if(ans1!=ans2) {
+//				打印错误
+//			}
+//		}
+//	}
 
 }
