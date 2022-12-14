@@ -12,7 +12,7 @@ package class114;
 // 例如，[1,1,0] 表示十进制中的 6，而不会是 3。此外，前导零也是被允许的
 // 所以 [0,1,1] 和 [1,1] 表示相同的值。
 // 测试链接 : https://leetcode.cn/problems/three-equal-parts/
-public class Code03_ThreeEqualParts {
+public class Code04_ThreeEqualParts {
 
 	public static int[] threeEqualParts(int[] arr) {
 		// 计算arr中1的数量

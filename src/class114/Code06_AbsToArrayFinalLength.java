@@ -12,7 +12,7 @@ import java.util.HashSet;
 // 请问最终arr长度是多少
 // 1 <= arr的长度 <= 10^5
 // 0 <= arr的数值 <= 10^5
-public class Code05_AbsToArrayFinalLength {
+public class Code06_AbsToArrayFinalLength {
 
 	// 暴力方法
 	// 为了验证

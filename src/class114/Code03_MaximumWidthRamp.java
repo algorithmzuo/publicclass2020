@@ -14,7 +14,7 @@ package class114;
 // 解释：
 // 最大宽度的坡为 (i, j) = (2, 9): A[2] = 1 且 A[9] = 1
 // 测试链接 : https://leetcode.cn/problems/maximum-width-ramp/
-public class Code02_MaximumWidthRamp {
+public class Code03_MaximumWidthRamp {
 
 	public static int maxWidthRamp(int[] arr) {
 		int n = arr.length;
