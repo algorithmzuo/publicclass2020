@@ -72,4 +72,53 @@ public class Code02_MakingALargeIsland {
 		return ans;
 	}
 
+	// O(N * M)
+	public static int[] infect(int[][] map) {
+		int cnt = 2;
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
+				if (map[i][j] == 1) { // 一个新的岛！
+					zuo(map, i, j, cnt++);
+				}
+			}
+		}
+		int[] size = new int[cnt];
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
+				if (map[i][j] > 1) {
+					size[map[i][j]]++;
+				}
+			}
+		}
+		return size;
+	}
+
+	public static void zuo(int[][] map, int i, int j, int th) {
+		if (i < 0 || i == map.length || j < 0 || j == map[0].length || map[i][j] != 1) {
+			return;
+		}
+		// i,j 不越界 map[i][j] == 1
+		map[i][j] = th;
+		zuo(map, i - 1, j, th);
+		zuo(map, i + 1, j, th);
+		zuo(map, i, j - 1, th);
+		zuo(map, i, j + 1, th);
+	}
+
+	public static void main(String[] args) {
+		int[][] map = { { 0, 1, 0, 0, 1, 1 }, { 1, 1, 1, 0, 0, 0 }, { 1, 1, 0, 1, 1, 0 }, { 1, 1, 0, 0, 1, 0 }, };
+		int[] size = infect(map);
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
+				System.out.print(map[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+		for (int i = 2; i < size.length; i++) {
+			System.out.println("编号" + i + ", 大小" + size[i]);
+		}
+
+	}
+
 }

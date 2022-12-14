@@ -21,8 +21,14 @@ import java.util.ArrayList;
 
 public class Code01_TravelMinFuel {
 
-	public static int cnt = 0;
-
+	// a [ 2 ..
+	// b [ 3 ..
+	// n = 4，a、b数组的长度，a和b等长的！
+	// 0 : {}
+	// 1 : {}
+	// 2 : {}
+	// 3 : {}
+	// 4 : {}
 	public static int minFuel(int[] a, int[] b, int n) {
 		// 先建图
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
@@ -33,41 +39,29 @@ public class Code01_TravelMinFuel {
 			graph.get(a[i]).add(b[i]);
 			graph.get(b[i]).add(a[i]);
 		}
-		// 建图完毕
-		// 根据题目描述，办公室一定是0号点
-		// 所有员工一定是往0号点汇聚
-
-		// a 号，dfn[a] == 0 没遍历过！
-		// dfn[a] != 0 遍历过！
-		int[] dfn = new int[n + 1];
-		// a为头的树，一共有10个节点
-		// size[a] = 0
-		// size[a] = 10
-		int[] size = new int[n + 1];
-		// 所有居民要汇总吗？
-		// a为头的树，所有的居民是要向a来汇聚
-		// cost[a] : 所有的居民要向a来汇聚，总油量的耗费
-		int[] cost = new int[n + 1];
-		cnt = 0;
-		dfs(graph, 0, dfn, size, cost);
-		return cost[0];
+		int[] size = new int[n+1];
+		return cost(0, -1, graph, size);
 	}
 
-	// 图 ： graph
-	// 当前的头，原来的编号，不是dfn序号！ : cur
-	// 从cur开始，请遍历
-	// 遍历完成后，请把dfn[cur]填好！size[cur]填好！cost[cur]填好
-	public static void dfs(ArrayList<ArrayList<Integer>> graph, int cur, int[] dfn, int[] size, int[] cost) {
-		dfn[cur] = ++cnt;
+	
+	
+	// cur : 点的编号！
+	// father : cur点的父节点！
+	// 返回 : cur整棵子树上的所有节点汇聚到cur，需要多少油！
+	public static int cost(int cur, int father, ArrayList<ArrayList<Integer>> graph, int[] size) {
+		// cur的整棵子树上，包含cur自己的！
 		size[cur] = 1;
+		int cost = 0;
 		for (int next : graph.get(cur)) {
-			if (dfn[next] == 0) {
-				dfs(graph, next, dfn, size, cost);
+			if (next != father) { // 不回到上级去！
+				// 下级节点的子树所有节点汇聚在下级节点的总消耗！
+				int nextDistance = cost(next, cur, graph, size);
+				cost += nextDistance;
+				cost += (size[next] + 4) / 5; // size[next] / 5向上取整！
 				size[cur] += size[next];
-				cost[cur] += cost[next];
-				cost[cur] += (size[next] + 4) / 5;
 			}
 		}
+		return cost;
 	}
 
 	public static void main(String[] args) {
