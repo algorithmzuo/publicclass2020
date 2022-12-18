@@ -45,7 +45,9 @@ public class Code06_AbsToArrayFinalLength {
 	// 正式方法
 	// 时间复杂O(N)
 	public static int finalLen2(int[] arr) {
+		// 收集最大的数
 		int max = 0;
+		// 随便的一个非0的数，最后遇到的非0的数
 		int gcd = 0;
 		for (int num : arr) {
 			max = Math.max(max, num);
@@ -53,9 +55,13 @@ public class Code06_AbsToArrayFinalLength {
 				gcd = num;
 			}
 		}
-		if (gcd == 0) {
+		// 最大值有了，max
+		// 最后遇到的非0的数, gcd
+		if (gcd == 0) { // 如果数组中所有数都是0，数组长度不会变化的！
 			return arr.length;
 		}
+		// 统计每一种数出现的次数
+		// 求所有数的最大公约数
 		HashMap<Integer, Integer> counts = new HashMap<>();
 		for (int num : arr) {
 			if (num != 0) {
@@ -63,13 +69,22 @@ public class Code06_AbsToArrayFinalLength {
 			}
 			counts.put(num, counts.getOrDefault(num, 0) + 1);
 		}
+		// 假设不考虑0、也不考虑有没有重复值
+		// 经典的max / gcd，有几个数
 		int ans = max / gcd;
+		// 考虑0，考虑数组中原本有的0，而不是重复数值减出来的0
+		// 长度变成多少
 		ans += counts.getOrDefault(0, 0);
 		boolean add = false;
 		for (int key : counts.keySet()) {
+			// 遍历每一种数的词频
+			// 2 7个  + 6
+			// 5 4个  + 3
+			// 0 ?个
 			if (key != 0) {
 				ans += counts.get(key) - 1;
 			}
+			// 因为重复数字的出现，会不会减出来多一个0
 			if (!add && counts.get(key) > 1 && !counts.containsKey(0)) {
 				ans++;
 				add = true;

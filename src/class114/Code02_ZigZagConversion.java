@@ -18,13 +18,18 @@ public class Code02_ZigZagConversion {
 		if (row == 1 || row >= n) {
 			return s;
 		}
-		int t = 2 * (row - 1);
+		// 周期！
+		int t = 2 * row - 2;
 		char[] ans = new char[n];
 		int fill = 0;
-		for (int i = 0; i < row; i++) {
+		for (int i = 0; i < row; i++) { // 行号
 			for (int j = i, nextColTop = t; j < n; j += t, nextColTop += t) {
+				// nextColTop - i
+				// j ? j+t
 				ans[fill++] = s.charAt(j);
+				// 如果在中间行、并且多出来的下标不越界（真的有）
 				if (i >= 1 && i <= row - 2 && nextColTop - i < n) {
+					// 把多出来的那个，填进去
 					ans[fill++] = s.charAt(nextColTop - i);
 				}
 			}
