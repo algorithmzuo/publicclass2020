@@ -14,6 +14,8 @@ public class Code01_StampingTheGrid {
 	public static boolean possibleToStamp(int[][] grid, int h, int w) {
 		int n = grid.length;
 		int m = grid[0].length;
+		// 左上角累加和数组
+		// 查询原始矩阵中的某块儿累加和，快！
 		int[][] sum = new int[n + 1][m + 1];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
@@ -21,15 +23,20 @@ public class Code01_StampingTheGrid {
 			}
 		}
 		build(sum);
+		// 差分矩阵
+		// 当贴邮票的时候，不再原始矩阵里贴
+		// 在差分里贴
 		int[][] diff = new int[n + 2][m + 2];
 		for (int a = 1, c = a + h - 1; c <= n; a++, c++) {
 			for (int b = 1, d = b + w - 1; d <= m; b++, d++) {
+				// (a,b)  (c,d)
 				if (empty(sum, a, b, c, d)) {
 					set(diff, a, b, c, d);
 				}
 			}
 		}
 		build(diff);
+		// 检查所有的格子！
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (grid[i][j] == 0 && diff[i + 1][j + 1] == 0) {
