@@ -1,5 +1,6 @@
 package class116;
 
+// 来自字节跳动
 // 牛客的测试链接：
 // https://www.nowcoder.com/questionTerminal/8ecfe02124674e908b2aae65aad4efdf
 // 请同学们务必参考如下代码中关于输入、输出的处理
