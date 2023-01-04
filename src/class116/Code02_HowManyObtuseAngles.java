@@ -14,6 +14,8 @@ import java.util.Arrays;
 public class Code02_HowManyObtuseAngles {
 
 	public static long obtuseAngles(int[] arr) {
+		// 30.15  3015
+		// 30.7   3070
 		// n长度的排序，O(N * logN)
 		// O(N)
 		int n = arr.length;
