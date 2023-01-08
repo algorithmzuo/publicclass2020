@@ -1,7 +1,7 @@
 package class117;
 
 // 测试链接 : https://leetcode.com/problems/candy/
-public class Code01_CandyProblem {
+public class Code05_CandyProblem {
 
 	public static int candy(int[] arr) {
 		if (arr == null || arr.length == 0) {

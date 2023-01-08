@@ -1,7 +1,7 @@
 package class117;
 
 // 测试链接 : https://leetcode.cn/problems/rotate-image/
-public class Code09_RotateImage {
+public class Code03_RotateImage {
 
 	public static void rotate(int[][] matrix) {
 		// matrix.length == matrix[0].length

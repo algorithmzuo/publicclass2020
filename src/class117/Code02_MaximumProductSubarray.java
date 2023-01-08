@@ -1,7 +1,7 @@
 package class117;
 
 // 测试链接：https://leetcode.cn/problems/maximum-product-subarray/
-public class Code08_MaximumProductSubarray {
+public class Code02_MaximumProductSubarray {
 
 	public static int maxProduct(int[] nums) {
 		int ans = nums[0];
