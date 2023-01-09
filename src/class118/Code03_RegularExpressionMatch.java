@@ -1,7 +1,7 @@
-package class117;
+package class118;
 
 // 测试链接 : https://leetcode.com/problems/regular-expression-matching/
-public class Code09_RegularExpressionMatch {
+public class Code03_RegularExpressionMatch {
 
 	// 暴力递归方法
 	public static boolean isMatch1(String str, String exp) {
