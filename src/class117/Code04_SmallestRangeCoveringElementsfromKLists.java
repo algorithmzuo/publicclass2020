@@ -7,6 +7,23 @@ import java.util.TreeSet;
 // 本题测试链接 : https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/
 public class Code04_SmallestRangeCoveringElementsfromKLists {
 
+	public static void main(String[] args) {
+		TreeSet<Integer> set = new TreeSet<>();
+		set.add(700);
+		set.add(72);
+		set.add(70000);
+		set.add(7000);
+		set.add(7);
+		set.add(70);
+		set.add(17);
+		// log N
+		System.out.println(set.first());
+		System.out.println(set.last());
+		System.out.println(set.contains(170));
+		System.out.println(set.floor(23));
+		System.out.println(set.ceiling(23));
+	}
+
 	public static class Node {
 		public int value;
 		public int arrid;

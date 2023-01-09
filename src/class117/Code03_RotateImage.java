@@ -3,10 +3,12 @@ package class117;
 // 测试链接 : https://leetcode.cn/problems/rotate-image/
 public class Code03_RotateImage {
 
+	// 保证传入的参数是正方形矩阵
 	public static void rotate(int[][] matrix) {
-		// matrix.length == matrix[0].length
+		// 左上角点，(a,b)
 		int a = 0;
 		int b = 0;
+		// 右下角点，(c,d)
 		int c = matrix.length - 1;
 		int d = matrix[0].length - 1;
 		while (a < c) {
