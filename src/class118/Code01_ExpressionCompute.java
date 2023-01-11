@@ -25,24 +25,35 @@ public class Code01_ExpressionCompute {
 	// 0) 负责的这一段的结果是多少
 	// 1) 负责的这一段计算到了哪个位置
 	public static int[] f(char[] str, int i) {
-		LinkedList<String> queue = new LinkedList<String>();
-		int cur = 0;
+		// 当前从i.....
+		LinkedList<String> stack = new LinkedList<String>();
+		// 当前收集到的数字
+		int number = 0;
 		int[] bra = null;
 		// 从i出发，开始撸串
 		while (i < str.length && str[i] != ')') {
+			// str[i] != ')'
+			// str[i] -> 0~9
+			//        -> +-*/
+			//        -> (
 			if (str[i] >= '0' && str[i] <= '9') {
-				cur = cur * 10 + str[i++] - '0';
-			} else if (str[i] != '(') { // 遇到的是运算符号
-				addNum(queue, cur, str[i++]);
-				cur = 0;
-			} else { // 遇到左括号了
+				number = number * 10 + str[i++] - '0';
+			} else if (str[i] != '(') { 
+				// 遇到的是运算符号
+				// number = 350 +
+				addNum(stack, number, str[i++]);
+				number = 0;
+			} else { 
+				// 遇到左括号了
+				// 开始.......( ...... )
+				//           i i+1
 				bra = f(str, i + 1);
-				cur = bra[0];
+				number = bra[0];
 				i = bra[1] + 1;
 			}
 		}
-		addNum(queue, cur, '+');
-		return new int[] { getAns(queue), i };
+		addNum(stack, number, '+');
+		return new int[] { getAns(stack), i };
 	}
 
 	public static void addNum(LinkedList<String> queue, int num, char op) {
