@@ -5,7 +5,7 @@ package class119;
 // '*' 匹配零个或多个前面的那一个元素
 // 所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串
 // 测试链接 : https://leetcode.cn/problems/regular-expression-matching/
-public class Code06_RegularExpressionMatch {
+public class Code05_RegularExpressionMatch {
 
 	// 暴力递归方法
 	public static boolean isMatch1(String str, String exp) {

@@ -28,7 +28,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code07_DreamCity {
+public class Code06_DreamCity {
 
 	public static int[][] tree = new int[250][2];
 
