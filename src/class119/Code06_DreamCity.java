@@ -8,18 +8,6 @@ package class119;
 // 请同学们务必参考如下代码中关于输入、输出的处理
 // 这是输入输出处理效率很高的写法
 // 提交如下方法，把主类名改成Main，可以直接通过
-//
-// 增加的题目:
-// 小红定义"漂亮串"为：至少有两个"red"子串
-// 例如"redxred"为漂亮串，但"reedred"则不是漂亮串
-// 小红想知道长度为n，仅包含小写字母的所有字符串中，共有多少个不同的漂亮串？
-// 输入描述：
-// 一个正整数n，代表字符串长度
-// n <= 10^6
-// 输出描述：
-// 长度为n，仅包含小写字母的所有字符串中，共有多少个不同的漂亮串，结果对10^9 + 7取模
-// 本题为课堂临时增加，只有当堂讲述，没有代码实现
-// 回答帖子 : https://www.mashibing.com/question/detail/34493
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
