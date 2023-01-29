@@ -1,4 +1,4 @@
-package class119;
+package class120;
 
 // 给定n棵树，和两个长度为n的数组a和b
 // i号棵树的初始重量为a[i]，i号树每天的增长重量为b[i]
@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code06_DreamCity {
+public class Code03_DreamCity {
 
 	public static int[][] tree = new int[250][2];
 

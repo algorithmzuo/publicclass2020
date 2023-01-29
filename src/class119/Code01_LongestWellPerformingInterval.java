@@ -13,23 +13,28 @@ public class Code01_LongestWellPerformingInterval {
 	// 哈希表
 	public static int longestWPI1(int[] hours) {
 		HashMap<Integer, Integer> map = new HashMap<>();
-		map.put(0, -1);
-		int ans = 0;
+		int maxLen = 0;
 		int sum = 0;
 		for (int i = 0; i < hours.length; i++) {
+			// 0...i 累加和
+			// >8 +1
+			// <=8 -1
 			sum += hours[i] > 8 ? 1 : -1;
-			if (sum > 1) {
-				ans = i + 1;
-			} else {
+			if (sum > 0) {
+				// 0.....i i+1
+				maxLen = i + 1;
+			} else { // <= 0 0 -1  -3 -4   -5 -6 
 				if (map.containsKey(sum - 1)) {
-					ans = Math.max(ans, i - map.get(sum - 1));
+					// 0......6  7.... 17
+					//       -5        -4
+					maxLen = Math.max(maxLen, i - map.get(sum - 1));
 				}
 			}
 			if (!map.containsKey(sum)) {
 				map.put(sum, i);
 			}
 		}
-		return ans;
+		return maxLen;
 	}
 
 	// 数组替代哈希表

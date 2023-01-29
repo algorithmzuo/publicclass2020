@@ -16,30 +16,38 @@ public class Code02_MaximumFrequencyStack {
 
 		// 出现的最大次数
 		private int topTimes;
+		
 		// 每层节点
-		private HashMap<Integer, ArrayList<Integer>> cntValues = new HashMap<>();
+		// value部分也可以用LinkedList
+		// 因为只是加入数字在尾巴上，或者从尾部拿数字
+		private HashMap<Integer, ArrayList<Integer>>
+		levelLists = new HashMap<>();
+		
 		// 每一个数出现了几次
 		private HashMap<Integer, Integer> valueTopTime = new HashMap<>();
 
 		public void push(int val) {
 			// 当前数词频+1
 			valueTopTime.put(val, valueTopTime.getOrDefault(val, 0) + 1);
-			// 当前数是什么词频 5 7次
+			// 当前数是什么词频
 			int curTopTimes = valueTopTime.get(val);
-			if (!cntValues.containsKey(curTopTimes)) {
-				cntValues.put(curTopTimes, new ArrayList<>());
+			// 5  13次
+			// 13 -> {......5}
+			if (!levelLists.containsKey(curTopTimes)) {
+				levelLists.put(curTopTimes, new ArrayList<>());
 			}
-			ArrayList<Integer> curTimeValues = cntValues.get(curTopTimes);
+			ArrayList<Integer> curTimeValues = levelLists.get(curTopTimes);
 			curTimeValues.add(val);
 			topTimes = Math.max(topTimes, curTopTimes);
 		}
 
 		public int pop() {
 			// 最大词频的那一层的链表(动态数组)
-			ArrayList<Integer> topTimeValues = cntValues.get(topTimes);
+			ArrayList<Integer> topTimeValues = levelLists.get(topTimes);
+			// 移除并且返回，链表尾部的数字
 			int ans = topTimeValues.remove(topTimeValues.size() - 1);
 			if (topTimeValues.size() == 0) {
-				cntValues.remove(topTimes--);
+				levelLists.remove(topTimes--);
 			}
 			int times = valueTopTime.get(ans);
 			if (times == 1) {

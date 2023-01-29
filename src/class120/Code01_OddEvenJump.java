@@ -1,4 +1,4 @@
-package class119;
+package class120;
 
 import java.util.TreeMap;
 
@@ -18,7 +18,7 @@ import java.util.TreeMap;
 // 那么该索引就会被认为是好的起始索引。
 // 返回好的起始索引的数量。
 // 测试链接 : https://leetcode.cn/problems/odd-even-jump/
-public class Code03_OddEvenJump {
+public class Code01_OddEvenJump {
 
 	public static int oddEvenJumps(int[] arr) {
 		int n = arr.length;
