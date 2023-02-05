@@ -8,7 +8,66 @@ import java.util.PriorityQueue;
 // 给定一个正数m，表示有m个人等位
 // 如果你是刚来的人，请问你需要等多久？
 // 假设：m远远大于n，比如n<=1000, m <= 10的9次方，该怎么做？
-public class Code06_MinWaitingTime {
+public class Code05_MinWaitingTime {
+
+//	public static int slow(int[] arr, int level) {
+//		int n = arr.length;
+//		int max = arr[0];
+//		for (int i = 1; i < n; i++) {
+//			max = Math.max(max, arr[i]);
+//		}
+//		int l = 1;
+//		int r = max;
+//		int ans = -1;
+//		// l .... r 答案
+//		while (l <= r) {
+//			int speed = (l + r) / 2;
+//			if (finish(arr, speed, level)) {
+//				ans = speed;
+//				r = speed - 1;
+//			} else {
+//				l = speed + 1;
+//			}
+//		}
+//		return ans;
+//	}
+//
+//	// 速度是speed，离开level小时
+//	// 是否能把香蕉吃完
+//	public static boolean finish(int[] arr, int speed, int level) {
+//		int all = 0;
+//		for (int num : arr) {
+//			all += (num + speed - 1) / speed;
+//		}
+//		return all <= level;
+//	}
+//
+//	public static int fast(int[] arr, int k) {
+//		int l = 0;
+//		int r = 0;
+//		for (int num : arr) {
+//			r += num;
+//		}
+//		// l....r
+//		int ans = -1;
+//		while (l <= r) {
+//			int deadLine = (l + r) / 2;
+//			if (need(arr, deadLine) > k) { // 时间订的太紧迫！
+//				l = deadLine + 1;
+//			} else { // 当前画家够用
+//				ans = deadLine;
+//				r = deadLine - 1;
+//			}
+//		}
+//		return ans;
+//	}
+//
+//	// 所有画arr，必须在deadLine时间内完成
+//	// 返回需要几个画家
+//	public static int need(int[] arr, int deadLine) {
+//		// 加油的逻辑！
+//		
+//	}
 
 	public static int minWaitingTime1(int[] arr, int m) {
 		if (arr == null || arr.length == 0) {
@@ -37,22 +96,25 @@ public class Code06_MinWaitingTime {
 		}
 		int left = 0;
 		int right = best * m;
-		int mid = 0;
-		int near = 0;
+		int time = 0;
+		int ans = 0;
 		while (left <= right) {
-			mid = (left + right) / 2;
+			// left ... right
+			//       t
+			time = (left + right) / 2;
+			// 完成的 + 开始的，一共有多少客人
 			int cover = 0;
 			for (int num : arr) {
-				cover += (mid / num) + 1;
+				cover += (time / num) + 1;
 			}
 			if (cover >= m + 1) {
-				near = mid;
-				right = mid - 1;
+				ans = time;
+				right = time - 1;
 			} else {
-				left = mid + 1;
+				left = time + 1;
 			}
 		}
-		return near;
+		return ans;
 	}
 
 	// 为了测试

@@ -16,14 +16,12 @@ package class121;
 // 我们可以把它分成两块，例如 [2, 1], [3, 4, 4]。
 // 然而，分成 [2, 1], [3], [4], [4] 可以得到最多的块数。 
 // 测试链接 : https://leetcode.com/problems/max-chunks-to-make-sorted-ii/
-public class Code03_MaxChunksToMakeSortedII {
+public class Code02_MaxChunksToMakeSortedII {
 
 	public int maxChunksToSorted(int[] arr) {
 		int n = arr.length;
+		// mins[i] : i ~ 最后位置，这个范围上的最小值！
 		int[] mins = new int[n];
-		// i ~ 最后位置上，最小值！
-		// 5  | 6...
-		// 17 | 18...
 		mins[n - 1] = arr[n - 1];
 		for (int i = n - 2; i >= 0; i--) {
 			mins[i] = Math.min(arr[i], mins[i + 1]);

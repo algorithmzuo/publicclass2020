@@ -1,11 +1,11 @@
-package class121;
+package class122;
 
 // 给定一个字符串 s，计算 s 的 不同非空子序列 的个数
 // 因为结果可能很大，所以返回答案需要对 10^9 + 7 取余 。
 // 字符串的 子序列 是经由原字符串删除一些（也可能不删除）字符
 // 但不改变剩余字符相对位置的一个新字符串。
 // 本题测试链接 : https://leetcode.com/problems/distinct-subsequences-ii/
-public class Code05_DistinctSubseqValue {
+public class Code03_DistinctSubseqValue {
 
 	public static int distinctSubseqII(String s) {
 		if (s == null || s.length() == 0) {
