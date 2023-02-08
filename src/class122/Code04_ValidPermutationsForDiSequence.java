@@ -8,7 +8,7 @@ package class122;
 // 如果 s[i] == 'I'，那么 perm[i] < perm[i+1]。
 // 返回 有效排列  perm的数量 。因为答案可能很大，所以请返回你的答案对 10^9 + 7 取余。
 // 测试链接 : https://leetcode.cn/problems/valid-permutations-for-di-sequence/
-public class Code02_ValidPermutationsForDiSequence {
+public class Code04_ValidPermutationsForDiSequence {
 
 	public static int numPermsDISequence1(String s) {
 		//    系统最大   

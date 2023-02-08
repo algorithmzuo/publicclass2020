@@ -5,7 +5,7 @@ package class122;
 // 字符串的 子序列 是经由原字符串删除一些（也可能不删除）字符
 // 但不改变剩余字符相对位置的一个新字符串。
 // 本题测试链接 : https://leetcode.com/problems/distinct-subsequences-ii/
-public class Code03_DistinctSubseqValue {
+public class Code02_DistinctSubseqValue {
 
 	public static int distinctSubseqII(String s) {
 		if (s == null || s.length() == 0) {
