@@ -7,17 +7,25 @@ package class122;
 // 测试链接 : https://leetcode.cn/problems/unique-substrings-in-wraparound-string/
 public class Code01_UniqueSubstringsInWraparoundString {
 
-	public int findSubstringInWraproundString(String pattern) {
-		char[] p = pattern.toCharArray();
-		int n = p.length;
-		int ans = 0;
-		int len = 1;
-		// 256 0~255
+	// 省去了想象中的串
+	// a...za....za...z......
+	public int findSubstringInWraproundString(String str) {
+		char[] s = str.toCharArray();
+		int n = s.length;
+		// ascii, 0~255
+		// a...z  0~255
+		// a -> 96
+		// a -> 107
+		// max[a -> 96] = 107
 		int[] max = new int[256];
-		max[p[0]]++;
+		max[s[0]] = 1;
+		// 前一个字符成长的长度
+		int len = 1;
 		for (int i = 1; i < n; i++) {
-			char cur = p[i];
-			char pre = p[i - 1];
+			char cur = s[i];
+			char pre = s[i - 1];
+			// cur == a -> 前一个z
+			// cur == d -> 前一个（d-1） -> c
 			if ((pre == 'z' && cur == 'a') || pre + 1 == cur) {
 				len++;
 			} else {
@@ -25,6 +33,8 @@ public class Code01_UniqueSubstringsInWraparoundString {
 			}
 			max[cur] = Math.max(max[cur], len);
 		}
+		// 答案，s中有多少不同的非空子串，也是想象串的子串
+		int ans = 0;
 		for (int i = 0; i < 256; i++) {
 			ans += max[i];
 		}

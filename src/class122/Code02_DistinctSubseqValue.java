@@ -7,6 +7,7 @@ package class122;
 // 本题测试链接 : https://leetcode.com/problems/distinct-subsequences-ii/
 public class Code02_DistinctSubseqValue {
 
+	// 提交版本，根据要求要取mod
 	public static int distinctSubseqII(String s) {
 		if (s == null || s.length() == 0) {
 			return 0;
@@ -21,6 +22,37 @@ public class Code02_DistinctSubseqValue {
 			count[x - 'a'] = (count[x - 'a'] + newAdd) % m;
 		}
 		return (all - 1 + m) % m;
+	}
+
+	// 原始code，不取mod
+	public static int distinctSubseqII2(String s) {
+		if (s == null || s.length() == 0) {
+			return 0;
+		}
+		char[] str = s.toCharArray();
+		// a -> 0个
+		// b -> 0个
+		// c -> 0个
+		int[] count = new int[26];
+		// 空集
+		int all = 1;
+		for (char x : str) {
+			// 纯新增 = 之前的集合数 - 上一个x字符加入后，x结尾的集合总数
+			int newAdd = all - count[x - 'a'];
+			// 当前的集合，去重数量
+			all = all + newAdd;
+			// 关于x的记录，也只算新增的部分
+			// 'a' -> 97
+			// 'a' -> 0
+			// ..
+			// 'z' -> 25
+			// 'a' -'a' = 0
+			// 'b' -'a' = 1
+			// 'z' -'a' = 25
+			count[x - 'a'] = count[x - 'a'] + newAdd;
+		}
+		// 题目要求，不能把空集算作一个结果，所以减去
+		return all - 1;
 	}
 
 }
