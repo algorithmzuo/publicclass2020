@@ -9,7 +9,7 @@ package class083;
 // 题目给定N个小数组，每个小数组长度都是K
 // 返回这N个小数组中，有多少完美对 
 // 本题测试链接 : https://www.nowcoder.com/practice/f5a3b5ab02ed4202a8b54dfb76ad035e
-// 提交如下代码，把主类名改成Main
+// 提交以下所有代码，把主类名改成Main
 // 可以直接通过
 import java.util.HashMap;
 import java.util.Scanner;

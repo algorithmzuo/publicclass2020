@@ -1,7 +1,7 @@
 package class097;
 
 // 测试链接 : https://www.nowcoder.com/practice/e391767d80d942d29e6095a935a5b96b
-// 提交如下代码，把主类名改成Main，可以直接通过
+// 提交以下所有代码，把主类名改成Main，可以直接通过
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

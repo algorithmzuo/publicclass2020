@@ -7,7 +7,7 @@ package class120;
 // 本题测试链接 : https://zoj.pintia.cn/problem-sets/91827364500/problems/91827367873
 // 请同学们务必参考如下代码中关于输入、输出的处理
 // 这是输入输出处理效率很高的写法
-// 提交如下方法，把主类名改成Main，可以直接通过
+// 提交以下所有代码，把主类名改成Main，可以直接通过
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
