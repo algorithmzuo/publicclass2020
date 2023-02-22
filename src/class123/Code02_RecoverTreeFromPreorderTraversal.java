@@ -25,6 +25,7 @@ public class Code02_RecoverTreeFromPreorderTraversal {
 
 	public static int[] queue = new int[MAXN];
 
+	// [l...r)
 	public static int l, r;
 
 	public static TreeNode recoverFromPreorder(String traversal) {
@@ -57,6 +58,10 @@ public class Code02_RecoverTreeFromPreorderTraversal {
 	// 当前，消费的时间是 :
 	// 层 : queue[l]
 	// 节点值 : queue[l+1]
+	// queue : 全局变量
+	// l.........r(终止位置)
+	// queue[l] queue[l+1]
+	// level      value
 	public static TreeNode f() {
 		int level = queue[l++];
 		TreeNode head = new TreeNode(queue[l++]);
