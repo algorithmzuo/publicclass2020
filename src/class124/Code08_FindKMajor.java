@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 
+// 水王问题扩展
 public class Code08_FindKMajor {
 
 	public static List<Integer> kMajor(int[] arr, int K) {

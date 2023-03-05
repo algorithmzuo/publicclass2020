@@ -1,14 +1,15 @@
 package class124;
 
-import java.util.HashMap;
-import java.util.Map.Entry;
-
+// 假设数组长度为N，如果某一种数的出现次数大于 N/2 
+// 那么说这个数叫做水王数
+// 给定一个数组arr
+// 如果有水王数，打印水王数是什么
+// 如果没有水王数，打印水王数不存在
 public class Code07_FindHalfMajority {
 
-	public static int halfMajor(int[] arr) {
+	public static void halfMajor(int[] arr) {
 		int cand = 0;
 		int HP = 0;
-		// 遍历一遍数组arr，一次删掉两个不同的数，谁会剩下来，谁就是cand
 		for (int i = 0; i != arr.length; i++) {
 			if (HP == 0) {
 				cand = arr[i];
@@ -20,7 +21,7 @@ public class Code07_FindHalfMajority {
 			}
 		}
 		if (HP == 0) {
-			return -1;
+			System.out.println("水王数不存在!");
 		}
 		HP = 0;
 		for (int i = 0; i != arr.length; i++) {
@@ -28,50 +29,10 @@ public class Code07_FindHalfMajority {
 				HP++;
 			}
 		}
-		return HP > arr.length / 2 ? cand : -1;
-	}
-
-	// for test
-	public static int right(int[] arr) {
-		HashMap<Integer, Integer> map = new HashMap<>();
-		for (int cur : arr) {
-			if (!map.containsKey(cur)) {
-				map.put(cur, 0);
-			}
-			map.put(cur, map.get(cur) + 1);
+		if (HP <= arr.length / 2) {
+			System.out.println("水王数不存在!");
 		}
-		for (Entry<Integer, Integer> entry : map.entrySet()) {
-			if (entry.getValue() > arr.length / 2) {
-				return entry.getKey();
-			}
-		}
-		return -1;
-	}
-
-	// for test
-	public static int[] genareteRandomArray(int len, int max) {
-		int[] ans = new int[(int) (Math.random() * len) + 1];
-		for (int i = 0; i < ans.length; i++) {
-			ans[i] = (int) (Math.random() * max) + 1;
-		}
-		return ans;
-	}
-
-	public static void main(String[] args) {
-		int len = 100;
-		int max = 10;
-		int testTime = 100000;
-		System.out.println("test begin");
-		for (int i = 0; i < testTime; i++) {
-			int[] arr = genareteRandomArray(len, max);
-			int ans1 = halfMajor(arr);
-			int ans2 = right(arr);
-			if (ans1 != ans2) {
-				System.out.println("Oops!");
-				break;
-			}
-		}
-		System.out.println("test end");
+		System.out.println("水王数是" + cand);
 	}
 
 }

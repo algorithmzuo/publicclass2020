@@ -1,5 +1,7 @@
 package class124;
 
+// 给定一个二维数组matrix
+// 请用ZigZag的方式打印矩阵所有的值
 public class Code02_ZigZagPrintMatrix {
 
 	public static void printMatrixZigZag(int[][] matrix) {
@@ -7,11 +9,8 @@ public class Code02_ZigZagPrintMatrix {
 		int aCol = 0;
 		int bRow = 0;
 		int bCol = 0;
-		// A和B一定会共同走到右下角的位置
 		int endR = matrix.length - 1;
 		int endC = matrix[0].length - 1;
-		// fromUp = true  斜线打印方向应该从右上走到左下
-		// fromUp = false  斜线打印方向应该从左下走到右上
 		boolean fromUp = false;
 		while (aRow != endR + 1) {
 			printLevel(matrix, aRow, aCol, bRow, bCol, fromUp);
@@ -38,8 +37,8 @@ public class Code02_ZigZagPrintMatrix {
 
 	public static void main(String[] args) {
 		int[][] matrix = { 
-				{ 1, 2, 3, 4 }, 
-				{ 5, 6, 7, 8 }, 
+				{ 1,  2,  3,  4 },
+				{ 5,  6,  7,  8 },
 				{ 9, 10, 11, 12 } };
 		printMatrixZigZag(matrix);
 
