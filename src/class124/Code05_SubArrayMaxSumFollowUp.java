@@ -11,9 +11,6 @@ package class124;
 public class Code05_SubArrayMaxSumFollowUp {
 
 	public static int rob(int[] arr) {
-		if (arr == null || arr.length == 0) {
-			return 0;
-		}
 		int N = arr.length;
 		if (N == 1) {
 			return arr[0];
@@ -21,13 +18,14 @@ public class Code05_SubArrayMaxSumFollowUp {
 		if (N == 2) {
 			return Math.max(arr[0], arr[1]);
 		}
-		int[] dp = new int[N];
-		dp[0] = arr[0];
-		dp[1] = Math.max(arr[0], arr[1]);
-		for (int i = 2; i < N; i++) {
-			dp[i] = Math.max(Math.max(dp[i - 1], arr[i]), arr[i] + dp[i - 2]);
+		int prepre = arr[0];
+		int pre = Math.max(arr[0], arr[1]);
+		for (int i = 2, cur = 0; i < N; i++) {
+			cur = Math.max(Math.max(pre, arr[i]), arr[i] + prepre);
+			prepre = pre;
+			pre = cur;
 		}
-		return dp[N - 1];
+		return pre;
 	}
 
 }

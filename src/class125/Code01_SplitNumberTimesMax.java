@@ -1,4 +1,4 @@
-package class124;
+package class125;
 
 // 来自学员问题
 // 给你一根长度为 n 的绳子
@@ -9,7 +9,7 @@ package class124;
 // 例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18
 // 答案需要取模1000000007
 // 测试链接 : https://leetcode.cn/problems/jian-sheng-zi-ii-lcof/
-public class Code09_SplitNumberTimesMax {
+public class Code01_SplitNumberTimesMax {
 
 	public static int mod = 1000000007;
 

@@ -20,6 +20,9 @@ public class Code01_RotateImage {
 	public static void rotateEdge(int[][] m, int a, int b, int c, int d) {
 		int tmp = 0;
 		for (int i = 0; i < d - b; i++) {
+			// i，就是组号！
+			// 4 * 4 一共3组
+			// n * n 一共n-1组
 			tmp = m[a][b + i];
 			m[a][b + i] = m[c - i][b];
 			m[c - i][b] = m[c][d - i];

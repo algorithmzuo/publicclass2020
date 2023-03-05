@@ -8,16 +8,14 @@ package class124;
 public class Code04_SubArrayMaxSum {
 
 	public static int maxSubArray(int[] arr) {
-		if (arr == null || arr.length == 0) {
-			return 0;
-		}
+		int n = arr.length;
 		int pre = arr[0];
-		int max = arr[0];
-		for (int i = 1; i < arr.length; i++) {
+		int ans = pre;
+		for (int i = 1; i < n; i++) {
 			pre = Math.max(arr[i], arr[i] + pre);
-			max = Math.max(max, pre);
+			ans = Math.max(ans, pre);
 		}
-		return max;
+		return ans;
 	}
 
 }

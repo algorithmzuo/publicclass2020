@@ -1,4 +1,4 @@
-package class124;
+package class125;
 
 import java.util.Arrays;
 
@@ -9,7 +9,7 @@ import java.util.Arrays;
 // 求一共有多少种有效方法
 // 1 <= N, M <= 5000
 // 返回结果比较大，请把结果 % 1000000007 之后返回
-public class Code06_FillCellsUseAllColorsWays {
+public class Code02_FillCellsUseAllColorsWays {
 
 	// 暴力方法
 	// 为了验证

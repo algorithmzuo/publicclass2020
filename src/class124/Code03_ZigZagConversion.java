@@ -22,8 +22,12 @@ public class Code03_ZigZagConversion {
 		char[] ans = new char[n];
 		int fill = 0;
 		for (int i = 0; i < row; i++) {
+			// i : 当前来到第i行
+			// j : 一开始的值，就是指 : 当前行应该最先拷贝哪个位置的字符，进入ans！
 			for (int j = i, nextColTop = t; j < n; j += t, nextColTop += t) {
 				ans[fill++] = s.charAt(j);
+				// 如果处在中间行的话！可能会拷贝第二个！
+				// 如果处在最初行、最后行的话！不会拷贝第二个！
 				if (i >= 1 && i <= row - 2 && nextColTop - i < n) {
 					ans[fill++] = s.charAt(nextColTop - i);
 				}

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 // 水王问题扩展
-public class Code08_FindKMajor {
+public class Code07_FindKMajor {
 
 	public static List<Integer> kMajor(int[] arr, int K) {
 		List<Integer> ans = new ArrayList<>();
