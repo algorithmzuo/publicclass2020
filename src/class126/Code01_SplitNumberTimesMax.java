@@ -1,4 +1,4 @@
-package class125;
+package class126;
 
 // 来自学员问题
 // 给你一根长度为 n 的绳子
