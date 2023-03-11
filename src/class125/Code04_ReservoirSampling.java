@@ -2,6 +2,13 @@ package class125;
 
 public class Code04_ReservoirSampling {
 
+	// 等概率返回 1~num中的一个
+	public static int f(int num) {
+		// 0 ~ num-1
+		// 1 ~ num
+		return (int) (Math.random() * num) + 1;
+	}
+
 	public static class RandomBox {
 		private int[] bag;
 		private int N;
@@ -44,51 +51,51 @@ public class Code04_ReservoirSampling {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("hello");
-		int test = 10000;
-		int ballNum = 17;
-		int[] count = new int[ballNum + 1];
-		for (int i = 0; i < test; i++) {
-			int[] bag = new int[10];
-			int bagi = 0;
-			for (int num = 1; num <= ballNum; num++) {
-				if (num <= 10) {
-					bag[bagi++] = num;
-				} else { // num > 10
-					if (random(num) <= 10) { // 一定要把num球入袋子
-						bagi = (int) (Math.random() * 10);
-						bag[bagi] = num;
-					}
-				}
-
-			}
-			for (int num : bag) {
-				count[num]++;
-			}
-		}
-		for (int i = 0; i <= ballNum; i++) {
-			System.out.println(count[i]);
-		}
-
-		System.out.println("hello");
-		int all = 100;
-		int choose = 10;
-		int testTimes = 50000;
-		int[] counts = new int[all + 1];
-		for (int i = 0; i < testTimes; i++) {
-			RandomBox box = new RandomBox(choose);
-			for (int num = 1; num <= all; num++) {
-				box.add(num);
-			}
-			int[] ans = box.choices();
-			for (int j = 0; j < ans.length; j++) {
-				counts[ans[j]]++;
-			}
-		}
-
-		for (int i = 0; i < counts.length; i++) {
-			System.out.println(i + " times : " + counts[i]);
-		}
+//		System.out.println("hello");
+//		int test = 10000;
+//		int ballNum = 17;
+//		int[] count = new int[ballNum + 1];
+//		for (int i = 0; i < test; i++) {
+//			int[] bag = new int[10];
+//			int bagi = 0;
+//			for (int num = 1; num <= ballNum; num++) {
+//				if (num <= 10) {
+//					bag[bagi++] = num;
+//				} else { // num > 10
+//					if (random(num) <= 10) { // 一定要把num球入袋子
+//						bagi = (int) (Math.random() * 10);
+//						bag[bagi] = num;
+//					}
+//				}
+//
+//			}
+//			for (int num : bag) {
+//				count[num]++;
+//			}
+//		}
+//		for (int i = 0; i <= ballNum; i++) {
+//			System.out.println(count[i]);
+//		}
+//
+//		System.out.println("hello");
+//		int all = 100;
+//		int choose = 10;
+//		int testTimes = 50000;
+//		int[] counts = new int[all + 1];
+//		for (int i = 0; i < testTimes; i++) {
+//			RandomBox box = new RandomBox(choose);
+//			for (int num = 1; num <= all; num++) {
+//				box.add(num);
+//			}
+//			int[] ans = box.choices();
+//			for (int j = 0; j < ans.length; j++) {
+//				counts[ans[j]]++;
+//			}
+//		}
+//
+//		for (int i = 0; i < counts.length; i++) {
+//			System.out.println(i + " times : " + counts[i]);
+//		}
 
 	}
 }

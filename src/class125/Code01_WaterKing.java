@@ -6,6 +6,31 @@ package class125;
 // 测试链接 : https://leetcode.cn/problems/majority-element/
 public class Code01_WaterKing {
 
+//	public static int find(int[] arr) {
+//		int 候选 = 0;
+//		int 血量 = 0;
+//		for (int num : arr) {
+//			if (血量 == 0) {
+//				候选 = num;
+//				血量 = 1;
+//			} else if (num == 候选) {
+//				血量++;
+//			} else {
+//				血量--;
+//			}
+//		}
+//		if (血量 == 0) {
+//			return -1;
+//		}
+//		int 真实次数 = 0;
+//		for (int num : arr) {
+//			if (num == 候选) {
+//				真实次数++;
+//			}
+//		}
+//		return 真实次数 > arr.length / 2 ? 候选 : -1;
+//	}
+
 	public static int majorityElement(int[] arr) {
 		int cand = 0;
 		int hp = 0;

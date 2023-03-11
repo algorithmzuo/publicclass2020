@@ -10,27 +10,30 @@ package class125;
 public class Code03_CandyProblem {
 
 	public static int candy(int[] arr) {
-		if (arr == null || arr.length == 0) {
-			return 0;
-		}
-		int N = arr.length;
-		int[] left = new int[N];
-		for (int i = 1; i < N; i++) {
-			if (arr[i - 1] < arr[i]) {
+		int n = arr.length;
+		int[] left = new int[n];
+		left[0] = 1;
+		for (int i = 1; i < n; i++) {
+			if (arr[i] > arr[i - 1]) {
 				left[i] = left[i - 1] + 1;
+			} else {
+				left[i] = 1;
 			}
 		}
-		int[] right = new int[N];
-		for (int i = N - 2; i >= 0; i--) {
+		int[] right = new int[n];
+		right[n - 1] = 1;
+		for (int i = n - 2; i >= 0; i--) {
 			if (arr[i] > arr[i + 1]) {
 				right[i] = right[i + 1] + 1;
+			} else {
+				right[i] = 1;
 			}
 		}
 		int ans = 0;
-		for (int i = 0; i < N; i++) {
+		for (int i = 0; i < n; i++) {
 			ans += Math.max(left[i], right[i]);
 		}
-		return ans + N;
+		return ans;
 	}
 
 }
