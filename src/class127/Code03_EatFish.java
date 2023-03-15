@@ -1,4 +1,4 @@
-package class126;
+package class127;
 
 // 来自bilibili
 // 现在有N条鱼，每条鱼的体积为Ai，从左到右排列，数组arr给出
