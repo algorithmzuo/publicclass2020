@@ -19,13 +19,17 @@ public class Code01_MinDaysDoneAllProjects {
 		int r = 0;
 		// project[0] : 既定天数
 		// project[1] : 投入多少资源能减少1天
+		// N, O(N)
 		for (int[] project : projects) {
 			r = Math.max(r, project[0]);
 		}
+		// 0 ~ 天数最大值
+		// log(天数最大值) * O(N)
 		// l......r
 		int m, ans = r;
 		while (l <= r) {
 			m = (l + r) / 2;
+			// k是自愿总量
 			if (yeah(projects, m) <= k) {
 				ans = m;
 				r = m - 1;

@@ -11,8 +11,11 @@ package class127;
 // 数组变成 : 6 6 3（第2个3）
 // 第二轮过后 : 6 6
 // 返回2
-public class Code03_EatFish {
+public class Code04_EatFish {
 
+	// 彻底的暴力枚举！
+	// 不做任何优化，单纯的模拟
+	// 看看几轮之后，鱼不再变化
 	public static int minTurns1(int[] arr) {
 		int ans = 0;
 		for (;; ans++) {
@@ -58,13 +61,19 @@ public class Code03_EatFish {
 		int stackSize = 0;
 		int ans = 0;
 		for (int i = n - 1; i >= 0; i--) {
-			int curAns = 0;
+			int curTurn = 0;
 			while (stackSize > 0 && stack[stackSize - 1][0] < arr[i]) {
-				curAns = Math.max(curAns + 1, stack[--stackSize][1]);
+				// 0   -> 5
+				//    0 + 1, 5  max
+				// 5   ->  4
+				//   5 + 1, 4  max
+				// 6   -> 10
+				//   6 + 1 10 max
+				curTurn = Math.max(curTurn + 1, stack[--stackSize][1]);
 			}
 			stack[stackSize][0] = arr[i];
-			stack[stackSize++][1] = curAns;
-			ans = Math.max(ans, curAns);
+			stack[stackSize++][1] = curTurn;
+			ans = Math.max(ans, curTurn);
 		}
 		return ans;
 	}

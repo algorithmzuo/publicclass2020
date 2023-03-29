@@ -9,6 +9,7 @@ public class Code02_DivideArrayIntoIncreasingSequences {
 	public static boolean canDivideIntoSubsequences(int[] nums, int k) {
 		int cnt = 1;
 		int maxCnt = 1;
+		// 统计最大次数是多少，maxCnt
 		for (int i = 1; i < nums.length; i++) {
 			if (nums[i - 1] != nums[i]) {
 				maxCnt = Math.max(maxCnt, cnt);
