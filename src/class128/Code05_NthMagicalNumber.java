@@ -1,10 +1,11 @@
 package class128;
 
+// 来自亚马逊、谷歌、字节跳动、苹果、优步、网易、百度、三星、Akuna Capital、微软
 // 一个正整数如果能被 a 或 b 整除，那么它是神奇的。
 // 给定三个整数 n , a , b ，返回第 n 个神奇的数字。
 // 因为答案可能很大，所以返回答案 对 10^9 + 7 取模 后的值。
 // 测试链接 : https://leetcode.cn/problems/nth-magical-number/
-public class Code06_NthMagicalNumber {
+public class Code05_NthMagicalNumber {
 
 	public static int nthMagicalNumber(int n, int a, int b) {
 		// 求a和b的最小公倍数

@@ -21,7 +21,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code07_FourKindsPaperQueryWays {
+public class Code06_FourKindsPaperQueryWays {
 
 	public static int limit = 100000;
 	// 无限制情况下的方法数，得到dp
