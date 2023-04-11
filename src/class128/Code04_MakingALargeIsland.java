@@ -7,6 +7,34 @@ package class128;
 // 测试链接 : https://leetcode.cn/problems/making-a-large-island/
 public class Code04_MakingALargeIsland {
 
+//	public static void zuo(int[][] grid) {
+//		int n = grid.length;
+//		int m = grid[0].length;
+//		int id = 2;
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < m; j++) {
+//				if (grid[i][j] == 1) {
+//					infect(grid, n, m, i, j, id++);
+//				}
+//			}
+//		}
+//		// ....
+//
+//	}
+//
+//	// 从(i,j)出发，连成一片的1，全改成此时的id!
+//	public static void infect(int[][] grid, int n, int m, int i, int j, int id) {
+//		if (i < 0 || i == n || j < 0 || j == m || grid[i][j] != 1) {
+//			return;
+//		}
+//		// (i,j)位置，不越界，且是grid[i][j] == 1
+//		grid[i][j] = id;
+//		infect(grid, n, m, i - 1, j, id);
+//		infect(grid, n, m, i + 1, j, id);
+//		infect(grid, n, m, i, j - 1, id);
+//		infect(grid, n, m, i, j + 1, id);
+//	}
+
 	public static int largestIsland(int[][] grid) {
 		int n = grid.length;
 		int m = grid[0].length;
@@ -18,8 +46,12 @@ public class Code04_MakingALargeIsland {
 				}
 			}
 		}
-		//     ? ? ?
-		// 0 1 2 3 4 9
+		// ? ? ?
+		// 0 无
+		// 1 无
+		// 2 开始!
+		// 3 ..
+		// 4..
 		int[] sizes = new int[id];
 		int ans = 0;
 		for (int i = 0; i < n; i++) {
@@ -65,7 +97,7 @@ public class Code04_MakingALargeIsland {
 	}
 
 	// grid
-	// (i,j) == 1 -> v 
+	// (i,j) == 1 -> v
 	// (i,j) != 1 -> return什么也不做！
 	// (i,j) 越界，return什么也不做！
 	public static void infect(int[][] grid, int i, int j, int v, int n, int m) {

@@ -17,16 +17,25 @@ import java.util.PriorityQueue;
 // 测试链接 : https://leetcode.cn/problems/maximum-average-pass-ratio/
 public class Code03_MaximumAveragePassRatio {
 
+//	// 不可能！
+//	// 需要想好的贪心!
+//	public static double process(int[][] parties, int i, int k) {
+//		
+//	}
+
 	public static double maxAverageRatio(int[][] classes, int extraStudents) {
 		// 堆 : 谁获得一个天才，得到的通过率增益最大
 		// 谁先弹出
 		PriorityQueue<Party> heap = new PriorityQueue<>((a, b) -> a.benefit() - b.benefit() < 0 ? 1 : -1);
 		for (int[] p : classes) {
+			// n个班，n * logn
 			heap.add(new Party(p[0], p[1]));
 		}
 		Party cur;
 		// 一个一个天才分配
 		for (int i = 0; i < extraStudents; i++) {
+			// m个天才，10^5
+			// m * logn
 			cur = heap.poll();
 			cur.pass++;
 			cur.total++;

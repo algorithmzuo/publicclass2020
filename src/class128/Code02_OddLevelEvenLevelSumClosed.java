@@ -9,11 +9,15 @@ package class128;
 // 所以课上会讲怎么转化，然后如下的代码实现
 public class Code02_OddLevelEvenLevelSumClosed {
 
-	// 1 ~ n 奇数节点的个数是k个
-	// 返回奇数节点的值有哪些
+	// 树上一共有n个节点，1~n这些数字都要分配进树里！
+	// 奇数层的节点，有k个
+	// 返回，这k个节点，分配哪些数字!
 	public static int[] team(int n, int k) {
-		// 1 ~ n ,  sum = 10   k个奇数  5
-		// 1 ~ n ,  sum = 15   k个奇数  7  8
+		// | 奇数层的累加和 - 偶数层的累加和 | <= 1
+		// 1~4, sum = 10
+		//  奇数层的累加和 == 5 没有其他选择
+		// 1~5, sum = 15
+		// 奇数层的累加和 == 8或者7 有两种选择
 		int sum = (n + 1) * n / 2;
 		int p1 = sum / 2;
 		int p2 = (sum + 1) / 2;
@@ -21,6 +25,15 @@ public class Code02_OddLevelEvenLevelSumClosed {
 		if (ans == null && (sum & 1) == 1) {
 			ans = generate(p2, n, k);
 		}
+		// 1~4, sum = 10
+		// p1 = 5
+		// p2 = 5
+		// 累加和5！1~4，选k个！
+		
+		// 1~5, sum = 15
+		// p1 = 7
+		// p2 = 8
+		// 累加和7！1~5，选k个！
 		return ans != null ? ans : new int[] { -1 };
 	}
 
@@ -33,9 +46,11 @@ public class Code02_OddLevelEvenLevelSumClosed {
 		int sumMinK = (k + 1) * k / 2;
 		// 每个数提升的幅度
 		int range = n - k;
+		// 想要的累加和 < 最小情况 或者 > 最大情况，返回：无解
 		if (wantSum < sumMinK || wantSum > sumMinK + k * range) {
 			return null;
 		}
+		// 想要提升的幅度!
 		int add = wantSum - sumMinK;
 		int rightSize = add / range;
 		int midIndex = (k - rightSize) + (add % range);
