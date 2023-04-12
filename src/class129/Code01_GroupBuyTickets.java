@@ -27,7 +27,9 @@ import java.util.PriorityQueue;
 // -(10^5) <= Ki < 0
 public class Code01_GroupBuyTickets {
 
+	// games : M * 2
 	public static int enoughMoney(int n, int[][] games) {
+		// 再来人，哪个项目收入多，就在堆顶！
 		PriorityQueue<Game> heap = new PriorityQueue<>((a, b) -> b.earn() - a.earn());
 		for (int[] g : games) {
 			heap.add(new Game(g[0], g[1]));
@@ -46,9 +48,9 @@ public class Code01_GroupBuyTickets {
 	}
 
 	public static class Game {
-		public int Ki;
-		public int Bi;
-		public int people;
+		public int Ki; // 负数
+		public int Bi; // 正
+		public int people; // 已经来的人
 
 		public Game(int k, int b) {
 			Ki = k;
@@ -56,6 +58,7 @@ public class Code01_GroupBuyTickets {
 			people = 0;
 		}
 
+		// 这个项目如果再来人，能收多少钱，扣掉之前返回的钱的！
 		public int earn() {
 //			return  (Ki * (people + 1) + Bi) + Ki * people;
 			return (2 * people + 1) * Ki + Bi;
