@@ -13,7 +13,7 @@ import java.util.Arrays;
 // 研究员的任务是配制溶液体积恰好等于c的，且尽量浓的溶液(即物质含量尽量多）
 // 研究员想要知道物质含量最多是多少
 // 对于所有数据，1 <= n, v[i], w[i], x, c <= 1000
-public class Code04_ChemicalProblem {
+public class Code02_ChemicalProblem {
 
 	public static int maxValue(int[] v, int[] w, int x, int c) {
 		int n = v.length;
