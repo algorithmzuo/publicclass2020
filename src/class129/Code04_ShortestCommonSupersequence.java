@@ -6,7 +6,7 @@ package class129;
 // 测试链接 : https://leetcode.cn/problems/shortest-common-supersequence/
 // 体系学习班，最长公共子序列问题
 // 大厂刷题班，章节11，根据动态规划表，生成路径
-public class Code03_ShortestCommonSupersequence {
+public class Code04_ShortestCommonSupersequence {
 
 	public static String shortestCommonSupersequence(String str1, String str2) {
 		int n = str1.length();
