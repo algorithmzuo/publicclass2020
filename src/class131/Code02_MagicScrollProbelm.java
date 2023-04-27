@@ -9,6 +9,35 @@ package class131;
 // -100000 <= arr里的值 <= 100000
 public class Code02_MagicScrollProbelm {
 
+//	public static int zuo(int[] arr) {
+//		int n = arr.length;
+//		// 不用魔法卷轴
+//		int p1 = 0;
+//		for (int num : arr) {
+//			p1 += num;
+//		}
+//		// 用一次魔法卷轴
+//		int[] dp = new int[n];
+//		int sum = arr[0];
+//		int maxSum = Math.max(sum, 0);
+//		for (int i = 1; i < n; i++) {
+//			// 0...i范围上，arr[i]不被魔法卷轴覆盖
+//			int z1 = dp[i - 1] + arr[i];
+//			// 0...i范围上，arr[i]被魔法卷轴覆盖
+//			// 之前的最大前缀和！
+//			int z2 = maxSum;
+//			dp[i] = Math.max(z1, z2);
+//			sum += arr[i];
+//			maxSum = Math.max(maxSum, sum);
+//		}
+//
+//		// 只用一次魔法卷轴，得到的最大累加和
+//		int p2 = dp[n - 1];
+//
+//		// 一定要用2次魔法卷轴，得到的最大累加和
+//
+//	}
+
 	// 暴力方法
 	// 为了测试
 	public static int maxSum1(int[] arr) {
@@ -55,6 +84,7 @@ public class Code02_MagicScrollProbelm {
 		}
 		int n = arr.length;
 		int[] left = new int[n];
+		// left[i] : 0 ~ i范围上，必须用一次魔法卷轴，最大累加和是多少
 		int sum = arr[0];
 		int maxSum = Math.max(0, sum);
 		for (int i = 1; i < n; i++) {
@@ -62,6 +92,7 @@ public class Code02_MagicScrollProbelm {
 			sum += arr[i];
 			maxSum = Math.max(maxSum, sum);
 		}
+		// 0 ~ n-1, 必须用一次魔法卷轴，最大累加和是多少
 		int p2 = left[n - 1];
 		int[] right = new int[n];
 		sum = arr[n - 1];
@@ -71,8 +102,12 @@ public class Code02_MagicScrollProbelm {
 			sum += arr[i];
 			maxSum = Math.max(maxSum, sum);
 		}
+		// right[i] : i ~ n-1 ，必须用一次魔法卷轴，最大累加和是多少
 		int p3 = Integer.MIN_VALUE;
 		for (int i = 1; i < n; i++) {
+			// 0~0 + 1~n-1
+			// 0~1 + 2~n-1
+			// 0~i-1 + i ~ n-1
 			p3 = Math.max(p3, left[i - 1] + right[i]);
 		}
 		return Math.max(p1, Math.max(p2, p3));
