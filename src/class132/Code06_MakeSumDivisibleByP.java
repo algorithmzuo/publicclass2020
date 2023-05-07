@@ -10,9 +10,9 @@ import java.util.HashMap;
 // 测试链接 : https://leetcode.cn/problems/make-sum-divisible-by-p/
 public class Code06_MakeSumDivisibleByP {
 
+	// 核心 : find = (curMod - allMod + p) % p;
 	public int minSubarray(int[] nums, int p) {
 		int n = nums.length;
-		// 求出整体的余数
 		int allMod = 0;
 		for (int num : nums) {
 			allMod = (allMod + num) % p;
@@ -20,8 +20,6 @@ public class Code06_MakeSumDivisibleByP {
 		if (allMod == 0) {
 			return 0;
 		}
-		// 记录前缀和的某个余数，最晚出现的位置
-		// 看课！然后看接下来的代码
 		HashMap<Integer, Integer> map = new HashMap<>();
 		map.put(0, -1);
 		int ans = Integer.MAX_VALUE;
@@ -35,8 +33,7 @@ public class Code06_MakeSumDivisibleByP {
 			find = (curMod - allMod + p) % p;
 			if (map.containsKey(find)) {
 				if (i != n - 1 || map.get(find) != -1) {
-					// 防止删掉整体！
-					// ...i(n-1)
+					// 防止删掉整体
 					ans = Math.min(ans, i - map.get(find));
 				}
 			}

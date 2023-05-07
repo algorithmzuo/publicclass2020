@@ -9,11 +9,7 @@ package class132;
 // 所以课上会讲怎么转化，然后如下的代码实现
 public class Code02_OddLevelEvenLevelSumClosed {
 
-	// 1 ~ n 奇数节点的个数是k个
-	// 返回奇数节点的值有哪些
 	public static int[] team(int n, int k) {
-		// 1 ~ n ,  sum = 10   k个奇数  5
-		// 1 ~ n ,  sum = 15   k个奇数  7  8
 		int sum = (n + 1) * n / 2;
 		int p1 = sum / 2;
 		int p2 = (sum + 1) / 2;
@@ -24,14 +20,8 @@ public class Code02_OddLevelEvenLevelSumClosed {
 		return ans != null ? ans : new int[] { -1 };
 	}
 
-	// 一共 1 ~ n 这些数字
-	// 其中选k个数字
-	// 一定要让k个数字的累加和是wantSum
-	// 返回，哪k个数字，只要返回一种方法就可以
 	public static int[] generate(int wantSum, int n, int k) {
-		// k个数字，和最小的情况，1 2 3 ... k
 		int sumMinK = (k + 1) * k / 2;
-		// 每个数提升的幅度
 		int range = n - k;
 		if (wantSum < sumMinK || wantSum > sumMinK + k * range) {
 			return null;

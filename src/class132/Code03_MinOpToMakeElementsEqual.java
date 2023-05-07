@@ -32,8 +32,6 @@ public class Code03_MinOpToMakeElementsEqual {
 		return ans;
 	}
 
-	// 查找 <v 最右的位置
-	// 没有返回-1
 	public static int bs(int[] nums, int v) {
 		int l = 0;
 		int r = nums.length - 1;
