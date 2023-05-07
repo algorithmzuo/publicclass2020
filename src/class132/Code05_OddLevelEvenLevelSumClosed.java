@@ -7,7 +7,7 @@ package class132;
 // 返回奇数层节点分配值的一个方案
 // 2 <= n <= 10^5 
 // 所以课上会讲怎么转化，然后如下的代码实现
-public class Code02_OddLevelEvenLevelSumClosed {
+public class Code05_OddLevelEvenLevelSumClosed {
 
 	public static int[] team(int n, int k) {
 		int sum = (n + 1) * n / 2;

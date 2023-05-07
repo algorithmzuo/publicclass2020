@@ -19,7 +19,7 @@ import java.util.TreeMap;
 // 给你下标从 0 开始的整数数组tasks 和 workers 以及
 // 两个整数 pills 和 strength ，请你返回 最多 有多少个任务可以被完成。
 // 测试链接 : https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/
-public class Code04_MaximumNumberOfTasksYouCanAssign {
+public class Code03_MaximumNumberOfTasksYouCanAssign {
 
 	// 时间复杂度O(N * (logN)平方)
 	public static int maxTaskAssign1(int[] tasks, int[] workers, int pills, int strength) {

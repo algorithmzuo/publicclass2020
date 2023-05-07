@@ -14,7 +14,7 @@ package class132;
 // 第四行有4个整数La,Ra,Lb,Rb，范围在0到10^18之间，代表题目描述中的参数。
 // 输出
 // 输出一个整数，代表所求的答案。
-public class Code05_ValidRangeBetweenTwoArrays {
+public class Code04_ValidRangeBetweenTwoArrays {
 
 	// 暴力方法
 	// 为了测试
