@@ -9,25 +9,46 @@ package class132;
 // 所以课上会讲怎么转化，然后如下的代码实现
 public class Code05_OddLevelEvenLevelSumClosed {
 
+	// 一共n个节点，奇数层的节点是k个
+	// 偶数层的节点就是n - k个
+	// 1 ~ n ，哪k个数字，作为奇数层节点的分配
+	// 能让：奇数层累加和，和，偶数层累加和，最接近！
 	public static int[] team(int n, int k) {
+		// 1 + 2 + 3 + ... + n = sum
+		// sum = 10 奇数层累加和 = 5 偶数层累加和 = 5 无其他选择
+		// sum = 15 奇数层累加和 = 8 或者 7
 		int sum = (n + 1) * n / 2;
+		// sum = 10
+		// p1 = 5
+		// p2 = 5
+		// sum = 15
+		// p1 = 7
+		// p2 = 8
 		int p1 = sum / 2;
 		int p2 = (sum + 1) / 2;
 		int[] ans = generate(p1, n, k);
-		if (ans == null && (sum & 1) == 1) {
+		if (ans == null && p1 != p2) {
 			ans = generate(p2, n, k);
 		}
 		return ans != null ? ans : new int[] { -1 };
 	}
 
-	public static int[] generate(int wantSum, int n, int k) {
+	// 1 ~ n 一共有这么多数字
+	// 一定要从中选k个！累加和正好凑到x
+	// 返回是哪k个数
+	public static int[] generate(int x, int n, int k) {
+		// 1 + 2+ 3 +.. + k
 		int sumMinK = (k + 1) * k / 2;
+		// 一个数字能提升的最大幅度
 		int range = n - k;
-		if (wantSum < sumMinK || wantSum > sumMinK + k * range) {
+		if (x < sumMinK || x > sumMinK + k * range) {
 			return null;
 		}
-		int add = wantSum - sumMinK;
+		// 整体需要提升的总幅度
+		int add = x - sumMinK;
+		// 需要整体搬家过去的数的个数
 		int rightSize = add / range;
+		// 中间的一个数，单独跳多少呢？
 		int midIndex = (k - rightSize) + (add % range);
 		int leftSize = k - rightSize - (add % range == 0 ? 0 : 1);
 		int[] ans = new int[k];

@@ -21,13 +21,47 @@ import java.util.TreeMap;
 // 测试链接 : https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/
 public class Code03_MaximumNumberOfTasksYouCanAssign {
 
+//	public static int maxJobs(int[] job, int[] work, int k, int p) {
+//		int l = 0;
+//		int r = job.length;
+//		int m, ans = 0;
+//		// 0 ~ n个任务
+//		while (l <= r) {
+//			m = (l + r) / 2;
+//			if (need(job, work, m, p) <= k) {
+//				// 当前的任务目标是完成m个！结果发现需要的药数量够用！
+//				ans = m;
+//				l = m + 1;
+//			} else {
+//				r = m - 1;
+//			}
+//		}
+//		return ans;
+//	}
+//
+//	// 任务和工人数组，给你！
+//	// 一定要完成x个任务，药丸数量k个，每个药丸药效p
+//	// 返回至少需要吃多少颗
+//	public static int need(int[] job, int[] work, int x, int p) {
+//		int m = work.length;
+//		if(m < x) {
+//			return Integer.MAX_VALUE;
+//		}
+//		
+//		
+//		
+//	}
+
 	// 时间复杂度O(N * (logN)平方)
 	public static int maxTaskAssign1(int[] tasks, int[] workers, int pills, int strength) {
 		int l = 0;
 		int r = tasks.length;
 		int m, ans = 0;
+		// N * logN
 		Arrays.sort(tasks);
+		// M * logM
 		Arrays.sort(workers);
+		// logN * N * logN
 		while (l <= r) {
 			m = (l + r) / 2;
 			if (yeah1(tasks, 0, m - 1, workers, workers.length - m, workers.length - 1, strength) <= pills) {
@@ -50,6 +84,10 @@ public class Code03_MaximumNumberOfTasksYouCanAssign {
 		}
 		int ans = 0;
 		for (int i = wl; i <= wr; i++) {
+			// m * 
+			// 10
+			// <= 10
+			// null
 			Integer job = taskMap.floorKey(workers[i]);
 			if (job != null) {
 				int times = taskMap.get(job);
@@ -59,6 +97,10 @@ public class Code03_MaximumNumberOfTasksYouCanAssign {
 					taskMap.put(job, times - 1);
 				}
 			} else {
+				// 吃药！
+				// 10 -> workers[i] + strength
+				// 10 -> 30
+				// <= 30
 				job = taskMap.floorKey(workers[i] + strength);
 				if (job == null) {
 					return Integer.MAX_VALUE;
