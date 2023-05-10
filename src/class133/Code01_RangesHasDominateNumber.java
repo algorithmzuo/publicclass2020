@@ -43,34 +43,23 @@ public class Code01_RangesHasDominateNumber {
 
 	// 正式方法
 	// 时间复杂度O(N)
+	// arr 长度10, arr[i] 0 ~ 10
+	// arr 长度100, arr[i] 0 ~ 100
 	public static int dominates2(int[] arr, int k) {
 		int n = arr.length;
-		// 总数量
+		// 子数组的总数量
 		int all = n * (n + 1) / 2;
-		// 不被支配的区间数量
+		// 不受支配的子数组有多少个
 		int except = 0;
-		// 次数表
-		// 0 : 0
-		// 1 : 0
-		// 2 : 0
+		// cnt[2] = 7，2这个数出现了7次
 		int[] cnt = new int[n + 1];
-		// l ... r
-		// 窗口用这个形式[l,r)
-		// l...r-1 r(x)
-		// l == 0 r == 0 [l,r) 一个数也没有
-		// l == 0 r == 1 [0..0]
+		// 哈希表，值可以随意了
 		for (int l = 0, r = 0; l < n; l++) {
-			// [r] 即将要进来的
-			// cnt[arr[r]] + 1 < k
+			// l == 0, r== 0, 代表以0做窗口左边界的时候，当前窗口是空的
 			while (r < n && cnt[arr[r]] + 1 < k) {
-				// cnt[arr[r]]++;
-				// r++
 				cnt[arr[r++]]++;
 			}
-			// l..l
-			// l..l+1
-			// l..l+2
-			// l..r-1
+			// 窗口不能再扩了!
 			except += r - l;
 			cnt[arr[l]]--;
 		}

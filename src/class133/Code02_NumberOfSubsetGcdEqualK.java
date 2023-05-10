@@ -62,4 +62,31 @@ public class Code02_NumberOfSubsetGcdEqualK {
 		}
 	}
 
+//	public static int zuo(int n, int[] cnt) {
+//		// 1 2 3 4 5 6 7 8 ..... n
+//		// cnt[1] : 1这个数出现了几次
+//		// cnt[2] : 2这个数出现了几次
+//		// cnt[3] : 3这个数出现了几次
+//		// cnt 长度一定是n+1，cnt[1....n]
+//		// 这样一个数据状况下，以1做最大公约数的子序列个数
+//		int[] dp = new int[n + 1];
+//		// dp[i] : 有多少个子序列，是以i做最大公约数的!
+//		// O(n * logn)
+//		for (int i = n; i >= 1; i--) {
+//			// i = 5
+//			int all = 0;
+//			for(int j = i; j <= n; j+= i) {
+//				// 5 10 15 20 25 ... n
+//				all += cnt[j];
+//			}
+//			int all2 = 2的all次方 - 1;
+//			int minus = 0;
+//			for(int j = 2 * i; j <= n; j+= i) {
+//				minus += dp[j];
+//			}
+//			dp[i] = all2 - minus;
+//		}
+//		return dp[1];
+//	}
+
 }
