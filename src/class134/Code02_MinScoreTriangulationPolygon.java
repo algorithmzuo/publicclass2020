@@ -22,6 +22,36 @@ package class134;
 // 测试链接 : https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/
 public class Code02_MinScoreTriangulationPolygon {
 
+	public static int zuo(int[] arr) {
+		if (arr == null || arr.length < 3) {
+			return 0;
+		}
+		return minS(arr, 0, arr.length - 1);
+	}
+
+	// 主函数 : minS(arr, 0, arr.length - 1)
+	// arr[l....r]上，去剖分，返回最小得分
+	public static int minS(int[] arr, int l, int r) {
+		if (l > r - 2) {
+			return 0;
+		}
+		if (l == r - 2) { // 正好三个点
+			return arr[l] * arr[l + 1] * arr[r];
+		} else {
+			// 4 5 6
+			// l = 3 r = 7
+			int ans = Integer.MAX_VALUE;
+			for (int m = l + 1; m < r; m++) {
+				int left = minS(arr, l, m);
+				int mid = arr[l] * arr[m] * arr[r];
+				int right = minS(arr, m, r);
+				int curAns = left + mid + right;
+				ans = Math.min(ans, curAns);
+			}
+			return ans;
+		}
+	}
+
 	public static int minScoreTriangulation(int[] values) {
 		int[][] dp = new int[values.length][values.length];
 		for (int i = 0; i < values.length; i++) {

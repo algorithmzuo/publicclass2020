@@ -20,7 +20,15 @@ public class Code03_MakeSumDivisibleByP {
 		if (allMod == 0) {
 			return 0;
 		}
+		// allMod : 整体累加和 % p 得到的，要消除的目标
+		// key : 某个余数
+		// value : 所有前缀和 , %p得到余数是key的情况下，最晚出现的前缀和
+		// 0.....5 %p = 2
+		// 0.....7 %p = 2
+		// 0....13 %p = 2
+		// 余数2，是key，对应的value : 13
 		HashMap<Integer, Integer> map = new HashMap<>();
+		// 一个数都没有的时候，余数是0，最晚出现在-1位置
 		map.put(0, -1);
 		int ans = Integer.MAX_VALUE;
 		int curMod = 0, find;
@@ -31,15 +39,15 @@ public class Code03_MakeSumDivisibleByP {
 			// 如果p = 7，整体余数2，当前余数1，那么找之前的部分余数是6
 			// 整体变成下面的公式，可以自己带入各种情况验证
 			find = (curMod - allMod + p) % p;
+			// find这个余数最晚出现在哪，j位置
+			// j+1....i 就是i结尾的情况下，需要删除的最短段!
+			// 长度 i - j : i - map.get(find)
 			if (map.containsKey(find)) {
-				if (i != n - 1 || map.get(find) != -1) {
-					// 防止删掉整体
-					ans = Math.min(ans, i - map.get(find));
-				}
+				ans = Math.min(ans, i - map.get(find));
 			}
 			map.put(curMod, i);
 		}
-		return ans == Integer.MAX_VALUE ? -1 : ans;
+		return ans == nums.length ? -1 : ans;
 	}
 
 }

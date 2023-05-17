@@ -14,6 +14,50 @@ import java.util.Arrays;
 // 1 <= s <= 10^18
 public class Code01_ImageArrayAverageGotoHalf {
 
+	// arr : 每一个像素点的值，一定在0~s范围
+	// s : 如果像素的值<0，会自动变成0；如果像素的值>s，会自动变成s
+	// 请返回，加上哪个数k，会让整个数组的平均值，最接近s/2
+	public static int zuo(int[] arr, int s) {
+		// k -s ~ s
+		int l = -s;
+		int r = s;
+		int half = s / 2;
+		int abs = Integer.MAX_VALUE;
+		int ans = Integer.MAX_VALUE;
+		while (l <= r) { // k [l,r] 搜寻答案
+			int k = (l + r) / 2;
+			int avg = avg(arr, s, k);
+			if (Math.abs(avg - half) < abs || ((Math.abs(avg - half) == abs) && k < ans)) {
+				abs = avg - half;
+				ans = k;
+			}
+			if (avg >= half) { // 左侧去二分
+				r = k - 1;
+			} else { // avg < half，右侧去二分
+				l = k + 1;
+			}
+		}
+		return ans;
+	}
+
+	// 像素值在arr里，所有数字+k，
+	// 如果像素的值<0，会自动变成0；如果像素的值>s，会自动变成s
+	// 返回+k之后的数组，平均值是多少
+	public static int avg(int[] arr, int s, int k) {
+		int sum = 0;
+		for (int num : arr) {
+			int v = num + k;
+			if (v <= 0) {
+				sum += 0;
+			} else if (v > s) {
+				sum += s;
+			} else {
+				sum += v;
+			}
+		}
+		return sum / arr.length;
+	}
+
 	// 暴力方法
 	// 为了测试
 	public static int best1(int[] arr, int s) {
@@ -32,8 +76,8 @@ public class Code01_ImageArrayAverageGotoHalf {
 
 	// 暴力方法
 	// 为了测试
-	// arr[100,   k = 200 , s
-	//     s
+	// arr[100, k = 200 , s
+	// s
 	public static int average1(int[] arr, int k, int s) {
 		int sum = 0;
 		for (int num : arr) {
@@ -76,8 +120,9 @@ public class Code01_ImageArrayAverageGotoHalf {
 
 	// 正式方法
 	// 最优解
-	// O(N * logN) + O(logS *  logN)
+	// O(N * logN) + O(logS * logN)
 	public static int best3(int[] arr, int s) {
+		// O(N * logN)
 		Arrays.sort(arr);
 		int[] sum = new int[arr.length];
 		sum[0] = arr[0];
@@ -90,6 +135,7 @@ public class Code01_ImageArrayAverageGotoHalf {
 		int half = s / 2;
 		int average = -s;
 		int ans = 0;
+		// O(logS * logN)
 		while (l <= r) {
 			m = (l + r) / 2;
 			int curAverage = average3(arr, sum, m, s);
@@ -107,6 +153,9 @@ public class Code01_ImageArrayAverageGotoHalf {
 		return ans;
 	}
 
+	// logN
+	// 利用前缀和信息，pre数组，可以快速算出一段范围的累加和
+	// 二分范围就可以了
 	public static int average3(int[] arr, int[] pre, int k, int s) {
 		int n = arr.length;
 		if (k < 0) {
