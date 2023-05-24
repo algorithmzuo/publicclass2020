@@ -23,6 +23,8 @@ public class Code01_PrintFromInnerLoop {
 
 	public static void print(char[][] m) {
 		int n = m.length;
+		// 左上角点(a,b)
+		// 右下角点(c,d)
 		for (int a = (n - 1) / 2, b = (n - 1) / 2,
 				c = n / 2, d = n / 2; 
 				a >= 0; 
@@ -32,6 +34,7 @@ public class Code01_PrintFromInnerLoop {
 		System.out.println();
 	}
 
+	// 单独一圈里，打印正确的函数
 	public static void loop(char[][] m, int a, int b, int c, int d) {
 		if (a == c) {
 			System.out.print(m[a][b] + " ");

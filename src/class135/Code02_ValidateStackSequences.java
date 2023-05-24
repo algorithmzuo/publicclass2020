@@ -9,8 +9,12 @@ public class Code02_ValidateStackSequences {
 
 	public boolean validateStackSequences(int[] pushed, int[] popped) {
 		int n = pushed.length;
+		// 栈的大小
+		// 利用pushed[...前面size个空间...]做栈
 		int size = 0;
 		for (int i = 0, j = 0; i < n; i++) {
+			// i : 哪个位置的数字，即将入栈
+			// j : 在弹出数组中，要比对的下标
 			pushed[size++] = pushed[i];
 			while (size > 0 && j < n && pushed[size - 1] == popped[j]) {
 				size--;

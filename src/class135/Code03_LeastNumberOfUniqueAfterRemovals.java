@@ -15,12 +15,19 @@ public class Code03_LeastNumberOfUniqueAfterRemovals {
 		for (int num : arr) {
 			map.put(num, map.getOrDefault(num, 0) + 1);
 		}
+		// 3 : 7次
+		// 2 : 5次
+		// 1 : 6次
+		// 9 : 10次
+		// [7,5,6,10]
 		int n = map.size();
 		int[] cnts = new int[n];
 		int i = 0;
 		for (int cnt : map.values()) {
 			cnts[i++] = cnt;
 		}
+		// [7,5,6,10]
+		// [5,6,7,10]
 		Arrays.sort(cnts);
 		for (i = 0; i < n; i++) {
 			k -= cnts[i];
