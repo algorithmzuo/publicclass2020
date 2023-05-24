@@ -3,6 +3,7 @@ package class135;
 import java.util.Arrays;
 import java.util.HashMap;
 
+// 来自亚马逊
 // 给你一个整数数组 arr 和一个整数 k
 // 现需要从数组中恰好移除 k 个元素
 // 请找出移除后数组中不同整数的最少数目。
