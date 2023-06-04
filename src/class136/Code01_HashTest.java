@@ -52,7 +52,7 @@ public class Code01_HashTest {
 		}
 		System.out.println("===============================");
 
-		String algorithm = "SHA-512";
+		String algorithm = "SHA3-512";
 		Hash hash = new Hash(algorithm);
 		System.out.println("设置了 " + algorithm + " 算法作为哈希函数");
 
