@@ -12,6 +12,29 @@ package class137;
 // 测试链接 : https://leetcode.cn/problems/house-robber-iv/
 public class Code02_HouseRobberIV {
 
+	// 不能选相邻数，整出最大的累加和
+	// 一定要选数！
+	public static int test(int[] arr) {
+		int n = arr.length;
+		if (n == 1) {
+			return arr[0];
+		}
+		if (n == 2) {
+			return Math.max(arr[0], arr[1]);
+		}
+		int lastLast = arr[0];
+		int last = Math.max(arr[0], arr[1]);
+		for (int i = 2; i < n; i++) {
+			int p1 = last;
+			int p2 = arr[i];
+			int p3 = arr[i] + lastLast;
+			int cur = Math.max(p1, Math.max(p2, p3));
+			lastLast = last;
+			last = cur;
+		}
+		return last;
+	}
+
 	// https://leetcode.cn/problems/house-robber/
 	public static int rob(int[] arr) {
 		int n = arr.length;
@@ -39,6 +62,7 @@ public class Code02_HouseRobberIV {
 	}
 
 	public static int minCapability(int[] nums, int k) {
+		// 1 ~ 数组最大值
 		int l = 1;
 		int r = 0;
 		for (int num : nums) {
@@ -101,6 +125,32 @@ public class Code02_HouseRobberIV {
 			last = cur;
 		}
 		return ans;
+	}
+
+	// arr中，所有>x的数，都不能要！
+	// 且不能拿相邻数，
+	// 返回最多能拿几个数
+	public static int zuo(int[] arr, int x) {
+		int n = arr.length;
+		if (n == 1) {
+			return arr[0] <= x ? 1 : 0;
+		}
+		if (n == 2) {
+			return (arr[0] <= x || arr[1] <= x) ? 1 : 0;
+		}
+		// n > 2
+		int[] dp = new int[n];
+		dp[0] = arr[0] <= x ? 1 : 0;
+		dp[1] = (arr[0] <= x || arr[1] <= x) ? 1 : 0;
+		// dp[i] : 0 ~ i范围上，所有大于x的数都不能要！也不能选相邻数字，
+		// 请问小偷最多偷几个房间
+		for (int i = 2; i < n; i++) {
+			int p1 = dp[i-1];
+			int p2 = arr[i] <= x ? 1 : 0;
+			int p3 = (arr[i] <= x ? 1 : 0) + dp[i-2];
+			dp[i] = Math.max(p1, Math.max(p2, p3));
+		}
+		return dp[n - 1];
 	}
 
 }
