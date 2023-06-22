@@ -14,6 +14,9 @@ public class Code02_ReplaceTheSubstringForBalancedString {
 	// 0 1 2 3
 	public static int balancedString(String str) {
 		int n = str.length();
+		// str : Q W W E E R ...
+		// arr : 0 1 1 2 2 3 ...
+		//
 		int[] arr = new int[n];
 		int[] cnts = new int[4];
 		for (int i = 0; i < n; i++) {
@@ -23,43 +26,56 @@ public class Code02_ReplaceTheSubstringForBalancedString {
 		}
 		int ans = n;
 		// L = 0......
-		//      1.....
-		//       2....r
-		//        3......
+		// 1.....
+		// 2....r
+		// 3......
 		for (int l = 0, r = 0; l < n; l++) {
-			// !ok(cnts, l, r) , 当前窗口[l....r)，如果不能让四种字符一样多！
-			// && r < n，虽然没达标，但是还有努力空间
+			// [l...r)
+			// 3...17 X
+			// 3.....18 X
+			// 3.......19
 			while (!ok(cnts, l, r) && r < n) {
+				// r++ 窗口扩了
+				// 原本r位置的数，词频减少1点，因为进了窗口
 				cnts[arr[r++]]--;
 			}
-			// 1) ok了
-			// 2) 依然不ok，而且也没努力空间了
+			// 1) [l....r) ok
+			// 2) l......最后位置了！还是不ok！
 			if (ok(cnts, l, r)) {
 				ans = Math.min(ans, r - l);
 			} else {
 				break;
 			}
+			// l位置的字符，要出窗口了，所以词频统计的表，要返还1点
 			cnts[arr[l]]++;
 		}
 		return ans;
 	}
 
-	// 窗口，str[l.....r)，你可以自由变化，但是窗口外的不能变化
-	// l = 3, r = 10
-	// [3....9]
-	// 窗口长度 = r - l
-	// cnts，窗口之外每一种字符的词频统计，不能算窗口内的统计的！
-	// w : cnts[0]
-	// a : cnts[1]
-	// s : cnts[2]
-	// d : cnts[3]
-	// cnts只有4长度
+	// l , r
+	// l....r-1
+	// [l.....r) 字符串这个范围上，自由变化！r - l
+	// 请问能不能让4种字符整体一样多
+	// cnts : l....r 外部的四种字符，词频统计
+	// A : cnts[0]
+	// B : cnts[1]
+	// C : cnts[2]
+	// D : cnts[3]
 	public static boolean ok(int[] cnts, int l, int r) {
-		// 窗口外最大词频是多少
+		// 看一下最大词频是多少
+		// A : 20
+		// B : 16
+		// C : 20
+		// D : 10
 		int maxCnt = Math.max(Math.max(cnts[0], cnts[1]), Math.max(cnts[2], cnts[3]));
-		// 需要多少空间，拉平？changes
-		// maxCnt - cnts[0] + maxCnt - cnts[1] maxCnt - cnts[2] maxCnt - cnts[3]   
+		// l...r中，要拿出多少个空间，去把所有不够最大词频的字符，填上来
+		// maxCnt - A数量
+		// maxCnt - B数量
+		// maxCnt - C数量
+		// maxCnt - D数量
+		// 4 * maxCnt - A - B - C - D
 		int changes = maxCnt * 4 - cnts[0] - cnts[1] - cnts[2] - cnts[3];
+		// 还剩多少空间rest
 		int rest = r - l - changes;
 		return rest >= 0 && rest % 4 == 0;
 	}

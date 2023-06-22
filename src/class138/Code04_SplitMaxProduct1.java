@@ -4,7 +4,7 @@ package class138;
 // 一个数字n，一定要分成k份
 // 得到的乘积尽量大是多少
 // 数字n和k，可能非常大，到达10^12规模
-// 结果可能更大，所以返回结果对1000000007取模
+// 结果可能很大，所以返回结果对1000000007取模
 public class Code04_SplitMaxProduct1 {
 
 	// 暴力递归
@@ -75,6 +75,9 @@ public class Code04_SplitMaxProduct1 {
 		long ans = 1;
 		long tmp = a;
 		while (n != 0) {
+			// n : 1001
+			// t :         a1  a2 a4 a8 a16
+			// ans : X
 			if ((n & 1) != 0) {
 				ans = (ans * tmp) % mod;
 			}

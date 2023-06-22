@@ -9,6 +9,52 @@ package class138;
 // 0 <= arr[i] <= 10^6
 public class Code01_JumpGameOnLoop {
 
+	// 给定一个数组arr，假设首尾相连
+	// 不能选相邻数字，返回最大的累加和
+	public static int zuo(int[] arr) {
+		int n = arr.length;
+		if (n == 0) {
+			return 0;
+		}
+		if (n == 1) {
+			return arr[0];
+		}
+		// n >= 2
+		// 可能性1，0位置的数没有选
+		int p1 = f(arr, 1, 0, 1);
+		// 可能性2，0位置的数选了
+		int p2 = arr[0] + f(arr, 1, 1, 0);
+		return Math.max(p1, p2);
+	}
+
+	// arr[i.....]不能选相邻数字，能得到最大多少的累加和
+	// pre : 0 1
+	// pre == 0, 前一个数字(i-1位置的数字)没有挑选的
+	// pre == 1, 前一个数字(i-1位置的数字)是选过的
+	// end : 0 1
+	// end == 0，最后一个位置的数，n-1位置的数，不能考虑
+	// end == 1，最后一个位置的数，n-1位置的数，能考虑
+	public static int f(int[] arr, int i, int pre, int end) {
+		if (i == arr.length - 1) {
+			// base case
+			if (pre == 1 || end == 0) {
+				return 0;
+			} else {
+				return arr[i];
+			}
+		} else {
+			// i还没到最后
+			// 不要i位置的数
+			int p1 = f(arr, i + 1, 0, end);
+			// 要i位置的数
+			int p2 = 0;
+			if (pre == 0) {
+				p2 = arr[i] + f(arr, i + 1, 1, end);
+			}
+			return Math.max(p1, p2);
+		}
+	}
+
 	// 暴力方法
 	// 为了测试
 	public static int max1(int[] arr) {
@@ -93,16 +139,16 @@ public class Code01_JumpGameOnLoop {
 			return ans;
 		}
 	}
-	
+
 	// i : 0~n-1
 	// pre : 0 1
 	// end : 0 1
 	// int[][][] dp = new int[n][2][2];
 	// int[][] dp = new int[n][4];
-	// pre == 0 , end == 0   -> 0
-	// pre == 0 , end == 1   -> 1
-	// pre == 1 , end == 0   -> 2
-	// pre == 1 , end == 1   -> 3
+	// pre == 0 , end == 0 -> 0
+	// pre == 0 , end == 1 -> 1
+	// pre == 1 , end == 0 -> 2
+	// pre == 1 , end == 1 -> 3
 	// pre , end -> (pre << 1) | end
 	public static int zuo(int[] arr, int i, int pre, int end) {
 		if (i == arr.length - 1) {
@@ -113,7 +159,7 @@ public class Code01_JumpGameOnLoop {
 			// 可能性1 : 不要i位置的数
 			// i+1, 0, end
 			int p1 = zuo(arr, i + 1, 0, end);
-			
+
 			// 可能性2 : 要i位置的数
 			int p2 = Integer.MIN_VALUE;
 			if (pre != 1) {

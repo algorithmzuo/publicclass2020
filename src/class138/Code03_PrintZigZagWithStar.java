@@ -1,6 +1,6 @@
 package class138;
 
-// 来自华为OD
+// 来自真实华为面试
 // 如果n = 1，打印
 // 1***
 // 如果n = 2，打印
@@ -50,8 +50,14 @@ public class Code03_PrintZigZagWithStar {
 		while (in.nextToken() != StreamTokenizer.TT_EOF) {
 			n = (int) in.nval;
 			m = n * 8;
+			// n = 100
+			// 800个空格
 			Arrays.fill(space, 0, m, ' ');
 			boolean from = true;
+			// 左 -> 右
+			// 左 <- 右
+			// 左 -> 右
+			// 左 <- 右
 			for (int i = 1, j = 1; i <= n; j += i, i++) {
 				fill(from, j, i);
 				for (int k = 0; k < m - 4; k++) {
