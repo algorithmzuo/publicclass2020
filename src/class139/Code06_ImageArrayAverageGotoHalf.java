@@ -1,4 +1,4 @@
-package class138;
+package class139;
 
 import java.util.Arrays;
 
@@ -12,7 +12,7 @@ import java.util.Arrays;
 // 请输出这个整数k, 如有多个整数k都满足, 输出小的那个
 // 1 <= n <= 10^6
 // 1 <= s <= 10^18
-public class Code07_ImageArrayAverageGotoHalf {
+public class Code06_ImageArrayAverageGotoHalf {
 
 	// 暴力方法
 	// 为了测试

@@ -1,7 +1,7 @@
 package class139;
 
 // 字符串哈希原理和实现
-public class Code03_StringHash {
+public class Code01_StringHash {
 
 	// 暴力方法
 	// 为了验证

@@ -1,4 +1,4 @@
-package class138;
+package class139;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 // 返回想让1号店铺成为人气最高的店，至少花多少钱
 // 1 <= p,n,m <= 3000
 // 1 <= x <= 10^9
-public class Code06_BecomeMostPopularShop {
+public class Code04_BecomeMostPopularShop {
 
 	// 暴力方法
 	// 为了测试

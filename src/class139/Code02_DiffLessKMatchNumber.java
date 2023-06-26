@@ -5,7 +5,7 @@ package class139;
 // 要求查找源串中有多少子串与模式串匹配
 // s' 与 s 匹配，当且仅当 s' 与 s 长度相同，且最多有 k 个位置字符不同
 // 其中 1 <= n, m <= 10^6，0 <= k <= 5
-public class Code04_DiffLessKMatchNumber {
+public class Code02_DiffLessKMatchNumber {
 
 	// 暴力方法
 	// 为了测试
