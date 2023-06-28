@@ -1,7 +1,7 @@
 package class139;
 
 // 字符串哈希原理和实现
-// 比如p = 233, 也就是课上说的选择的质数进制
+// 比如p = 233, 也就是选择的质数进制
 // " 3 1 2 5 6 ..."
 //   0 1 2 3 4
 // hash[0] = 3 * p的0次方
@@ -20,7 +20,7 @@ package class139;
 // 所以，子串s[l...r]的哈希值 = hash[r] - hash[l-1] * p的(r-l+1)次方
 // 也就是说，hash[l-1] * p的(r-l+1)次方，正好和hash[r]所代表的信息，前面对齐了
 // 减完之后，正好就是子串s[l...r]的哈希值
-public class Code00_StringHash {
+public class Code00_2_HashForString {
 
 	// 暴力方法
 	// 为了验证
