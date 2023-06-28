@@ -44,6 +44,7 @@ public class Code00_2_HashForString {
 	public static int base = 499;
 
 	public static void build(String str, int n) {
+		// k
 		pow[0] = 1;
 		for (int j = 1; j < n; j++) {
 			pow[j] = pow[j - 1] * base;
@@ -53,8 +54,10 @@ public class Code00_2_HashForString {
 		// c -> 3
 		// z -> 26
 		// 前缀和的哈希值
+		// str[0] = str[0] - 'a' + 1
 		hash[0] = str.charAt(0) - 'a' + 1;
 		for (int j = 1; j < n; j++) {
+			// base : 进制
 			hash[j] = hash[j - 1] * base + str.charAt(j) - 'a' + 1;
 		}
 	}
@@ -68,11 +71,11 @@ public class Code00_2_HashForString {
 		return hash(l1, r1) == hash(l2, r2);
 	}
 
-	// s[l...r]
+	// str[l...r] 的哈希值！告诉我！
 	public static long hash(int l, int r) {
-		// hash[0] : s[0...0]
-		// hash[5] : s[0...5]
-		// hash[i] : s[0...i]
+		// 0~6
+		// 2~6
+		// h[6] - h[1] * k的5次方
 		long ans = hash[r];
 		ans -= l == 0 ? 0 : (hash[l - 1] * pow[r - l + 1]);
 		return ans;
