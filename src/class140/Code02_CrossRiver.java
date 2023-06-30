@@ -1,4 +1,4 @@
-package class139;
+package class140;
 
 // 来自华为OD
 // 一支n个士兵的军队正在趁夜色逃亡，途中遇到一条湍急的大河
@@ -28,7 +28,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code03_CrossRiver {
+public class Code02_CrossRiver {
 
 	public static int MAXN = 100001;
 

@@ -1,4 +1,4 @@
-package class139;
+package class140;
 
 import java.util.PriorityQueue;
 
@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 // 给定一个正数m，表示有m个人等位
 // 如果你是刚来的人，请问你需要等多久？
 // 假设：m远远大于n，比如n<=1000, m <= 10的9次方，该怎么做？
-public class Code02_MinWaitingTime {
+public class Code01_MinWaitingTime {
 
 	public static int minWaitingTime1(int[] arr, int m) {
 		if (arr == null || arr.length == 0) {
