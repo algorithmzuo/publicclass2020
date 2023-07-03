@@ -7,7 +7,7 @@ package class140;
 // 0 <= i < j < k < l < n 且
 // nums[i] < nums[k] < nums[j] < nums[l] 。
 // 测试链接 : https://leetcode.cn/problems/count-increasing-quadruplets/
-public class Code06_CountIncreasingQuadruplets {
+public class Code07_CountIncreasingQuadruplets {
 
 	// 非常强的思路和实现
 	public static long countQuadruplets1(int[] nums) {

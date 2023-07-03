@@ -13,7 +13,7 @@ import java.util.HashMap;
 // 注意，某些子字符串可能是重复的，但你统计时也必须算上这些重复的子字符串
 //（也就是说，你必须统计 s 的所有子字符串中的唯一字符）。
 // 测试链接 : https://leetcode.cn/problems/count-unique-characters-of-all-substrings-of-a-given-string/
-public class Code05_CountUniqueCharactersOfAllSubstrings {
+public class Code06_CountUniqueCharactersOfAllSubstrings {
 
 	public static int uniqueLetterString(String s) {
 		// key : 某一种字符

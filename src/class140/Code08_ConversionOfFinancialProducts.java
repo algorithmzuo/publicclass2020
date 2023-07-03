@@ -51,7 +51,7 @@ import java.util.Arrays;
 // 1 <= n <= 100
 // 0 <= arr[i] <= 10^4
 // k < n
-public class Code07_ConversionOfFinancialProducts {
+public class Code08_ConversionOfFinancialProducts {
 
 	public static int MAXN = 101;
 
