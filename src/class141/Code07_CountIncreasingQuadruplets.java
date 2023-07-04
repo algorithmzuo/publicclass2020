@@ -1,4 +1,4 @@
-package class140;
+package class141;
 
 // 来自思爱普
 // 给你一个长度为 n 下标从 0 开始的整数数组 nums

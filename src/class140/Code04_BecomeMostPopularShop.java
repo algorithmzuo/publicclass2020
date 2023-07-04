@@ -22,6 +22,11 @@ public class Code04_BecomeMostPopularShop {
 	// 返回至少要花多少钱，才能让1号店铺成为人气最高的点
 	public static long minCost1(int n, int m, int[][] arr) {
 		// 统计每个店铺的支持人数
+		// 1 
+		// 2 
+		// 3
+		// 4
+		// 
 		int[] cnts = new int[n + 1];
 		for (int[] p : arr) {
 			cnts[p[0]]++;
@@ -125,6 +130,8 @@ public class Code04_BecomeMostPopularShop {
 		// shops.get(5) = {13, 16, 23}
 		// 每一个下标，都是排序之后的数组中，人的下标
 		ArrayList<ArrayList<Integer>> shops = new ArrayList<>();
+		// 2 : {5,7,9,18}
+		// 3 : {3,6,17,29...}
 		for (int i = 0; i <= n; i++) {
 			shops.add(new ArrayList<>());
 		}
@@ -134,6 +141,8 @@ public class Code04_BecomeMostPopularShop {
 		// 某个用户是否已经改投1号店了
 		boolean[] used = new boolean[m];
 		long ans = Long.MAX_VALUE;
+		// 1号店已经9人了，居然不是人气王！
+		// 10 11 12  ... m
 		for (int i = cnts[1] + 1; i <= m; i++) {
 			long money = f(arr, n, cnts[1], i, shops, used);
 			if (money != -1) {
@@ -152,8 +161,14 @@ public class Code04_BecomeMostPopularShop {
 	// 返回值 :
 	// 如果一号店人数最后一定要达到must，并且一定可以成为人气最高的店，那么返回至少花的钱数
 	// 如果上面说的做不到，返回-1
-	public static long f(int[][] arr, int n, int already, int must, ArrayList<ArrayList<Integer>> shops,
-			boolean[] used) {
+	public static long f(
+			int[][] arr,
+			int n,
+			int already, // 1号店已经有的人了
+			int must, // 最终一定要让1号店，严格这么多人
+			ArrayList<ArrayList<Integer>> shops, // 每个店的支持者列表
+			boolean[] used // 辅助数组，j号人已经改投了used[j] = true
+			) {
 		// 最开始时，任何人都没有转投
 		Arrays.fill(used, false);
 		// 总钱数

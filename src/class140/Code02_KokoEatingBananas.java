@@ -20,6 +20,7 @@ public class Code02_KokoEatingBananas {
 		int ans = 0;
 		int M = 0;
 		while (L <= R) {
+			// M = (L + R)/2
 			M = L + ((R - L) >> 1);
 			if (hours(piles, M) <= h) {
 				ans = M;
@@ -31,6 +32,9 @@ public class Code02_KokoEatingBananas {
 		return ans;
 	}
 
+	// 所有香蕉，告诉你，piles
+	// speed去吃
+	// 返回：所有香蕉都吃完要几小时
 	public static long hours(int[] piles, int speed) {
 		long ans = 0;
 		int offset = speed - 1;
