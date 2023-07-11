@@ -11,14 +11,25 @@ public class Code06_CountIncreasingQuadruplets {
 
 	public static long countQuadruplets1(int[] nums) {
 		int n = nums.length;
+		// 多少个有效四元组
 		long ans = 0;
+		// 信息：dp[i] ，遍历到目前为止，i位置的数，一定要作为：小 大 中，中间这个中！的话！
+		// 这样的三元组，数量是多少
 		long[] dp = new long[n];
 		for (int l = 1; l < n; l++) {
+			
+			//       0 ......  l
 			for (int j = 0; j < l; j++) {
 				if (nums[j] < nums[l]) {
 					ans += dp[j];
 				}
 			}
+			
+			
+			// 更新信息，dp : 0.....l-1负责的
+			// dp          :0.....l负责的
+			//   ...   x ..  [l]
+			//   小    大     中
 			int cnt = 0;
 			for (int j = 0; j < l; j++) {
 				if (nums[j] < nums[l]) {

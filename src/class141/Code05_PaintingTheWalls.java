@@ -19,16 +19,19 @@ public class Code05_PaintingTheWalls {
 		return process1(cost, time, 0, cost.length);
 	}
 
-	// 来到i位置的墙，整体还有s面墙需要刷
+	// 来到i位置的墙，两人还有s面墙需要刷
 	// 认为只需要选s面墙即可，剩下的都刷完了
 	// 返回刷完所有墙的最少花费
 	public static int process1(int[] cost, int[] time, int i, int s) {
 		if (s <= 0) {
 			return 0;
 		}
+		// s > 0
 		if (i == cost.length) {
 			return Integer.MAX_VALUE;
 		} else {
+			// s > 0
+			// 没到终止位置
 			int p1 = process1(cost, time, i + 1, s);
 			int p2 = Integer.MAX_VALUE;
 			int next2 = process1(cost, time, i + 1, s - 1 - time[i]);

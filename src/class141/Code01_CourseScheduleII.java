@@ -12,29 +12,35 @@ import java.util.ArrayList;
 public class Code01_CourseScheduleII {
 
 	public int[] findOrder(int numCourses, int[][] prerequisites) {
+		// numCourses : 一共有几个点，7，
+		// 点的编号： 0 、1 2 3 4 5 6
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 		for (int i = 0; i < numCourses; i++) {
 			graph.add(new ArrayList<>());
 		}
 		int[] indegree = new int[numCourses];
-		for (int[] arr : prerequisites) {
-			int to = arr[0];
-			int from = arr[1];
+		for (int[] edge : prerequisites) {
+			// [3, 1] : 1 -> 3
+			int to = edge[0];
+			int from = edge[1];
 			graph.get(from).add(to);
 			indegree[to]++;
 		}
 		int[] zeroQueue = new int[numCourses];
 		int l = 0;
 		int r = 0;
+		// 所有节点，过一遍，入度为0的点，先进去，zeroQueue
 		for (int i = 0; i < numCourses; i++) {
 			if (indegree[i] == 0) {
 				zeroQueue[r++] = i;
 			}
 		}
+		// 统计一下，拓扑排序的过程中，收集了多少入度为0的点！
 		int count = 0;
 		while (l < r) {
 			int cur = zeroQueue[l++];
 			count++;
+			// 消除影响，当前的点cur，
 			for (int next : graph.get(cur)) {
 				if (--indegree[next] == 0) {
 					zeroQueue[r++] = next;

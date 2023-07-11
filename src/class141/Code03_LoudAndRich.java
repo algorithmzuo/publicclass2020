@@ -18,13 +18,19 @@ public class Code03_LoudAndRich {
 
 	public static int[] loudAndRich(int[][] richer, int[] quiet) {
 		int n = quiet.length;
-		ArrayList<ArrayList<Integer>> nexts = new ArrayList<>();
+		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
-			nexts.add(new ArrayList<>());
+			// 0 -> {}
+			// 1 -> {...}
+			graph.add(new ArrayList<>());
 		}
 		int[] degree = new int[n];
 		for (int[] r : richer) {
-			nexts.get(r[0]).add(r[1]);
+			// [a,b]
+			// a : {b}
+			// [c,b]
+			// c : {b}
+			graph.get(r[0]).add(r[1]);
 			degree[r[1]]++;
 		}
 		int[] zeroQueue = new int[n];
@@ -41,10 +47,18 @@ public class Code03_LoudAndRich {
 		}
 		while (l < r) {
 			int cur = zeroQueue[l++];
-			for (int next : nexts.get(cur)) {
+			for (int next : graph.get(cur)) {
+				
+				// cur -> next
+				
+				// quiet[ans[cur]]  < quiet[ans[next]]
+				
+				
 				if (quiet[ans[next]] > quiet[ans[cur]]) {
 					ans[next] = ans[cur];
 				}
+				
+				
 				if (--degree[next] == 0) {
 					zeroQueue[r++] = next;
 				}
