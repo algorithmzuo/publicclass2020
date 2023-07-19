@@ -8,7 +8,7 @@ import java.util.Arrays;
 // 想让所有的人同时过河，并且用最好的分配方法让船尽量少
 // 返回最少的船数
 // 测试链接 : https://leetcode.com/problems/boats-to-save-people/
-public class Code05_BoatsToSavePeople {
+public class Code04_BoatsToSavePeople {
 
 	public static int numRescueBoats1(int[] arr, int limit) {
 		if (arr == null || arr.length == 0) {

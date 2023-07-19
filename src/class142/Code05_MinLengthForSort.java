@@ -1,7 +1,7 @@
 package class142;
 
 // 本题测试链接 : https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
-public class Code06_MinLengthForSort {
+public class Code05_MinLengthForSort {
 
 	public static int findUnsortedSubarray(int[] nums) {
 		if (nums == null || nums.length < 2) {

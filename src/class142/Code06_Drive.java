@@ -2,7 +2,7 @@ package class142;
 
 import java.util.Arrays;
 
-public class Code04_Drive {
+public class Code06_Drive {
 
 	// 课上的现场版本
 	// income -> N * 2 的矩阵 N是偶数！
