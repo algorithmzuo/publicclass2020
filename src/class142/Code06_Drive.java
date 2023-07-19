@@ -26,6 +26,10 @@ public class Code06_Drive {
 	// 找到了leetcode上的测试
 	// leetcode上让求最小，课上讲的求最大
 	// 其实是一个意思
+	// 公司计划面试 2n 人。给你一个数组 costs
+	// 其中 costs[i] = [aCosti, bCosti]
+	// 第 i 人飞往 a 市的费用为 aCosti ，飞往 b 市的费用为 bCosti
+	// 返回将每个人都飞到 a 、b 中某座城市的最低费用，要求每个城市都有 n 人抵达。
 	// 测试链接 : https://leetcode.cn/problems/two-city-scheduling/
 	public static int twoCitySchedCost(int[][] costs) {
 		int N = costs.length;

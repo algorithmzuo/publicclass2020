@@ -7,7 +7,7 @@ import java.util.Arrays;
 // 每艘船最多坐两人，且不能超过载重
 // 想让所有的人同时过河，并且用最好的分配方法让船尽量少
 // 返回最少的船数
-// 测试链接 : https://leetcode.com/problems/boats-to-save-people/
+// 测试链接 : https://leetcode.cn/problems/boats-to-save-people/
 public class Code04_BoatsToSavePeople {
 
 	public static int numRescueBoats1(int[] arr, int limit) {
