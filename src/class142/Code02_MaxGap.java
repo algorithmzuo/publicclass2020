@@ -6,6 +6,7 @@ package class142;
 // 测试链接 : https://leetcode.cn/problems/maximum-gap/
 public class Code02_MaxGap {
 
+	// 如果排序之后，相邻两数的最大差值是什么返回
 	public static int maximumGap(int[] nums) {
 		if (nums == null || nums.length < 2) {
 			return 0;
@@ -20,8 +21,12 @@ public class Code02_MaxGap {
 		if (min == max) {
 			return 0;
 		}
+		// 准备桶，len，len+1
+		// i号桶，有没有进来过数字
 		boolean[] hasNum = new boolean[len + 1];
+		// i号桶，max多少
 		int[] maxs = new int[len + 1];
+		// i号桶，min多少
 		int[] mins = new int[len + 1];
 		int bid = 0;
 		for (int i = 0; i < len; i++) {
@@ -30,6 +35,9 @@ public class Code02_MaxGap {
 			maxs[bid] = hasNum[bid] ? Math.max(maxs[bid], nums[i]) : nums[i];
 			hasNum[bid] = true;
 		}
+		// 只考察桶和桶之间的差值
+		// 后一个桶（最小值） - 前一个桶(最大值）  
+		// 保证非空
 		int res = 0;
 		int lastMax = maxs[0];
 		int i = 1;

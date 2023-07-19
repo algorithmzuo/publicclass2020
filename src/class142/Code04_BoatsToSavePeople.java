@@ -16,6 +16,8 @@ public class Code04_BoatsToSavePeople {
 		}
 		int N = arr.length;
 		Arrays.sort(arr);
+		// 10
+		// ..... 20
 		if (arr[N - 1] > limit) {
 			return -1;
 		}
@@ -59,6 +61,7 @@ public class Code04_BoatsToSavePeople {
 		int r = people.length - 1;
 		int sum = 0;
 		while (l <= r) {
+			// l.......r
 			sum = l == r ? people[l] : people[l] + people[r];
 			if (sum > limit) {
 				r--;
