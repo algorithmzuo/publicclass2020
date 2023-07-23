@@ -16,7 +16,7 @@ public class Code06_FindKthSmallestPairDistance {
 		int r = nums[n - 1] - nums[0];
 		int ans = 0;
 		while (l <= r) {
-			int dis = l + ((r - l) >> 1);
+			int dis = (l + r) / 2;
 			int cnt = f(nums, dis);
 			if (cnt >= k) {
 				ans = dis;
