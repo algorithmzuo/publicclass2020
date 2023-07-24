@@ -10,20 +10,17 @@ package class143;
 public class Code01_MinDaysDoneAllProjects {
 
 	// 这是二分答案法几乎最简单的题了
-	// 不写对数器了
 	public static int minDays(int[][] projects, int k) {
-		// l......r
-		// 0   所有项目中，天数的最大值
 		int l = 0;
 		int r = 0;
-		// project[0] : 既定天数
-		// project[1] : 投入多少资源能减少1天
 		for (int[] project : projects) {
 			r = Math.max(r, project[0]);
 		}
-		// l......r
+		// l........r
 		int m, ans = r;
 		while (l <= r) {
+			// 0.......100
+			//     50天
 			m = (l + r) / 2;
 			if (yeah(projects, m) <= k) {
 				ans = m;
@@ -35,12 +32,12 @@ public class Code01_MinDaysDoneAllProjects {
 		return ans;
 	}
 
-	// 给你所有的项目！projects
-	// 一定要在days天内完成！
-	// 返回，需要的资源是多少！
+	// 所有的项目，要在days天内结束！返回需要多少资源
 	public static int yeah(int[][] projects, int days) {
 		int ans = 0;
 		for (int[] p : projects) {
+			// 28天 20天要完成
+			// 8份 
 			if (p[0] > days) {
 				ans += (p[0] - days) * p[1];
 			}

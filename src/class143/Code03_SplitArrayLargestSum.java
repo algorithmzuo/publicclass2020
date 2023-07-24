@@ -6,7 +6,7 @@ package class143;
 // 测试链接：https://leetcode.cn/problems/split-array-largest-sum/
 public class Code03_SplitArrayLargestSum {
 
-	public static int splitArray(int[] nums, int M) {
+	public static int splitArray(int[] nums, int k) {
 		long sum = 0;
 		for (int i = 0; i < nums.length; i++) {
 			sum += nums[i];
@@ -17,7 +17,9 @@ public class Code03_SplitArrayLargestSum {
 		while (l <= r) {
 			long mid = (l + r) / 2;
 			long cur = getNeedParts(nums, mid);
-			if (cur <= M) {
+			// 500小时  手：10个画家
+			// 8个
+			if (cur <= k) {
 				ans = mid;
 				r = mid - 1;
 			} else {

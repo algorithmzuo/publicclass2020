@@ -36,6 +36,8 @@ public class Code02_RobotPassThroughBuilding {
 		StreamTokenizer in = new StreamTokenizer(br);
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 		while (in.nextToken() != StreamTokenizer.TT_EOF) {
+			// 笔试时候，自己去读测试数据的文件
+			// 读出高楼多少座
 			n = (int) in.nval;
 			int l = 0;
 			int r = 0;
@@ -46,6 +48,7 @@ public class Code02_RobotPassThroughBuilding {
 				r = Math.max(r, arr[i]);
 				max = r;
 			}
+			// 0....最大高度，二分
 			int m, ans = -1;
 			while (l <= r) {
 				m = (l + r) / 2;

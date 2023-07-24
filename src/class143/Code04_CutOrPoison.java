@@ -63,7 +63,8 @@ public class Code04_CutOrPoison {
 		int m = 0;
 		int ans = Integer.MAX_VALUE;
 		while (l <= r) {
-			m = l + ((r - l) >> 1);
+			m = (l + r) / 2;
+//			m = l + ((r - l) >> 1);
 			if (ok(cuts, poisons, hp, m)) {
 				ans = m;
 				r = m - 1;
